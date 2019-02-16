@@ -7,6 +7,12 @@ import amicaService from './services/Amica'
 import courseService from './services/Courses'
 import LoginForm from './components/Login'
 import loginService from './services/Login'
+import createAccountService from './services/CreateAccount'
+import Course from './components/Course'
+import userService from './services/Users'
+import Users from './services/Users';
+import Notification from './components/Notification'
+import CreateAccountForm from './components/CreateAccountForm'
 
 class App extends Component {
   constructor(props) {
@@ -14,8 +20,10 @@ class App extends Component {
     this.state = {
       events: [],
       foodList: [],
+      courses: [],
       username: '',
       password: '',
+      passwordConfirmation: '',
       user: null,
       newName: '',
       newUrl: '',
@@ -24,9 +32,24 @@ class App extends Component {
   }
 
   componentDidMount() {
+    const loggedUser = window.localStorage.getItem('loggedUser')
+    const user = JSON.parse(loggedUser)
+    console.log(user)
+    if (user !== null) {
+        userService.findById(user.id)
+        .then(res => {
+          this.setState({ courses: res.courses })
+          console.log(res)
+        })
+      }
+
       bailataanService.getAll().then(events => {
         this.setState({ events: events.model })
-        console.log(this.state.events)
+      })
+
+      userService.getAll().then(events => {
+/*         this.setState({ courses: events.courses })
+ */        
       })
 
       const loggedUserJSON = window.localStorage.getItem('loggedUser')
@@ -48,8 +71,46 @@ class App extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
 
-login = async (event) => {
-  event.preventDefault()
+  createAccount = (event) => {
+    event.preventDefault()
+    console.log("LUODAAN KÄYTTÄJÄ")
+    if (this.state.password !== this.state.passwordConfirmation
+       || this.state.password === '') {
+      this.setState({ 
+        error: 'Salasanat eivät täsmää tai kenttä on tyhjä',
+        password: '',
+        passwordConfirmation: ''
+      })
+      setTimeout(() => {
+        this.setState({ error: null })
+      }, 3000)
+      console.log("SALASANAT EIVÄT TÄSMÄÄ")
+      return
+    }
+    console.log("SALASANAT TÄSMÄÄÄVÄT")
+    const userObject = {
+      username: this.state.username,
+      password: this.state.password,
+      name: this.state.username
+    }    
+    this.setState({
+      password: '',
+      passwordConfirmation: ''
+    })
+    createAccountService.create(userObject)
+  }
+
+  logout = (event) => {
+    event.preventDefault()
+    this.setState({
+      user: null,
+      courses: []
+    })
+    window.localStorage.removeItem('loggedUser')
+  }
+
+  login = async (event) => {
+    event.preventDefault()
 
   try {
     console.log("YRITETÄÄ KIRJAUTUA")
@@ -63,6 +124,8 @@ login = async (event) => {
     window.localStorage.setItem('loggedUser', JSON.stringify(user))
     courseService.setToken(user.token)
     this.setState({ username: '', password: '', user })
+    console.log(this.state.user)
+    this.componentDidMount()
   } catch(exception) {
     console.log("KÄYTTÄJÄTUNNUS TAI SALASANA VÄÄRIN")
     console.log(exception)
@@ -84,7 +147,9 @@ login = async (event) => {
 
     if (this.state.user === null) {
       return (
+        <div className="App">
         <div>
+          <Notification message={this.state.error} />
           <h1>Kirjaudu</h1>
           <LoginForm
           handler={this.handleLoginFieldChange.bind(this)}
@@ -92,14 +157,40 @@ login = async (event) => {
           password={this.state.password}
           loginFnc={this.login.bind(this)}
           />
+          <CreateAccountForm 
+          username={this.state.username}
+          password={this.state.password}
+          handler={this.handleLoginFieldChange.bind(this)}
+          createAccountFnc={this.createAccount.bind(this)}
+          passwordConfirmation={this.state.passwordConfirmation}
+          />
         </div>
+        <div>
+        </div>
+        <div>
+          <Nav /> 
+        </div>
+        <div>
+          {this.state.events.filter(event => 
+          event.dateActualUntil
+          .includes(tomorrowAsJson))
+          .map(event => 
+          <Kideapp key={event.id} props={event} />)}
+        </div>
+       </div>
       )
     }
 
     return (
       <div className="App">
         <div>
-          
+          <button onClick={this.logout}>LOG OUT</button>
+        </div>
+        <div>
+          {this.state.courses
+          .map(course => 
+          <Course key={course._id} url={course.url} name={course.name} />
+          )}
         </div>
         <div>
           <Nav /> 
