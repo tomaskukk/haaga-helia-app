@@ -2,6 +2,7 @@ import axios from 'axios'
 
 const baseUrl = '/api/courses'
 
+
 let token = null
 
 const getAll = () => {

@@ -19,7 +19,7 @@ import NavbarBrand from 'react-bootstrap/NavbarBrand'
 import FormControl from 'react-bootstrap/FormControl'
 import Navbar from 'react-bootstrap/Navbar'
 import Form from 'react-bootstrap/Form'
-import './css/Nav.css'
+import './css/components.css'
 
 const Navigation = () => {
 

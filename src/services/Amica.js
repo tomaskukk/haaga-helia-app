@@ -1,19 +1,13 @@
 import axios from 'axios'
 
-const url = 'https://www.fazerfoodco.fi/api/restaurant/menu/week?language=fi&restaurantPageId=177431&weekDate=2019-02-15'
+const url = '/api/amica'
 
-/* const getAll = () => {
-    const config = {
-        headers: { 'Access-Control-Allow-Origin': '*' }
-    }
-    const request = axios.get(url, config)
-    console.log(request)
-    console.log(request.then(response => response.data))
-    return request.then(response => response.data)
-} */
-
-const testLog = () => {
-    console.log("moi")
+const getAll = async () => {
+    console.log("PENDING")
+    const response = await axios.get(url)
+    console.log("DONE")
+    console.log(response)
+    return (response.data)
 }
 
-export default { testLog }
+export default { getAll }

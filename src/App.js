@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import Navigation from './components/Nav'
 import Kideapp from './components/KideApp'
+import Lukkari from './components/Lukkarit'
 import bailataanService from './services/Bailataan'
 import amicaService from './services/Amica'
 import courseService from './services/Courses'
 import LoginForm from './components/Login'
+import Calender from './components/Calender'
 import loginService from './services/Login'
 import createAccountService from './services/CreateAccount'
 import Course from './components/Course'
@@ -14,8 +16,10 @@ import Notification from './components/Notification'
 import CreateAccountForm from './components/CreateAccountForm'
 import Newcourse from './components/Newcourse'
 import Button from 'react-bootstrap/Button'
-import Image from 'react-bootstrap/Image'
-import img from './img/kide_app.png'
+import './components/css/components.css'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import Container from 'react-bootstrap/Container'
 
 
 class App extends Component {
@@ -23,7 +27,6 @@ class App extends Component {
     super(props)
     this.state = {
       events: [],
-      foodList: [],
       courses: [],
       username: '',
       password: '',
@@ -33,7 +36,10 @@ class App extends Component {
       newUrl: '',
       error: null,
       courseName: '',
-      courseUrl: ''
+      courseUrl: '',
+      selectedDay: new Date(),
+      calenderLink: '',
+      pasilaAmicaFood: []
     }
   }
 
@@ -53,21 +59,31 @@ class App extends Component {
           console.log(res)
         })
     }
+
+
+    
       // get bailataan events from their REST api
-      bailataanService.getAll().then(events => {
-        this.setState({ events: events.model })
-      })
-      /* amicaService.getAll()
-      amicaService.getAll().then(list => {
-        this.setState({ foodList: list})
-        console.log(this.state.foodList)
-      }) */
+      
+
+      bailataanService.getAll()
+        .then(events => {
+          this.setState({ events: events.model })
+        })
+      amicaService.getAll()
+        .then(lunchMenus => {
+          this.setState({ pasilaAmicaFood: lunchMenus })
+        })
+  }
+
+  handleDayClick = (day, { selected } ) => {
+    this.setState({ selectedDay: day })
   }
 
   handleLoginFieldChange = (event) => {
     this.setState({ [event.target.name]: event.target.value })
   }
   
+
   createCourse = (event) => {
     event.preventDefault()
     
@@ -94,13 +110,15 @@ class App extends Component {
     this.componentDidMount()
   }
 
+
+
   createAccount = (event) => {
     event.preventDefault()
     console.log("LUODAAN KÄYTTÄJÄ")
     if (this.state.password !== this.state.passwordConfirmation
        || this.state.password === '') {
       this.setState({ 
-        error: 'Salasanat eivät täsmää tai kenttä on tyhjä',
+        error: 'Passwords does not match or field is empty',
         password: '',
         passwordConfirmation: ''
       })
@@ -111,6 +129,7 @@ class App extends Component {
       return
     }
     console.log("SALASANAT TÄSMÄÄÄVÄT")
+    this.setState({error : 'Creating account...'})
     const userObject = {
       username: this.state.username,
       password: this.state.password,
@@ -121,6 +140,15 @@ class App extends Component {
       passwordConfirmation: ''
     })
     createAccountService.create(userObject)
+    .then(resp => {
+      resp === undefined ?
+      this.setState({error: `Username must be unique`})
+      :
+      this.setState({error: `User ${resp.name} created succesfully!`})
+      setTimeout(() => {
+        this.setState({error: null})
+      }, 3000)
+    })
   }
 
   logout = (event) => {
@@ -153,33 +181,28 @@ class App extends Component {
     console.log("KÄYTTÄJÄTUNNUS TAI SALASANA VÄÄRIN")
     console.log(exception)
     this.setState({
-      error: 'käyttäjätunnus tai salasana väärin'
+      error: 'Username or password incorrect'
     })
     setTimeout(() => {
       this.setState({ error: null })
-    }, 5000)
+    }, 3000)
   }
 }
 
 
   render() {
-    const dateToday = new Date()
-    const dateTomorrow = new Date()
-    dateTomorrow.setDate(dateToday.getDate() + 1)
-    const tomorrowAsJson = dateTomorrow.toJSON().substr(0, 10).toString() 
+    
 
     if (this.state.user === null) {
       return (
         <div className="container">
         <Navigation />
-        <div>
-          <Notification message={this.state.error} />
-          <h3>Kirjaudu</h3>
-          <p>Kirjautumalla saat lisättyä haluamasi moodle
-            kurssit, joita painamalla pääset suoraan kurssin
-            sivulle
+        <div className="basicContainer">
+          <h3>Log in</h3>
+          <p>Logging in lets you save your Moodle courses and access them with just one click
           </p>
-          <Togglable buttonLabel="Login">
+          <Togglable style="success" buttonLabel="Login">
+            <Notification message={this.state.error} />
             <LoginForm
             handler={this.handleLoginFieldChange.bind(this)}
             username={this.state.username}
@@ -187,9 +210,11 @@ class App extends Component {
             loginFnc={this.login.bind(this)}
             />
           </Togglable>
+          </div>
           <br></br>
-          <h3>Luo käyttäjä</h3>
-          <Togglable buttonLabel="Create account">
+          <div className="basicContainer">
+          <Togglable style="primary" buttonLabel="Create account">
+            <Notification message={this.state.error} />
             <CreateAccountForm 
             username={this.state.username}
             password={this.state.password}
@@ -199,28 +224,29 @@ class App extends Component {
             />
           </Togglable>
         </div>
-        <div>
-          <h3>Opiskelijajuhlat tänään Helsingissä</h3>
-          {this.state.events.filter(event => 
-          event.dateActualUntil
-          .includes(tomorrowAsJson))
-          .map(event => 
-          <Kideapp key={event.id} props={event} />)}
+        <div className="basicContainer">
+          <Calender 
+          selectedDay={this.state.selectedDay} 
+          events={this.state.events}
+          handleDayClick={this.handleDayClick.bind(this)}/>
         </div>
+        {/* <div>
+          <Lukkari />
+        </div> */}
        </div>
       )
     }
 
     return (
-      <div className="container">
-        
-        <div>
+      <Container className="container">
         <div>
           <Navigation /> 
         </div>
-          <h3>Sinun kurssisi</h3>
-          </div>
-        <Togglable buttonLabel="Tallenna uusi kurssi">
+        <Row>
+          <Col xs>
+        <div className="basicContainer">
+          <h3>Your courses</h3>
+          <Togglable style="success" buttonLabel="Add new course to table">
           <Newcourse 
           name={this.state.courseName}
           url={this.state.courseUrl}
@@ -228,25 +254,30 @@ class App extends Component {
           createCourseFnc={this.createCourse.bind(this)}
           />
         </Togglable>
-        <div>
-          {this.state.courses
-          .map(course => 
-          <Course key={course._id} 
-          course={course} 
+        </div>
+        <div className="basicContainer">
+          <Course 
+          courses={this.state.courses} 
           deleteCourse={this.deleteCourse} />
-          )}
-          <h3>Opiskelijajuhlat tänään Helsingissä</h3 >
-          {this.state.events.filter(event => 
-          event.dateActualUntil
-          .includes(tomorrowAsJson))
-          .map(event => 
-          <Kideapp key={event.id} props={event} />
-          )}
         </div>
+        <br></br>
         <div>
-          <Button onClick={this.logout} variant="success">LOG OUT</Button>
-        </div>
+          <Button onClick={this.logout} variant="info">LOG OUT</Button>
        </div>
+       </Col>
+       <Col xs>
+       <div className="basicContainer">
+          <Calender 
+          selectedDay={this.state.selectedDay} 
+          events={this.state.events}
+          handleDayClick={this.handleDayClick.bind(this)}/>
+        </div>
+       {/* <div>
+          <Lukkari />
+        </div> */}
+        </Col>
+        </Row>
+        </Container>
     );
   }
 }
@@ -270,7 +301,7 @@ class Togglable extends React.Component {
     return (
       <div className="d-inline">
         <div style={hideWhenVisible}>
-          <Button variant="success"
+          <Button variant={this.props.style}
           onClick={this.toggleVisibility}>
           {this.props.buttonLabel}
           </Button>
