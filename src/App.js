@@ -20,6 +20,9 @@ import './components/css/components.css'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Tooltip from 'react-bootstrap/Tooltip'
+import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 
 
 class App extends Component {
@@ -71,7 +74,7 @@ class App extends Component {
         })
       amicaService.getAll()
         .then(lunchMenus => {
-          this.setState({ pasilaAmicaFood: lunchMenus })
+          this.setState({ pasilaAmicaFood: lunchMenus.LunchMenus })
         })
   }
 
@@ -195,8 +198,11 @@ class App extends Component {
 
     if (this.state.user === null) {
       return (
-        <div className="container">
+        <div className="rootDom">
         <Navigation />
+        <Container className="container">
+        <Row>
+          <Col>
         <div className="basicContainer">
           <h3>Log in</h3>
           <p>Logging in lets you save your Moodle courses and access them with just one click
@@ -224,26 +230,30 @@ class App extends Component {
             />
           </Togglable>
         </div>
-        <div className="basicContainer">
+        </Col>
+        </Row>
+        <Row>
+          <Col>
+        <div className="secondContainer">
           <Calender 
           selectedDay={this.state.selectedDay} 
           events={this.state.events}
+          foodList={this.state.pasilaAmicaFood}
           handleDayClick={this.handleDayClick.bind(this)}/>
         </div>
-        {/* <div>
-          <Lukkari />
-        </div> */}
+        </Col>
+        </Row>
+       </Container>
        </div>
       )
     }
 
     return (
+      <div className="rootDom">
+      <Navigation /> 
       <Container className="container">
-        <div>
-          <Navigation /> 
-        </div>
         <Row>
-          <Col xs>
+        <Col>
         <div className="basicContainer">
           <h3>Your courses</h3>
           <Togglable style="success" buttonLabel="Add new course to table">
@@ -254,22 +264,23 @@ class App extends Component {
           createCourseFnc={this.createCourse.bind(this)}
           />
         </Togglable>
-        </div>
-        <div className="basicContainer">
           <Course 
           courses={this.state.courses} 
           deleteCourse={this.deleteCourse} />
-        </div>
         <br></br>
         <div>
           <Button onClick={this.logout} variant="info">LOG OUT</Button>
+          </div>
        </div>
        </Col>
-       <Col xs>
-       <div className="basicContainer">
+       </Row>
+       <Row>
+       <Col>
+       <div className="secondContainer">
           <Calender 
           selectedDay={this.state.selectedDay} 
           events={this.state.events}
+          foodList={this.state.pasilaAmicaFood}
           handleDayClick={this.handleDayClick.bind(this)}/>
         </div>
        {/* <div>
@@ -278,6 +289,7 @@ class App extends Component {
         </Col>
         </Row>
         </Container>
+        </div>
     );
   }
 }

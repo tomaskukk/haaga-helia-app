@@ -1,6 +1,7 @@
+
+
 .container {
-    margin: auto;
-    width: 50%;
+    display: inline-flex;
 }
 
 .navLink {
@@ -8,5 +9,22 @@
 }
 
 .basicContainer {
+    width:300px;
+    margin-left: 40px;
+}
+
+
+
+.secondContainer {
     width: 300px;
+    margin-left: 250px;
+}
+
+.tableRows {
+    width: 70%;
+}
+
+.rootDom {
+    margin: auto;
+    width: 50%;
 }

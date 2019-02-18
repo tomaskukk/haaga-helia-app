@@ -9,23 +9,23 @@ const CreateAccountForm = ({ username, password,
      handler, passwordConfirmation, createAccountFnc }) => {
     return (
         <Form onSubmit={createAccountFnc}>
-        <FormGroup controlId="formBasicText">
-          <FormLabel>Käyttäjätunnus</FormLabel>
-          <FormControl type="text" name="username" value={username} onChange={handler} placeholder="Käyttäjätunnus" />
+        <FormGroup controlId="createAccountUsername">
+          <FormLabel>Username</FormLabel>
+          <FormControl type="text" name="username" value={username} onChange={handler} placeholder="Username" />
         </FormGroup>
       
-        <FormGroup controlId="formBasicPassword">
-          <FormLabel>Salasana</FormLabel>
-          <FormControl type="password" name="password" value={password} onChange={handler} placeholder="Salasana" />
+        <FormGroup controlId="createAccountPassword">
+          <FormLabel>Password</FormLabel>
+          <FormControl type="password" name="password" value={password} onChange={handler} placeholder="Password" />
         </FormGroup>
         
-        <FormGroup controlId="formBasicPasswordConfirmation">
-          <FormLabel>Salasana uudestaan</FormLabel>
-          <FormControl type="password" name="passwordConfirmation" value={passwordConfirmation} onChange={handler} placeholder="Salasana uudestaan" />
+        <FormGroup controlId="createAccountPasswordConfirmation">
+          <FormLabel>Password again</FormLabel>
+          <FormControl type="password" name="passwordConfirmation" value={passwordConfirmation} onChange={handler} placeholder="Password again" />
         </FormGroup>
 
         <Button variant="primary" type="submit">
-          Luo käyttäjä
+          Create account
         </Button>
       </Form>
     )

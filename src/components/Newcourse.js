@@ -9,14 +9,14 @@ const Newcourse = ({ name, url,
      handler, createCourseFnc }) => {
     return (
         <Form onSubmit={createCourseFnc}>
-        <FormGroup controlId="formBasicText">
-          <FormLabel>Kursille nimi</FormLabel>
-          <FormControl type="text" name="courseName" value={name} onChange={handler} placeholder="Anna kurssille nimi" />
+        <FormGroup controlId="createCourseName">
+          <FormLabel>Course name</FormLabel>
+          <FormControl type="text" name="courseName" value={name} onChange={handler} placeholder="Name for the course" />
         </FormGroup>
       
-        <FormGroup controlId="formBasicText">
-          <FormLabel>Linkki</FormLabel>
-          <FormControl type="text" name="courseUrl" value={url} onChange={handler} placeholder="Kurssin linkki esim. https://hhmoodle.haaga-helia.fi/course/view.php?id=23298" />
+        <FormGroup controlId="createCourseUrl">
+          <FormLabel>Course link</FormLabel>
+          <FormControl type="text" name="courseUrl" value={url} onChange={handler} placeholder="https://hhmoodle.haaga-helia.fi/course/view.php?id=23298" />
         </FormGroup>
         <Button variant="primary" type="submit">
           Tallenna
