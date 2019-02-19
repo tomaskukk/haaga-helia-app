@@ -1,61 +1,60 @@
 import React from 'react'
 import DayPicker from 'react-day-picker'
-import 'react-day-picker/lib/style.css';
+import 'react-day-picker/lib/style.css'
 import KideApp from './KideApp'
 import Ruokalista from './Ruokalista'
+import Button from 'react-bootstrap/Button'
+import './css/components.css'
 
-const Calender = ({ handleDayClick, events, selectedDay, foodList }) => {
-    const selectedDayAsLocale = (selectedDay.getDate() + '.' 
-    + (selectedDay.getMonth() + 1) + '.' 
-    + selectedDay.getFullYear()).toString()
 
-    console.log(selectedDay.getDate())
+const Calender = ({ handleDayClick, events, selectedDay, foodListPasila, foodListMalmi, foodListHaaga, selectedLocation, handleLocationClick }) => {
+   
+    const listToShow = () => {
+        switch(selectedLocation) {
+            case 'Malmi':
+                return foodListMalmi
+            case 'Pasila':
+                return foodListPasila
+            case 'Haaga':
+                return foodListHaaga
+            default:
+                return foodListPasila
+        }
+    }
 
-    const nextDayFromSelectedDay = new Date()
-    nextDayFromSelectedDay.setDate(selectedDay.getDate() + 1)
-    nextDayFromSelectedDay.setMonth(selectedDay.getMonth())
-    nextDayFromSelectedDay.setFullYear(selectedDay.getFullYear())
-    const nextDayFromSelectedDayAsJSON = nextDayFromSelectedDay.toJSON().substr(0, 10).toString()
-    console.log(nextDayFromSelectedDayAsJSON)
-
-    let filteredEvents = events.filter(e => 
-        e.dateActualFrom.includes(nextDayFromSelectedDayAsJSON))
-        .map(event => 
-        <KideApp key={event.id} props={event} />)
-
-    let filterdFoodList = foodList.filter(e => 
-        e.Date === selectedDayAsLocale)
-        .map(lunchDay => 
-        <Ruokalista key={lunchDay.Date} foodList={lunchDay.SetMenus} />)
-
-    const checkIfListEmpty = foodList.filter(e => 
-        e.Date === selectedDayAsLocale)
-        .map(lunchDay => 
-            lunchDay.SetMenus.length
+        return (
+            <div className="calenderContainer">
+                <DayPicker
+                onDayClick={handleDayClick}
+                selectedDays={selectedDay}
+                firstDayOfWeek={ 1 }
+                >
+                </DayPicker>
+                <h3>{selectedLocation} Amica lunch menu</h3>
+                <Button
+                variant="primary"
+                onClick={(event) => {handleLocationClick(event, 'Pasila')}}>
+                Pasila
+                </Button>
+                <Button
+                variant="info"
+                onClick={(event) => {handleLocationClick(event, 'Malmi')}}>
+                Malmi
+                </Button>
+                <Button
+                variant="warning"
+                onClick={(event) => {handleLocationClick(event, 'Haaga')}}>
+                Haaga
+                </Button>
+                <br></br>
+                <Ruokalista 
+                selectedDay={selectedDay}
+                foodList={listToShow()} />
+                <h3>Student parties in Helsinki</h3>
+                <KideApp 
+                selectedDay={selectedDay}
+                props={events} />
+            </div>
         )
-
-    
-
-    if (checkIfListEmpty[0] === 0 || checkIfListEmpty[0] === undefined) {
-        filterdFoodList = 'Not available'
     }
-    if (filteredEvents.length === 0) {
-        filteredEvents = 'No parties'
-    }
-
-    return (
-        <div>
-            <DayPicker
-            onDayClick={handleDayClick}
-            selectedDays={selectedDay}
-            >
-            </DayPicker> 
-            <h3>Pasila Amica lunch menu</h3>
-            {filterdFoodList}
-            <h3>Student parties in Helsinki</h3>
-            {filteredEvents}
-        </div>
-    )
-}
-
 export default Calender

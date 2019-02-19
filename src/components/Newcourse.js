@@ -19,7 +19,7 @@ const Newcourse = ({ name, url,
           <FormControl type="text" name="courseUrl" value={url} onChange={handler} placeholder="https://hhmoodle.haaga-helia.fi/course/view.php?id=23298" />
         </FormGroup>
         <Button variant="primary" type="submit">
-          Tallenna
+          Save
         </Button>
       </Form>
     )

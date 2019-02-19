@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import Navigation from './components/Nav'
-import Kideapp from './components/KideApp'
-import Lukkari from './components/Lukkarit'
 import bailataanService from './services/Bailataan'
 import amicaService from './services/Amica'
 import courseService from './services/Courses'
 import LoginForm from './components/Login'
+import Togglable from './components/Togglable'
 import Calender from './components/Calender'
 import loginService from './services/Login'
 import createAccountService from './services/CreateAccount'
 import Course from './components/Course'
 import userService from './services/Users'
-import Users from './services/Users';
 import Notification from './components/Notification'
 import CreateAccountForm from './components/CreateAccountForm'
 import Newcourse from './components/Newcourse'
@@ -20,9 +18,8 @@ import './components/css/components.css'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Container from 'react-bootstrap/Container'
-import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
-import Tooltip from 'react-bootstrap/Tooltip'
-import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
+import Ruokalista from './components/Ruokalista'
+import KideApp from './components/KideApp'
 
 
 class App extends Component {
@@ -42,7 +39,10 @@ class App extends Component {
       courseUrl: '',
       selectedDay: new Date(),
       calenderLink: '',
-      pasilaAmicaFood: []
+      pasilaAmicaFood: [],
+      malmiAmicaFood: [],
+      haagaAmicaFood: [],
+      location: 'Pasila'
     }
   }
 
@@ -58,24 +58,32 @@ class App extends Component {
 
       userService.findById(user.id)
         .then(res => {
-          this.setState({ courses: res.courses })
+          this.setState({ courses: res })
           console.log(res)
         })
     }
-
-
-    
-      // get bailataan events from their REST api
-      
 
       bailataanService.getAll()
         .then(events => {
           this.setState({ events: events.model })
         })
-      amicaService.getAll()
+      amicaService.getAllPasila()
         .then(lunchMenus => {
           this.setState({ pasilaAmicaFood: lunchMenus.LunchMenus })
         })
+      amicaService.getAllMalmi()
+        .then(lunchMenus => {
+        this.setState({ malmiAmicaFood: lunchMenus.LunchMenus })
+      })
+      amicaService.getAllHaaga()
+        .then(lunchMenus => {
+        this.setState({ haagaAmicaFood: lunchMenus.LunchMenus })
+      })
+      
+  }
+
+  handleLocationClick = (event, value) => {
+    this.setState({ location: value })
   }
 
   handleDayClick = (day, { selected } ) => {
@@ -104,13 +112,19 @@ class App extends Component {
     .then(newCourse => {
       this.setState({ courses: this.state.courses.concat(newCourse)})
     })
+    this.Newcourse.toggleVisibility()
   }
 
   deleteCourse = (event, course) => {
     event.preventDefault()
     courseService.del(course)
 
-    this.componentDidMount()
+    let array = [...this.state.courses]
+    const index = array.indexOf(course)
+    if (index !== -1) {
+      array.splice(index, 1)
+      this.setState({ courses: array })
+    }
   }
 
 
@@ -142,14 +156,17 @@ class App extends Component {
       password: '',
       passwordConfirmation: ''
     })
+    const errUserMustBeUnique = `Username must be unique`
     createAccountService.create(userObject)
     .then(resp => {
       resp === undefined ?
-      this.setState({error: `Username must be unique`})
+      this.setState({error: errUserMustBeUnique})
       :
       this.setState({error: `User ${resp.name} created succesfully!`})
       setTimeout(() => {
+        this.state.error === errUserMustBeUnique ? 
         this.setState({error: null})
+        : this.CreateAccountForm.toggleVisibility()
       }, 3000)
     })
   }
@@ -207,7 +224,7 @@ class App extends Component {
           <h3>Log in</h3>
           <p>Logging in lets you save your Moodle courses and access them with just one click
           </p>
-          <Togglable style="success" buttonLabel="Login">
+          <Togglable variantForButton="success" buttonLabel="Login">
             <Notification message={this.state.error} />
             <LoginForm
             handler={this.handleLoginFieldChange.bind(this)}
@@ -219,7 +236,7 @@ class App extends Component {
           </div>
           <br></br>
           <div className="basicContainer">
-          <Togglable style="primary" buttonLabel="Create account">
+          <Togglable ref={component => this.CreateAccountForm = component} variantForButton="primary" buttonLabel="Create account">
             <Notification message={this.state.error} />
             <CreateAccountForm 
             username={this.state.username}
@@ -238,7 +255,10 @@ class App extends Component {
           <Calender 
           selectedDay={this.state.selectedDay} 
           events={this.state.events}
-          foodList={this.state.pasilaAmicaFood}
+          selectedLocation={this.state.location}
+          foodListPasila={this.state.pasilaAmicaFood}
+          foodListMalmi={this.state.malmiAmicaFood}
+          handleLocationClick={this.handleLocationClick.bind(this)}
           handleDayClick={this.handleDayClick.bind(this)}/>
         </div>
         </Col>
@@ -256,7 +276,7 @@ class App extends Component {
         <Col>
         <div className="basicContainer">
           <h3>Your courses</h3>
-          <Togglable style="success" buttonLabel="Add new course to table">
+          <Togglable ref={component => this.Newcourse = component} variantForButton="success" buttonLabel="Add new course to table">
           <Newcourse 
           name={this.state.courseName}
           url={this.state.courseUrl}
@@ -280,7 +300,11 @@ class App extends Component {
           <Calender 
           selectedDay={this.state.selectedDay} 
           events={this.state.events}
-          foodList={this.state.pasilaAmicaFood}
+          foodListPasila={this.state.pasilaAmicaFood}
+          foodListMalmi={this.state.malmiAmicaFood}
+          foodListHaaga={this.state.haagaAmicaFood}
+          selectedLocation={this.state.location}
+          handleLocationClick={this.handleLocationClick.bind(this)}
           handleDayClick={this.handleDayClick.bind(this)}/>
         </div>
        {/* <div>
@@ -294,41 +318,4 @@ class App extends Component {
   }
 }
 
-class Togglable extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      visible: false
-    }
-  }
-
-  toggleVisibility = () => {
-    this.setState({ visible: !this.state.visible })
-  }
-
-  render () {
-    const hideWhenVisible = { display: this.state.visible ? 'none' : '' }
-    const showWhenVisible = { display: this.state.visible ? '' : 'none' }
-  
-    return (
-      <div className="d-inline">
-        <div style={hideWhenVisible}>
-          <Button variant={this.props.style}
-          onClick={this.toggleVisibility}>
-          {this.props.buttonLabel}
-          </Button>
-        </div>
-        <div style={showWhenVisible}>
-          {this.props.children}
-          <br></br>
-          <Button variant="warning"
-          onClick={this.toggleVisibility}>Cancel</Button>
-        </div>
-      </div>
-    )
-  
-  }
-
-
-}
 export default App;

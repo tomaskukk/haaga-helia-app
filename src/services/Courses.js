@@ -36,7 +36,7 @@ const del = async (thisCourse) => {
     const config = {
       headers: {'Authorization': token }
     }
-    const url = `${baseUrl}/${thisCourse._id}`
+    const url = `${baseUrl}/${thisCourse.id}`
     console.log("SENDING DELETE REQUEST TO BACKEND")
     const response = await axios.delete(url, config)
     console.log("REQUEST SENT")

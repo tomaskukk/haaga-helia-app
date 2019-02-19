@@ -9,22 +9,30 @@
 }
 
 .basicContainer {
-    width:300px;
+    width:350px;
     margin-left: 40px;
 }
 
 
 
 .secondContainer {
-    width: 300px;
-    margin-left: 250px;
+    width: 350px;
+    margin-left: 200px;
 }
 
 .tableRows {
-    width: 70%;
+    width: 65%;
 }
 
 .rootDom {
     margin: auto;
     width: 50%;
+}
+
+.dietsStyle {
+    font-size: 12px;
+}
+
+.calenderContainer Button {
+    margin: 5px;
 }
