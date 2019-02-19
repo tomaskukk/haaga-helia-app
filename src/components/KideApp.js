@@ -1,4 +1,5 @@
 import React from 'react'
+import Table from 'react-bootstrap/Table'
 
 
 const Kideapp = ( { props, selectedDay }) => {
@@ -9,14 +10,26 @@ const Kideapp = ( { props, selectedDay }) => {
     nextDayFromSelectedDay.setFullYear(selectedDay.getFullYear())
     const nextDayFromSelectedDayAsJSON = nextDayFromSelectedDay.toJSON().substr(0, 10).toString()
 
+    // show only events that are happening on the day selected on calender
     let filteredEvents = props.filter(e => 
         e.dateActualFrom.includes(nextDayFromSelectedDayAsJSON))
         .map(event => 
-        <p key={event.id}><a href={`https://bailataan.fi/events/${event.id}`} >{event.name}</a></p>)
+        <tr key={event.id}><td>
+        <a className="cool-link" rel="noopener noreferrer" target="_blank" href={`https://bailataan.fi/events/${event.id}`}>{event.name}</a>
+        </td></tr>)
+    
+    if (filteredEvents.length === 0) {
+        filteredEvents = <tr><td>No parties on this day</td></tr>
+    }
+    console.log(filteredEvents)
     
     return (
         <div>
+        <Table striped bordered hover>
+        <tbody>
             {filteredEvents}
+        </tbody>
+        </Table>
         </div>
     )
 }

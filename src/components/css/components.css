@@ -4,15 +4,11 @@
     display: inline-flex;
 }
 
-.navLink {
-    margin: 10px;
-}
 
 .basicContainer {
     width:350px;
     margin-left: 40px;
 }
-
 
 
 .secondContainer {
@@ -22,6 +18,29 @@
 
 .tableRows {
     width: 65%;
+}
+
+.cool-link {
+    display: inline-block;
+    text-decoration: none;
+}
+
+.cool-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: rgb(53, 154, 146);
+    transition: width .3s;
+}
+
+.navLink {
+    margin: 8px;
+}
+
+.cool-link:hover::after {
+    width: 100%;
+    transition: width .3s;
 }
 
 .rootDom {
@@ -36,3 +55,11 @@
 .calenderContainer Button {
     margin: 5px;
 }
+
+a:link {
+    text-decoration: none;
+  }
+
+  td {
+      font-size: 15px;
+  }

@@ -9,8 +9,5 @@ const login = async (credentials) => {
     return response.data
 }
 
-const testThisClassWorks = () => {
-    console.log("LUOKKA TOIMII")
-}
 
-export default { login, testThisClassWorks}
+export default { login }

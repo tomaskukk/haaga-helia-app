@@ -8,8 +8,5 @@ const getAll = () => {
     return request.then(response => response.data)
 }
 
-const testLog = () => {
-    console.log("moi")
-}
 
-export default { getAll, testLog }
+export default { getAll }

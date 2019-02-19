@@ -8,7 +8,9 @@ const Ruokalista = ({ foodList, selectedDay }) => {
     + (selectedDay.getMonth() + 1) + '.' 
     + selectedDay.getFullYear()).toString()
 
+    console.log(foodList)
 
+    // show only the days lunchmenu that is selected in calender
     let filterdfoodList = foodList.filter(e => 
         e.Date === selectedDayAsLocale)
         .map(lunchDay => 
@@ -16,14 +18,14 @@ const Ruokalista = ({ foodList, selectedDay }) => {
                 setMenu.Meals.map(meal =>
                     <RuokalistaName key={meal.RecipeId} foodList={meal} />
     )))
-
-    if (filterdfoodList.length === 0) {
+           
+    if (filterdfoodList.length === 0 || filterdfoodList[0].length === 0) {
         filterdfoodList = <tr><td>Not available</td></tr>
     }
 
     return (
         <div>
-        <Table responsive="lg" striped bordered hover variant="dark">
+        <Table striped bordered hover variant="dark">
         <tbody>
         {filterdfoodList}
         </tbody>

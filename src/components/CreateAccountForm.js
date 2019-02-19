@@ -16,7 +16,7 @@ const CreateAccountForm = ({ username, password,
       
         <FormGroup controlId="createAccountPassword">
           <FormLabel>Password</FormLabel>
-          <FormControl type="password" name="password" value={password} onChange={handler} placeholder="Password" />
+          <FormControl type="password" name="creatingAccountPassword" value={password} onChange={handler} placeholder="Password" />
         </FormGroup>
         
         <FormGroup controlId="createAccountPasswordConfirmation">

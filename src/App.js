@@ -13,13 +13,8 @@ import userService from './services/Users'
 import Notification from './components/Notification'
 import CreateAccountForm from './components/CreateAccountForm'
 import Newcourse from './components/Newcourse'
-import Button from 'react-bootstrap/Button'
 import './components/css/components.css'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
-import Container from 'react-bootstrap/Container'
-import Ruokalista from './components/Ruokalista'
-import KideApp from './components/KideApp'
+import { Row, Col, Container, Button } from 'react-bootstrap'
 
 
 class App extends Component {
@@ -30,6 +25,7 @@ class App extends Component {
       courses: [],
       username: '',
       password: '',
+      creatingAccountPassword: '',
       passwordConfirmation: '',
       user: null,
       newName: '',
@@ -56,6 +52,7 @@ class App extends Component {
       this.setState({ user })
       courseService.setToken(user.token) 
 
+      // get courses for the logged user
       userService.findById(user.id)
         .then(res => {
           this.setState({ courses: res })
@@ -71,6 +68,9 @@ class App extends Component {
         .then(lunchMenus => {
           this.setState({ pasilaAmicaFood: lunchMenus.LunchMenus })
         })
+
+      // check if shouldComponentUpdate or componentDidUpdate would work better
+      // for malmi and haaga
       amicaService.getAllMalmi()
         .then(lunchMenus => {
         this.setState({ malmiAmicaFood: lunchMenus.LunchMenus })
@@ -119,6 +119,7 @@ class App extends Component {
     event.preventDefault()
     courseService.del(course)
 
+    // delete the course from state so it doesn't show on render
     let array = [...this.state.courses]
     const index = array.indexOf(course)
     if (index !== -1) {
@@ -132,11 +133,11 @@ class App extends Component {
   createAccount = (event) => {
     event.preventDefault()
     console.log("LUODAAN KÄYTTÄJÄ")
-    if (this.state.password !== this.state.passwordConfirmation
-       || this.state.password === '') {
+    if (this.state.creatingAccountPassword !== this.state.passwordConfirmation
+       || this.state.creatingAccountPassword === '') {
       this.setState({ 
         error: 'Passwords does not match or field is empty',
-        password: '',
+        creatingAccountPassword: '',
         passwordConfirmation: ''
       })
       setTimeout(() => {
@@ -149,11 +150,11 @@ class App extends Component {
     this.setState({error : 'Creating account...'})
     const userObject = {
       username: this.state.username,
-      password: this.state.password,
+      password: this.state.creatingAccountPassword,
       name: this.state.username
     }    
     this.setState({
-      password: '',
+      creatingAccountPassword: '',
       passwordConfirmation: ''
     })
     const errUserMustBeUnique = `Username must be unique`
@@ -184,21 +185,16 @@ class App extends Component {
     event.preventDefault()
 
   try {
-    console.log("YRITETÄÄ KIRJAUTUA")
     const user = await loginService.login({
       username: this.state.username,
       password: this.state.password
     })
 
-    console.log(user)
-    console.log(user.token)
     window.localStorage.setItem('loggedUser', JSON.stringify(user))
     courseService.setToken(user.token)
     this.setState({ username: '', password: '', user })
-    console.log(this.state.user)
     this.componentDidMount()
   } catch(exception) {
-    console.log("KÄYTTÄJÄTUNNUS TAI SALASANA VÄÄRIN")
     console.log(exception)
     this.setState({
       error: 'Username or password incorrect'
@@ -222,8 +218,8 @@ class App extends Component {
           <Col>
         <div className="basicContainer">
           <h3>Log in</h3>
-          <p>Logging in lets you save your Moodle courses and access them with just one click
-          </p>
+          <h4>Logging in lets you save your Moodle courses and access them with just one click
+          </h4>
           <Togglable variantForButton="success" buttonLabel="Login">
             <Notification message={this.state.error} />
             <LoginForm
@@ -240,7 +236,7 @@ class App extends Component {
             <Notification message={this.state.error} />
             <CreateAccountForm 
             username={this.state.username}
-            password={this.state.password}
+            password={this.state.creatingAccountPassword}
             handler={this.handleLoginFieldChange.bind(this)}
             createAccountFnc={this.createAccount.bind(this)}
             passwordConfirmation={this.state.passwordConfirmation}
@@ -256,6 +252,7 @@ class App extends Component {
           selectedDay={this.state.selectedDay} 
           events={this.state.events}
           selectedLocation={this.state.location}
+          foodListHaaga={this.state.haagaAmicaFood}
           foodListPasila={this.state.pasilaAmicaFood}
           foodListMalmi={this.state.malmiAmicaFood}
           handleLocationClick={this.handleLocationClick.bind(this)}
@@ -307,9 +304,6 @@ class App extends Component {
           handleLocationClick={this.handleLocationClick.bind(this)}
           handleDayClick={this.handleDayClick.bind(this)}/>
         </div>
-       {/* <div>
-          <Lukkari />
-        </div> */}
         </Col>
         </Row>
         </Container>

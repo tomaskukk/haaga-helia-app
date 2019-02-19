@@ -7,8 +7,11 @@ import Button from 'react-bootstrap/Button'
 import './css/components.css'
 
 
-const Calender = ({ handleDayClick, events, selectedDay, foodListPasila, foodListMalmi, foodListHaaga, selectedLocation, handleLocationClick }) => {
+const Calender = ({ handleDayClick, events, selectedDay, foodListPasila,
+     foodListMalmi, foodListHaaga, selectedLocation, handleLocationClick }) => {
    
+    console.log(foodListHaaga, foodListMalmi, foodListPasila)
+
     const listToShow = () => {
         switch(selectedLocation) {
             case 'Malmi':
