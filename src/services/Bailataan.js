@@ -1,12 +1,11 @@
 import axios from 'axios'
 
-const url = 'https://api.bailataan.fi/api/products?city=helsinki'
+const url = '/api/kide'
 
-const getAll = () => {
-    const request = axios.get(url)
-    console.log(request.then(response => response.data))
-    return request.then(response => response.data)
+const getAllKideApp = async () => {
+    const response = await axios.get(url)
+    return (response.data)
 }
 
 
-export default { getAll }
+export default { getAllKideApp }

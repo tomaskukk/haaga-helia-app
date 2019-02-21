@@ -5,12 +5,10 @@ import './css/components.css'
 
 const Course = ({ courses, deleteCourse }) => {
 
-    const tableStyle = {
-        marginTop: '15px'
-    }
+   
 
     return (
-        <Table striped bordered hover style={tableStyle}>
+        <Table striped bordered hover>
         <tbody>
                     {courses.map(course => 
                         <tr key={course.id}>

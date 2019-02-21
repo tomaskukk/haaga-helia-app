@@ -11,6 +11,7 @@ import createAccountService from './services/CreateAccount'
 import Course from './components/Course'
 import userService from './services/Users'
 import Notification from './components/Notification'
+import Otherlinks from './components/Otherlinks'
 import CreateAccountForm from './components/CreateAccountForm'
 import Newcourse from './components/Newcourse'
 import './components/css/components.css'
@@ -60,7 +61,16 @@ class App extends Component {
         })
     }
 
-      bailataanService.getAll()
+
+      amicaService.getAllHaaga()
+        .then(lunchMenus => {
+        this.setState({ haagaAmicaFood: lunchMenus.LunchMenus })
+      })
+      amicaService.getAllMalmi()
+        .then(lunchMenus => {
+        this.setState({ malmiAmicaFood: lunchMenus.LunchMenus })
+      })
+      bailataanService.getAllKideApp()
         .then(events => {
           this.setState({ events: events.model })
         })
@@ -71,14 +81,6 @@ class App extends Component {
 
       // check if shouldComponentUpdate or componentDidUpdate would work better
       // for malmi and haaga
-      amicaService.getAllMalmi()
-        .then(lunchMenus => {
-        this.setState({ malmiAmicaFood: lunchMenus.LunchMenus })
-      })
-      amicaService.getAllHaaga()
-        .then(lunchMenus => {
-        this.setState({ haagaAmicaFood: lunchMenus.LunchMenus })
-      })
       
   }
 
@@ -208,18 +210,27 @@ class App extends Component {
 
   render() {
     
-
     if (this.state.user === null) {
       return (
-        <div className="rootDom">
+        <div>
         <Navigation />
         <Container className="container">
         <Row>
-          <Col>
-        <div className="basicContainer">
-          <h3>Log in</h3>
-          <h4>Logging in lets you save your Moodle courses and access them with just one click
-          </h4>
+          <Col className="leftContainer">
+          <Calender 
+          selectedDay={this.state.selectedDay} 
+          events={this.state.events}
+          selectedLocation={this.state.location}
+          foodListHaaga={this.state.haagaAmicaFood}
+          foodListPasila={this.state.pasilaAmicaFood}
+          foodListMalmi={this.state.malmiAmicaFood}
+          handleLocationClick={this.handleLocationClick.bind(this)}
+          handleDayClick={this.handleDayClick.bind(this)}/>
+        </Col>
+          <Col className="rightContainer">
+          <h4>Log in</h4>
+          <h5 id="loggingHelpText">Logging in lets you save your Moodle courses and access them with just one click
+          </h5>
           <Togglable variantForButton="success" buttonLabel="Login">
             <Notification message={this.state.error} />
             <LoginForm
@@ -229,9 +240,6 @@ class App extends Component {
             loginFnc={this.login.bind(this)}
             />
           </Togglable>
-          </div>
-          <br></br>
-          <div className="basicContainer">
           <Togglable ref={component => this.CreateAccountForm = component} variantForButton="primary" buttonLabel="Create account">
             <Notification message={this.state.error} />
             <CreateAccountForm 
@@ -242,23 +250,8 @@ class App extends Component {
             passwordConfirmation={this.state.passwordConfirmation}
             />
           </Togglable>
-        </div>
-        </Col>
-        </Row>
-        <Row>
-          <Col>
-        <div className="secondContainer">
-          <Calender 
-          selectedDay={this.state.selectedDay} 
-          events={this.state.events}
-          selectedLocation={this.state.location}
-          foodListHaaga={this.state.haagaAmicaFood}
-          foodListPasila={this.state.pasilaAmicaFood}
-          foodListMalmi={this.state.malmiAmicaFood}
-          handleLocationClick={this.handleLocationClick.bind(this)}
-          handleDayClick={this.handleDayClick.bind(this)}/>
-        </div>
-        </Col>
+          <Otherlinks />
+          </Col>
         </Row>
        </Container>
        </div>
@@ -266,13 +259,26 @@ class App extends Component {
     }
 
     return (
-      <div className="rootDom">
+      <div>
       <Navigation /> 
       <Container className="container">
         <Row>
-        <Col>
-        <div className="basicContainer">
-          <h3>Your courses</h3>
+          <div className="leftContainer">
+       <Col>
+          <Calender 
+          selectedDay={this.state.selectedDay} 
+          events={this.state.events}
+          foodListPasila={this.state.pasilaAmicaFood}
+          foodListMalmi={this.state.malmiAmicaFood}
+          foodListHaaga={this.state.haagaAmicaFood}
+          selectedLocation={this.state.location}
+          handleLocationClick={this.handleLocationClick.bind(this)}
+          handleDayClick={this.handleDayClick.bind(this)}/>
+        </Col>
+        </div>
+        <div className="rightContainer">
+          <Col>
+          <h4>Your courses</h4>
           <Togglable ref={component => this.Newcourse = component} variantForButton="success" buttonLabel="Add new course to table">
           <Newcourse 
           name={this.state.courseName}
@@ -281,30 +287,15 @@ class App extends Component {
           createCourseFnc={this.createCourse.bind(this)}
           />
         </Togglable>
-          <Course 
+          <Course
           courses={this.state.courses} 
           deleteCourse={this.deleteCourse} />
-        <br></br>
-        <div>
-          <Button onClick={this.logout} variant="info">LOG OUT</Button>
+          <Button className="logOutButton" onClick={this.logout} variant="info">LOG OUT</Button>
+          </Col>
+          <Col>
+            <Otherlinks />
+          </Col>
           </div>
-       </div>
-       </Col>
-       </Row>
-       <Row>
-       <Col>
-       <div className="secondContainer">
-          <Calender 
-          selectedDay={this.state.selectedDay} 
-          events={this.state.events}
-          foodListPasila={this.state.pasilaAmicaFood}
-          foodListMalmi={this.state.malmiAmicaFood}
-          foodListHaaga={this.state.haagaAmicaFood}
-          selectedLocation={this.state.location}
-          handleLocationClick={this.handleLocationClick.bind(this)}
-          handleDayClick={this.handleDayClick.bind(this)}/>
-        </div>
-        </Col>
         </Row>
         </Container>
         </div>

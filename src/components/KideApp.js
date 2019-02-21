@@ -21,11 +21,11 @@ const Kideapp = ( { props, selectedDay }) => {
     if (filteredEvents.length === 0) {
         filteredEvents = <tr><td>No parties on this day</td></tr>
     }
-    console.log(filteredEvents)
     
     return (
         <div>
-        <Table striped bordered hover>
+            <h5>Student parties in Helsinki</h5>
+        <Table striped bordered hover className="table">
         <tbody>
             {filteredEvents}
         </tbody>

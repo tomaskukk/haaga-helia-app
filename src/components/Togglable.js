@@ -20,7 +20,7 @@ class Togglable extends React.Component {
     return (
       <div className="d-inline">
         <div style={hideWhenVisible}>
-          <Button variant={this.props.variantForButton}
+          <Button className="toggleButton" variant={this.props.variantForButton}
           onClick={this.toggleVisibility}>
           {this.props.buttonLabel}
           </Button>

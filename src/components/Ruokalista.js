@@ -1,14 +1,14 @@
 import React from 'react'
 import RuokalistaName from './RuokalistaNames'
 import Table from 'react-bootstrap/Table'
+import Button from 'react-bootstrap/Button'
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
-const Ruokalista = ({ foodList, selectedDay }) => {
+const Ruokalista = ({ foodList, selectedDay, selectedLocation, handleLocationClick }) => {
 
     const selectedDayAsLocale = (selectedDay.getDate() + '.' 
     + (selectedDay.getMonth() + 1) + '.' 
     + selectedDay.getFullYear()).toString()
-
-    console.log(foodList)
 
     // show only the days lunchmenu that is selected in calender
     let filterdfoodList = foodList.filter(e => 
@@ -25,7 +25,25 @@ const Ruokalista = ({ foodList, selectedDay }) => {
 
     return (
         <div>
-        <Table striped bordered hover variant="dark">
+        <h5>{selectedLocation} Amica lunch menu</h5>
+        <ButtonGroup className="lunchButtons">
+                <Button
+                variant="primary"
+                onClick={(event) => {handleLocationClick(event, 'Pasila')}}>
+                Pasila
+                </Button>
+                <Button
+                variant="info"
+                onClick={(event) => {handleLocationClick(event, 'Malmi')}}>
+                Malmi
+                </Button>
+                <Button
+                variant="warning"
+                onClick={(event) => {handleLocationClick(event, 'Haaga')}}>
+                Haaga
+                </Button>
+                </ButtonGroup>
+        <Table className="table" striped bordered hover>
         <tbody>
         {filterdfoodList}
         </tbody>

@@ -9,45 +9,105 @@ import myNetPicture from '../img/mynet.jpg'
 import outlookPicture from '../img/outlook.png'
 import moodlePicture from '../img/moodle.jpg'
 import myySearchPicture from '../img/myysearch.png'
-import Navbar from 'react-bootstrap/Navbar'
+import hhPicture from '../img/haagahelia.png'
 import './css/components.css'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Tooltip from 'react-bootstrap/Tooltip'
 
 const Navigation = () => {
 
-    const imgStyle = {
-        border: '2px solid pink',
-        borderRadius: '300px'
-    }
-    const testStyle = {
-        margin: '20px'
-    }
+
 
     return (
-        <Navbar style={testStyle} bg="light" variant="light">
-            <Nav className="mr-auto">
-                <NavLink className="navLink" href="https://hhmoodle.haaga-helia.fi" rel="noopener noreferrer" target="_blank">
-                <Image style={imgStyle} src={moodlePicture} roundedCircle></Image>
+            <Nav className="justify-content-center">
+            <OverlayTrigger
+            placement='bottom'
+            overlay={
+            <Tooltip id={`hhtooltip`}>
+            Haaga-Helia
+            </Tooltip>}>
+                <NavLink className="navLink" href="http://www.haaga-helia.fi/en/frontpage" rel="noopener noreferrer" target="_blank">
+                <Image className="navImg" src={hhPicture} roundedCircle></Image>
                 </NavLink>
-                <NavLink className="navLink" href="https://student.home.haaga-helia.fi/" rel="noopener noreferrer" target="_blank">
-                <Image style={imgStyle} src={myNetPicture} roundedCircle></Image>
+            </OverlayTrigger>
+
+            <OverlayTrigger
+            placement='bottom'
+            overlay={
+            <Tooltip id={`hhtooltip`}>
+            Moodle
+            </Tooltip>}>
+            <NavLink className="navLink" href="https://hhmoodle.haaga-helia.fi" rel="noopener noreferrer" target="_blank">
+                <Image className="navImg" src={moodlePicture} roundedCircle></Image>
                 </NavLink>
-                <NavLink className="navLink" href="http://mymail.haaga-helia.fi" rel="noopener noreferrer" target="_blank">
-                <Image style={imgStyle} src={outlookPicture} roundedCircle></Image>
+            </OverlayTrigger>
+            
+            <OverlayTrigger
+            placement='bottom'
+            overlay={
+            <Tooltip id={`hhtooltip`}>
+            Peppi
+            </Tooltip>}>
+            <NavLink className="navLink" href="https://student.home.haaga-helia.fi/" rel="noopener noreferrer" target="_blank">
+                <Image className="navImg" src={myNetPicture} roundedCircle></Image>
                 </NavLink>
-                <NavLink className="navLink" href="https://lukkarit.haaga-helia.fi/#" rel="noopener noreferrer" target="_blank">
-                <Image style={imgStyle} src={lukkariPicture} roundedCircle></Image>
+            </OverlayTrigger>
+
+            <OverlayTrigger
+            placement='bottom'
+            overlay={
+            <Tooltip id={`hhtooltip`}>
+            Outlook
+            </Tooltip>}>
+            <NavLink className="navLink" href="http://mymail.haaga-helia.fi" rel="noopener noreferrer" target="_blank">
+                <Image className="navImg" src={outlookPicture} roundedCircle></Image>
                 </NavLink>
-                <NavLink className="navLink" href="https://kide.app/" rel="noopener noreferrer" target="_blank">
-                <Image style={imgStyle} src={kidePicture} roundedCircle></Image>
+            </OverlayTrigger>
+
+            <OverlayTrigger
+            placement='bottom'
+            overlay={
+            <Tooltip id={`hhtooltip`}>
+            Lukkarikone
+            </Tooltip>}>
+            <NavLink className="navLink" href="https://lukkarit.haaga-helia.fi/#" rel="noopener noreferrer" target="_blank">
+                <Image className="navImg" src={lukkariPicture} roundedCircle></Image>
                 </NavLink>
-                <NavLink className="navLink" href="http://vdi.haaga-helia.fi/" rel="noopener noreferrer" target="_blank">
-                <Image style={imgStyle} src={vdiPicture} roundedCircle></Image>
+            </OverlayTrigger>
+
+            <OverlayTrigger
+            placement='bottom'
+            overlay={
+            <Tooltip id={`hhtooltip`}>
+            Kide.app
+            </Tooltip>}>
+            <NavLink className="navLink" href="https://kide.app/" rel="noopener noreferrer" target="_blank">
+                <Image className="navImg" src={kidePicture} roundedCircle></Image>
                 </NavLink>
-                <NavLink className="navLink" href="http://palvelum.me/myybrowser/" rel="noopener noreferrer" target="_blank">
-                <Image style={imgStyle} src={myySearchPicture} roundedCircle></Image>
+            </OverlayTrigger>
+
+            <OverlayTrigger
+            placement='bottom'
+            overlay={
+            <Tooltip id={`hhtooltip`}>
+            VDI
+            </Tooltip>}>
+            <NavLink className="navLink" href="http://vdi.haaga-helia.fi/" rel="noopener noreferrer" target="_blank">
+                <Image className="navImg" src={vdiPicture} roundedCircle></Image>
                 </NavLink>
+            </OverlayTrigger>
+
+            <OverlayTrigger
+            placement='bottom'
+            overlay={
+            <Tooltip id={`hhtooltip`}>
+            Myy search
+            </Tooltip>}>
+            <NavLink className="navLink" href="http://palvelum.me/myybrowser/" rel="noopener noreferrer" target="_blank">
+                <Image className="navImg" src={myySearchPicture} roundedCircle></Image>
+                </NavLink>
+            </OverlayTrigger>
             </Nav>
-        </Navbar>
     )
 }
 

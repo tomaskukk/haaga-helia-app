@@ -1,65 +1,159 @@
-
+body {
+    background-color: #f7f7f7;
+}
 
 .container {
-    display: inline-flex;
+    margin: auto;
+    width: 90%;
+    text-align: center;
 }
 
 
-.basicContainer {
-    width:350px;
-    margin-left: 40px;
-}
-
-
-.secondContainer {
-    width: 350px;
-    margin-left: 200px;
-}
-
-.tableRows {
-    width: 65%;
-}
-
-.cool-link {
-    display: inline-block;
-    text-decoration: none;
-}
-
-.cool-link::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 2px;
-    background: rgb(53, 154, 146);
-    transition: width .3s;
-}
 
 .navLink {
-    margin: 8px;
-}
-
-.cool-link:hover::after {
-    width: 100%;
-    transition: width .3s;
-}
-
-.rootDom {
     margin: auto;
-    width: 50%;
+    text-align: center;
+    padding: 2px;
+
 }
 
-.dietsStyle {
-    font-size: 12px;
+.navImg {
+    width: 4rem;
+    height: 4rem;
+    text-align: center;
+    margin: auto;
 }
 
 .calenderContainer Button {
     margin: 5px;
 }
 
-a:link {
-    text-decoration: none;
+.toggleButton {
+    margin-top: 20px;
   }
+
+  #loggingHelpText {
+      display: none;
+  }
+
+  .rightContainer {
+    margin: auto;
+    width: 90%;
+}
+.commonLinks {
+    margin-top: 20px;
+}
+
+@media only screen and (min-width: 768px) {
+
+
+
+    .container {
+        margin: auto;
+        width: 50%;
+        text-align: left;
+    }
+
+    .rightContainer {
+        width: 25rem;
+        margin-left: 3rem;
+        margin-top: 0px;
+    }
+
+    .leftContainer {
+        width: 25rem;
+    }
+
+    .commonLinks {
+        width: 15rem;
+        text-align: center;
+        float: right;
+        border: 2px solid #b7d8e5;
+    }
+
+    .loginRow {
+        display: block;
+    }
+
+    .calender {
+        border: 2px solid #b7d8e5;
+        border-radius: 6px;
+
+    }
+
+    .table {
+        border: 2px solid #b7d8e5;
+        border-radius: 6px;
+    }
+
+    #loggingHelpText {
+        display: block;
+        margin-top: 1rem;
+    }
+  
+
+    .navImg {
+            width: auto;
+            height: auto;
+            transition: transform .3s;
+            border: 2px solid #b7d8e5;
+    }
+
+    .navImg:hover {
+        transform: scale(0.90);
+    }
+
+    .headerForLunchAndParties {
+        margin-bottom: 2rem; 
+    }
+
+    .cool-link {
+        display: inline-block;
+        text-decoration: none;
+    }
+
+    .cool-link::after {
+        content: '';
+        display: block;
+        width: 0;
+        height: 2px;
+        background: rgb(53, 154, 146);
+        transition: width .3s;
+    }
+
+    .navLink {
+        margin: 3px;
+        padding: 15px;
+    }
+
+    .cool-link:hover::after {
+        width: 100%;
+        transition: width .3s;
+    }
+
+
+    .dietsStyle {
+        font-size: 12px;
+    }
+
+    .calenderContainer Button {
+        margin: 5px;
+    }
+
+    a:link {
+        text-decoration: none;
+    }
 
   td {
       font-size: 15px;
-  }
+    }
+
+  .toggleButton {
+      margin-bottom: 2rem; 
+      display: flex;
+    }
+
+    .logOutButton {
+        margin-bottom: 1rem;
+    }
+}
