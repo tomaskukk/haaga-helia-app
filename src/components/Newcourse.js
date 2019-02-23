@@ -10,12 +10,12 @@ const Newcourse = ({ name, url,
     return (
         <Form onSubmit={createCourseFnc}>
         <FormGroup controlId="createCourseName">
-          <FormLabel>Course name</FormLabel>
-          <FormControl type="text" name="courseName" value={name} onChange={handler} placeholder="Name for the course" />
+          <FormLabel>Name</FormLabel>
+          <FormControl type="text" name="courseName" value={name} onChange={handler} placeholder="e.g. Java programming" />
         </FormGroup>
       
         <FormGroup controlId="createCourseUrl">
-          <FormLabel>Course link</FormLabel>
+          <FormLabel>Url</FormLabel>
           <FormControl type="text" name="courseUrl" value={url} onChange={handler} placeholder="https://hhmoodle.haaga-helia.fi/course/view.php?id=23298" />
         </FormGroup>
         <Button variant="primary" type="submit">

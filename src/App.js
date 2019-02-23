@@ -3,6 +3,7 @@ import Navigation from './components/Nav'
 import bailataanService from './services/Bailataan'
 import amicaService from './services/Amica'
 import courseService from './services/Courses'
+import lukkariService from './services/Lukkari'
 import LoginForm from './components/Login'
 import Togglable from './components/Togglable'
 import Calender from './components/Calender'
@@ -12,8 +13,10 @@ import Course from './components/Course'
 import userService from './services/Users'
 import Notification from './components/Notification'
 import Otherlinks from './components/Otherlinks'
+import Header from './components/Header'
 import CreateAccountForm from './components/CreateAccountForm'
 import Newcourse from './components/Newcourse'
+import Lukkari from './components/Lukkari'
 import './components/css/components.css'
 import { Row, Col, Container, Button } from 'react-bootstrap'
 
@@ -39,7 +42,9 @@ class App extends Component {
       pasilaAmicaFood: [],
       malmiAmicaFood: [],
       haagaAmicaFood: [],
-      location: 'Pasila'
+      location: 'Pasila',
+      lukkari: '<div>Not available right now</div>',
+      groupId: ''
     }
   }
 
@@ -78,6 +83,11 @@ class App extends Component {
         .then(lunchMenus => {
           this.setState({ pasilaAmicaFood: lunchMenus.LunchMenus })
         })
+      let id = 'tn2'
+      lukkariService.findByGroupId(id)
+      .then(response => {
+        this.setState({ lukkari: response })
+      })
 
       // check if shouldComponentUpdate or componentDidUpdate would work better
       // for malmi and haaga
@@ -96,6 +106,13 @@ class App extends Component {
     this.setState({ [event.target.name]: event.target.value })
   }
   
+  findLukkariByGroupId = (event, id) => {
+    event.preventDefault()
+    lukkariService.findByGroupId(id)
+      .then(response => {
+        this.setState({ lukkari: response, groupId: '' })
+      })
+  }
 
   createCourse = (event) => {
     event.preventDefault()
@@ -212,7 +229,8 @@ class App extends Component {
     
     if (this.state.user === null) {
       return (
-        <div>
+        <div className="rootDom">
+          <Header />
         <Navigation />
         <Container className="container">
         <Row>
@@ -228,9 +246,13 @@ class App extends Component {
           handleDayClick={this.handleDayClick.bind(this)}/>
         </Col>
           <Col className="rightContainer">
-          <h4>Log in</h4>
-          <h5 id="loggingHelpText">Logging in lets you save your Moodle courses and access them with just one click
-          </h5>
+          <Lukkari 
+          findByGroupId={this.findLukkariByGroupId.bind(this)}
+          lukkariState={this.state.lukkari}
+          groupId={this.state.groupId}
+          handler={this.handleLoginFieldChange.bind(this)}
+          />
+          <h5>By logging in you can add your Moodle courses, useful links or notes</h5>
           <Togglable variantForButton="success" buttonLabel="Login">
             <Notification message={this.state.error} />
             <LoginForm
@@ -259,9 +281,11 @@ class App extends Component {
     }
 
     return (
-      <div>
+      <div className="rootDom">
+        <Header />
       <Navigation /> 
       <Container className="container">
+  
         <Row>
           <div className="leftContainer">
        <Col>
@@ -278,8 +302,13 @@ class App extends Component {
         </div>
         <div className="rightContainer">
           <Col>
-          <h4>Your courses</h4>
-          <Togglable ref={component => this.Newcourse = component} variantForButton="success" buttonLabel="Add new course to table">
+          <Lukkari 
+          findByGroupId={this.findLukkariByGroupId.bind(this)}
+          lukkariState={this.state.lukkari}
+          groupId={this.state.groupId}
+          handler={this.handleLoginFieldChange.bind(this)}
+          />
+          <Togglable ref={component => this.Newcourse = component} variantForButton="success" buttonLabel="Add course, link or note">
           <Newcourse 
           name={this.state.courseName}
           url={this.state.courseUrl}

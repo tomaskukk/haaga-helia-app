@@ -5,9 +5,10 @@ import Button from 'react-bootstrap/Button'
 import FormLabel from 'react-bootstrap/FormLabel'
 import FormControl from 'react-bootstrap/FormControl'
 
-const login = ({ loginFnc, username, password, handler, user }) => {
+const login = ({ loginFnc, username, password, handler }) => {
     
     return (
+
           <Form onSubmit={loginFnc}>
           <FormGroup controlId="formBasicText">
             <FormLabel>Username</FormLabel>

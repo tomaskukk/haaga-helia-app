@@ -1,8 +1,6 @@
 import React from 'react'
 import RuokalistaName from './RuokalistaNames'
 import Table from 'react-bootstrap/Table'
-import Button from 'react-bootstrap/Button'
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
 const Ruokalista = ({ foodList, selectedDay, selectedLocation, handleLocationClick }) => {
 
@@ -20,31 +18,22 @@ const Ruokalista = ({ foodList, selectedDay, selectedLocation, handleLocationCli
     )))
            
     if (filterdfoodList.length === 0 || filterdfoodList[0].length === 0) {
-        filterdfoodList = <tr><td>Not available</td></tr>
+        filterdfoodList = <tr><td>Not available</td><td></td></tr>
     }
 
     return (
         <div>
-        <h5>{selectedLocation} Amica lunch menu</h5>
-        <ButtonGroup className="lunchButtons">
-                <Button
-                variant="primary"
-                onClick={(event) => {handleLocationClick(event, 'Pasila')}}>
-                Pasila
-                </Button>
-                <Button
-                variant="info"
-                onClick={(event) => {handleLocationClick(event, 'Malmi')}}>
-                Malmi
-                </Button>
-                <Button
-                variant="warning"
-                onClick={(event) => {handleLocationClick(event, 'Haaga')}}>
-                Haaga
-                </Button>
-                </ButtonGroup>
         <Table className="table" striped bordered hover>
         <tbody>
+            <tr>
+                <th>
+                    {selectedLocation} lunch menu
+                </th>
+                <th>
+                    Allergens
+                </th>
+            </tr>
+            
         {filterdfoodList}
         </tbody>
         </Table>

@@ -1,0 +1,405 @@
+@media only screen and (max-width: 768px) {
+
+/* CSS Document */
+
+#lukkari {
+  width: 100%;
+  margin-left: 0px;
+  padding-left: 0px; 
+  text-align: center;
+}
+
+}
+
+#lukkari {
+  width: 60%;
+}
+
+.lukkariForm {
+  display: flex;
+}
+
+#groupInput {
+  width: 100px;
+}
+
+#searchButton {
+  margin-left: 10px;
+  margin-top: 30px; 
+  height: 40px;
+}
+ 
+.ui-datepicker 
+{
+    z-index:20000;
+}
+
+#leftnavi #datepicker div.ui-datepicker-inline
+{
+	margin:0 auto 0 auto;
+
+	
+	
+}
+
+
+#cl-maincal
+{
+    width:100%;
+    height:100%;
+
+}
+
+td
+{
+    vertical-align:top;
+
+}
+
+#weekCalDays
+{
+    width:100%;
+    table-layout:fixed;
+   	
+}
+
+#weekCalDays .resourceInfo,#weekCal .resourceInfo
+{
+    color:#000;
+
+}
+
+
+#weekCal, #dayCal
+{
+    border:1px solid #000;
+    width:100%;
+    table-layout:fixed;
+    min-width:400px;
+
+
+}
+
+
+tr.cl-Days {
+  font-weight:bold;
+}
+
+#weekCal tr.cl-Days td.today 
+{
+
+    background:#fdfde3;
+    color:#000;
+    border:1px solid #000;
+    width:100px;
+}
+
+#weekCal .today,
+#monthCal .today,
+#dayCal .today
+{
+    background:#fdfde3;
+
+}
+
+
+#cl-calScroll
+{
+
+    /* tämä pitää javascriptillä haistella jos halutaan siten että käytetään käytettävissä oleva tilas */
+    max-height:550px;
+    border:1px solid #666;
+    position:relative;
+    border-top:none;
+
+
+}
+
+.cl-col
+{
+    padding:0;
+    width:100px;
+}
+
+.cl-timeCol
+{  
+
+    padding:0;
+    width:30px;
+}
+.nd {
+    width:100px;
+}
+.we {
+    width:100px;
+}
+
+#weekCal td,
+#dayCal td
+{
+    border-right:1px solid #999;
+    border-bottom:1px solid #999;
+
+}
+
+#weekCal .saturday,
+#weekCal .sunday
+{
+    background:#EEE;
+
+}
+
+.cl-Days td,
+#dayTitle
+{
+color:#000;
+    text-align:center;
+    padding:4px 0;
+   font-size:0.7em;
+	
+
+}
+
+
+
+.cl-colevents
+{ 
+    font-size:.7em;
+    cursor:default;
+    position:relative;
+    width:100%;
+    padding:0;
+    margin:0;
+}
+
+.cl-time
+{
+    border-bottom:1px dotted #666;
+    font-size:.7em;
+    color:#666;
+    padding-left:.1em;
+    padding-right:.2em; 
+    font-weight: bold;	
+}
+
+.cl-event
+{
+ border: 1px solid #000;
+ position:absolute;
+ cursor:default;
+ overflow:hidden;
+ left:0%;
+ padding:0;
+ margin:0;
+ z-index:1;
+}
+.cl-event p {
+  
+  padding:.1em;
+}
+.cl-event .b,
+.cl-m-event .b
+{
+    background:#94A2BE;
+    margin:1px;
+
+ /*   background:#c5dbea;
+    color:#2E4F75;
+*/
+
+}
+
+
+.cl-event dt
+{
+    font-weight:bold;
+
+
+}
+
+.unconfirmed
+{
+    background:#CCC !important;
+    color:#666;
+}
+
+.cl-event .b:hover,
+.cl-m-event .b:hover
+{
+    background:#FF9;
+    cursor:pointer;
+    color:#000;
+
+}
+
+
+a.cl-editTitle:link,
+a.cl-editTitle:visited
+{
+    color:#FFC;
+    text-decoration:none;
+
+}
+
+.unconfirmed a.cl-editTitle:link,
+.unconfirmed a.cl-editTitle:visited
+{
+    color:#666;
+
+}
+
+
+a.cl-editTitle:hover
+{
+    text-decoration:underline;
+
+}
+
+.cl-event-dl
+{
+
+    margin:.1em;
+
+}
+
+.cl-m-event
+{
+
+    background:#4C79A2;
+
+
+
+    margin:1px;
+    font-size:12px;
+    /*max-height:150px;*/
+    overflow:hidden;
+
+
+}
+
+.dummyEvent
+{
+    height:80px;
+    margin:4px;
+    padding:1px;
+}
+
+.continues
+{
+    margin-right:0;
+    margin-left:0;
+
+}
+
+.first
+{
+    margin-left:4px;
+
+}
+
+.last
+{
+    margin-right:4px;
+
+}
+
+
+
+#cl-hourlinesContainer
+{
+    position:relative;
+    top:1px;
+
+}
+
+#cl-hourlines
+{
+    position:absolute;
+    width:100%;
+}
+
+
+
+/* month */
+
+
+#monthCal
+{
+    width:100%;
+    border-right:1px solid #999;
+    border-bottom:1px solid #999;
+
+}
+
+
+/*month */
+
+#monthCal 
+{
+    table-layout:fixed;
+}
+
+#monthCal .daynumbers td
+{
+    background-color:#E8EEF7;
+    text-align:right;
+    border-left:1px solid #ADC6DA;
+    border-top:1px solid #ADC6DA;
+    padding:1px;
+}
+
+#monthCal .days td
+{
+
+    border-left:1px solid #ADC6DA;
+    padding-bottom:15px;
+    position: relative;
+    vertical-align:top;
+
+}
+
+#monthCal tr.daynumbers td.prevmonth,
+#monthCal tr.daynumbers td.nextmonth
+{
+    background-color:#FAFAFA;
+    color:#333;
+}
+
+#monthCal tr.weekdays td
+{
+    background:#b6cbea;
+    text-align:center;
+    padding:4px;
+
+}
+
+.hasDatepicker
+{
+    font-size:0.8em;
+}
+
+
+#weekCal
+{
+    border:1px solid #666;
+    /*height:1500px;*/
+    width:100%;
+    table-layout:fixed;
+	background-color:rgba(255,255,255,0.7);	
+
+
+}
+.cl-colevents
+{
+    cursor:default;
+    position:relative;
+
+    height:700px;
+    margin-bottom:-700px
+}
+
+div .cl-hline
+{
+    border-bottom:1px dotted #666;
+
+}
