@@ -16,10 +16,13 @@ const Ruokalista = ({ foodList, selectedDay, selectedLocation, handleLocationCli
                 setMenu.Meals.map(meal =>
                     <RuokalistaName key={meal.RecipeId} foodList={meal} />
     )))
-           
-    if (filterdfoodList.length === 0 || filterdfoodList[0].length === 0) {
-        filterdfoodList = <tr><td>Not available</td><td></td></tr>
+
+    if (filterdfoodList.length === 0) {
+        filterdfoodList = <tr><td>Not available yet</td><td></td></tr>
+    } else if (filterdfoodList[0].length === 0) {
+        filterdfoodList = <tr><td>No serving on this day</td><td></td></tr>
     }
+    
 
     return (
         <div>

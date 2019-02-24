@@ -2,17 +2,15 @@
 
 /* CSS Document */
 
+  #lukkari {
+    text-align: center;
+    margin-right: 20px; 
+}
+
+}
+
 #lukkari {
   width: 100%;
-  margin-left: 0px;
-  padding-left: 0px; 
-  text-align: center;
-}
-
-}
-
-#lukkari {
-  width: 60%;
 }
 
 .lukkariForm {
@@ -25,7 +23,7 @@
 
 #searchButton {
   margin-left: 10px;
-  margin-top: 30px; 
+  margin-top: 40px; 
   height: 40px;
 }
  
@@ -34,19 +32,11 @@
     z-index:20000;
 }
 
-#leftnavi #datepicker div.ui-datepicker-inline
-{
-	margin:0 auto 0 auto;
-
-	
-	
-}
 
 
 #cl-maincal
 {
     width:100%;
-    height:100%;
 
 }
 
@@ -72,11 +62,9 @@ td
 
 #weekCal, #dayCal
 {
-    border:1px solid #000;
     width:100%;
     table-layout:fixed;
-    min-width:400px;
-
+    min-width:200px;
 
 }
 
@@ -85,35 +73,8 @@ tr.cl-Days {
   font-weight:bold;
 }
 
-#weekCal tr.cl-Days td.today 
-{
-
-    background:#fdfde3;
-    color:#000;
-    border:1px solid #000;
-    width:100px;
-}
-
-#weekCal .today,
-#monthCal .today,
-#dayCal .today
-{
-    background:#fdfde3;
-
-}
 
 
-#cl-calScroll
-{
-
-    /* tämä pitää javascriptillä haistella jos halutaan siten että käytetään käytettävissä oleva tilas */
-    max-height:550px;
-    border:1px solid #666;
-    position:relative;
-    border-top:none;
-
-
-}
 
 .cl-col
 {
@@ -174,16 +135,16 @@ color:#000;
 
 .cl-time
 {
-    border-bottom:1px dotted #666;
+    border-bottom:1px dotted #b7d8e5;
     font-size:.7em;
     color:#666;
     padding-left:.1em;
     padding-right:.2em; 
-    font-weight: bold;	
+    font-weight: bold;
 }
 
 .cl-event
-{
+{   
  border: 1px solid #000;
  position:absolute;
  cursor:default;
@@ -223,37 +184,10 @@ color:#000;
     color:#666;
 }
 
-.cl-event .b:hover,
-.cl-m-event .b:hover
-{
-    background:#FF9;
-    cursor:pointer;
-    color:#000;
-
-}
 
 
-a.cl-editTitle:link,
-a.cl-editTitle:visited
-{
-    color:#FFC;
-    text-decoration:none;
-
-}
-
-.unconfirmed a.cl-editTitle:link,
-.unconfirmed a.cl-editTitle:visited
-{
-    color:#666;
-
-}
 
 
-a.cl-editTitle:hover
-{
-    text-decoration:underline;
-
-}
 
 .cl-event-dl
 {
@@ -304,6 +238,41 @@ a.cl-editTitle:hover
 }
 
 
+.cl-time
+{
+	height:45px;
+
+}
+
+.cl-event.normal {
+    top:180px;
+    height: 126px;
+}
+
+#weekCal
+{
+	border:1pt solid #666;
+	height:325px;
+	width:100%;
+	table-layout:fixed;
+	
+	
+}
+
+.cl-colevents
+{
+	cursor:default;
+	position:relative;
+}
+
+.cl-hline
+{
+	height:25px;
+
+	
+}
+
+
 
 #cl-hourlinesContainer
 {
@@ -318,88 +287,3 @@ a.cl-editTitle:hover
     width:100%;
 }
 
-
-
-/* month */
-
-
-#monthCal
-{
-    width:100%;
-    border-right:1px solid #999;
-    border-bottom:1px solid #999;
-
-}
-
-
-/*month */
-
-#monthCal 
-{
-    table-layout:fixed;
-}
-
-#monthCal .daynumbers td
-{
-    background-color:#E8EEF7;
-    text-align:right;
-    border-left:1px solid #ADC6DA;
-    border-top:1px solid #ADC6DA;
-    padding:1px;
-}
-
-#monthCal .days td
-{
-
-    border-left:1px solid #ADC6DA;
-    padding-bottom:15px;
-    position: relative;
-    vertical-align:top;
-
-}
-
-#monthCal tr.daynumbers td.prevmonth,
-#monthCal tr.daynumbers td.nextmonth
-{
-    background-color:#FAFAFA;
-    color:#333;
-}
-
-#monthCal tr.weekdays td
-{
-    background:#b6cbea;
-    text-align:center;
-    padding:4px;
-
-}
-
-.hasDatepicker
-{
-    font-size:0.8em;
-}
-
-
-#weekCal
-{
-    border:1px solid #666;
-    /*height:1500px;*/
-    width:100%;
-    table-layout:fixed;
-	background-color:rgba(255,255,255,0.7);	
-
-
-}
-.cl-colevents
-{
-    cursor:default;
-    position:relative;
-
-    height:700px;
-    margin-bottom:-700px
-}
-
-div .cl-hline
-{
-    border-bottom:1px dotted #666;
-
-}

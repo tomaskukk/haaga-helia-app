@@ -5,25 +5,26 @@ import FormControl from 'react-bootstrap/FormControl'
 import FormGroup from 'react-bootstrap/FormGroup'
 import Button from 'react-bootstrap/Button'
 import './css/lukkari.css'
-import Row from 'react-bootstrap/Row'
-import Col from 'react-bootstrap/Col'
 
-const Lukkari = ({ findByGroupId, lukkariState, handler, groupId }) => {
+const Lukkari = ({ findByGroupId, lukkariState, handler, groupId, waitMessage }) => {
 
+  const lukkariParts = lukkariState.split('</style>')
 
   return (
     <div id="lukkari">
+    <h4>Timetable</h4>
+    <br></br>
     <Form className="lukkariForm" onSubmit={(event) => {findByGroupId(event, groupId)}}>
         <FormGroup >
-          <FormLabel>Group id</FormLabel>
-          <FormControl id="groupInput" type="text" name="groupId" value={groupId} onChange={handler} placeholder="tn2pa" />
+          <h5><FormLabel>Group id</FormLabel></h5>
+          <FormControl id="groupInput" type="text" name="groupId" value={groupId} onChange={handler} placeholder="e.g tn2pa" />
         </FormGroup>
         <Button id="searchButton" variant="primary" type="submit">
           Search
         </Button>
-
+        {waitMessage}
       </Form>
-      <div dangerouslySetInnerHTML={{__html: lukkariState}}></div>
+      <div dangerouslySetInnerHTML={{__html: lukkariParts[1]}}></div>
       </div>
   )
 }

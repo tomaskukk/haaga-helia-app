@@ -4,21 +4,15 @@ import bailataanService from './services/Bailataan'
 import amicaService from './services/Amica'
 import courseService from './services/Courses'
 import lukkariService from './services/Lukkari'
-import LoginForm from './components/Login'
-import Togglable from './components/Togglable'
 import Calender from './components/Calender'
 import loginService from './services/Login'
 import createAccountService from './services/CreateAccount'
-import Course from './components/Course'
 import userService from './services/Users'
-import Notification from './components/Notification'
 import Otherlinks from './components/Otherlinks'
 import Header from './components/Header'
-import CreateAccountForm from './components/CreateAccountForm'
-import Newcourse from './components/Newcourse'
 import Lukkari from './components/Lukkari'
 import './components/css/components.css'
-import { Row, Col, Container, Button } from 'react-bootstrap'
+import { Row, Col, Container } from 'react-bootstrap'
 
 
 class App extends Component {
@@ -26,7 +20,7 @@ class App extends Component {
     super(props)
     this.state = {
       events: [],
-      courses: [],
+      /* courses: [],
       username: '',
       password: '',
       creatingAccountPassword: '',
@@ -36,7 +30,7 @@ class App extends Component {
       newUrl: '',
       error: null,
       courseName: '',
-      courseUrl: '',
+      courseUrl: '', */
       selectedDay: new Date(),
       calenderLink: '',
       pasilaAmicaFood: [],
@@ -44,7 +38,8 @@ class App extends Component {
       haagaAmicaFood: [],
       location: 'Pasila',
       lukkari: '<div>Not available right now</div>',
-      groupId: ''
+      groupId: '',
+      waitMessage: ''
     }
   }
 
@@ -52,7 +47,6 @@ class App extends Component {
   componentDidMount() {
     const loggedUser = window.localStorage.getItem('loggedUser')
     const user = JSON.parse(loggedUser)
-    console.log(user)
     // log user in if has already localstorage already set
     if (loggedUser) { 
       this.setState({ user })
@@ -62,7 +56,6 @@ class App extends Component {
       userService.findById(user.id)
         .then(res => {
           this.setState({ courses: res })
-          console.log(res)
         })
     }
 
@@ -108,16 +101,16 @@ class App extends Component {
   
   findLukkariByGroupId = (event, id) => {
     event.preventDefault()
+    this.setState({ waitMessage: 'Finding group ' + this.state.groupId + '..'})
     lukkariService.findByGroupId(id)
       .then(response => {
-        this.setState({ lukkari: response, groupId: '' })
+        this.setState({ lukkari: response, groupId: '', waitMessage: '' })
       })
   }
 
   createCourse = (event) => {
     event.preventDefault()
     
-    console.log("LUODAAN KURSSI")
     const newObject = {
       name: this.state.courseName,
       url: this.state.courseUrl,
@@ -151,7 +144,6 @@ class App extends Component {
 
   createAccount = (event) => {
     event.preventDefault()
-    console.log("LUODAAN KÄYTTÄJÄ")
     if (this.state.creatingAccountPassword !== this.state.passwordConfirmation
        || this.state.creatingAccountPassword === '') {
       this.setState({ 
@@ -162,10 +154,8 @@ class App extends Component {
       setTimeout(() => {
         this.setState({ error: null })
       }, 3000)
-      console.log("SALASANAT EIVÄT TÄSMÄÄ")
       return
     }
-    console.log("SALASANAT TÄSMÄÄÄVÄT")
     this.setState({error : 'Creating account...'})
     const userObject = {
       username: this.state.username,
@@ -251,8 +241,11 @@ class App extends Component {
           lukkariState={this.state.lukkari}
           groupId={this.state.groupId}
           handler={this.handleLoginFieldChange.bind(this)}
+          waitMessage={this.state.waitMessage}
           />
-          <h5>By logging in you can add your Moodle courses, useful links or notes</h5>
+          <Otherlinks />
+
+          {/* <h5>By logging in you can add your Moodle courses, useful links or notes</h5>
           <Togglable variantForButton="success" buttonLabel="Login">
             <Notification message={this.state.error} />
             <LoginForm
@@ -271,7 +264,7 @@ class App extends Component {
             createAccountFnc={this.createAccount.bind(this)}
             passwordConfirmation={this.state.passwordConfirmation}
             />
-          </Togglable>
+          </Togglable> */}
           <Otherlinks />
           </Col>
         </Row>
@@ -298,6 +291,8 @@ class App extends Component {
           selectedLocation={this.state.location}
           handleLocationClick={this.handleLocationClick.bind(this)}
           handleDayClick={this.handleDayClick.bind(this)}/>
+        <Otherlinks />
+
         </Col>
         </div>
         <div className="rightContainer">
@@ -307,8 +302,9 @@ class App extends Component {
           lukkariState={this.state.lukkari}
           groupId={this.state.groupId}
           handler={this.handleLoginFieldChange.bind(this)}
+          waitMessage={this.state.waitMessage}
           />
-          <Togglable ref={component => this.Newcourse = component} variantForButton="success" buttonLabel="Add course, link or note">
+          {/* <Togglable ref={component => this.Newcourse = component} variantForButton="success" buttonLabel="Add course, link or note">
           <Newcourse 
           name={this.state.courseName}
           url={this.state.courseUrl}
@@ -319,10 +315,9 @@ class App extends Component {
           <Course
           courses={this.state.courses} 
           deleteCourse={this.deleteCourse} />
-          <Button className="logOutButton" onClick={this.logout} variant="info">LOG OUT</Button>
+          <Button className="logOutButton" onClick={this.logout} variant="info">LOG OUT</Button> */}
           </Col>
           <Col>
-            <Otherlinks />
           </Col>
           </div>
         </Row>

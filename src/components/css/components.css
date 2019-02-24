@@ -32,6 +32,10 @@ body {
     padding-bottom: 0px;
 }
 
+.rw-box {
+    display: none;
+}
+
 .navImg {
     width: 4rem;
     height: 4rem;
@@ -76,6 +80,8 @@ body {
 }
 @media only screen and (min-width: 768px) {
 
+    
+
     .rootDom {
         margin: auto;
         width: 60%;
@@ -103,6 +109,44 @@ body {
 
     }
 
+    .rw-box {
+        display: block;
+        margin-top: 15px; 
+    }
+
+    .range {
+        display: none;
+    }
+    
+    .info {
+        display: none;
+    }
+    .rw-today {
+        display: flex;
+    }
+    .rw-box-right {
+        display: none;
+    }
+
+    .rw-box-left {
+        display: flex;
+        
+    }
+
+    .desc {
+        margin-left: 2rem;
+    }
+
+    .current {
+        margin-left: 2rem;
+    }
+
+    .rw-today {
+        margin-left: 2rem; 
+    }
+    .rw-box h2 {
+        font-size: 20px;
+    }
     
     #loggingHelpText {
         display: block;
