@@ -9,14 +9,15 @@ const Header = () => {
 
   return (
     <NavBar  className="header justify-content-between">
-      <NavBarBrand>Haaga-Helia App</NavBarBrand>
+      <NavBarBrand id="hhHeader">Haaga-Helia App</NavBarBrand>
       <Nav className="justify-content-center">
         <NavItem>
-        <ReactWeather
+        {/* <ReactWeather
         id="weatherWidget"
         forecast="today"
         apikey="7c7d3d54514d4667a1372822192402"
-        type="auto"/>
+        type="city"
+        city="Helsinki"/> */}
         </NavItem>
       </Nav>
     </NavBar>

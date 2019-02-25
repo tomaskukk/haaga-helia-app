@@ -104,7 +104,7 @@ class App extends Component {
     this.setState({ waitMessage: 'Finding group ' + this.state.groupId + '..'})
     lukkariService.findByGroupId(id)
       .then(response => {
-        this.setState({ lukkari: response, groupId: '', waitMessage: '' })
+        this.setState({ lukkari: response, groupId: '', waitMessage: 'Timetable for ' + this.state.groupId })
       })
   }
 
@@ -278,24 +278,7 @@ class App extends Component {
         <Header />
       <Navigation /> 
       <Container className="container">
-  
-        <Row>
-          <div className="leftContainer">
-       <Col>
-          <Calender 
-          selectedDay={this.state.selectedDay} 
-          events={this.state.events}
-          foodListPasila={this.state.pasilaAmicaFood}
-          foodListMalmi={this.state.malmiAmicaFood}
-          foodListHaaga={this.state.haagaAmicaFood}
-          selectedLocation={this.state.location}
-          handleLocationClick={this.handleLocationClick.bind(this)}
-          handleDayClick={this.handleDayClick.bind(this)}/>
-        <Otherlinks />
-
-        </Col>
-        </div>
-        <div className="rightContainer">
+          <div className="rightContainer">
           <Col>
           <Lukkari 
           findByGroupId={this.findLukkariByGroupId.bind(this)}
@@ -317,9 +300,23 @@ class App extends Component {
           deleteCourse={this.deleteCourse} />
           <Button className="logOutButton" onClick={this.logout} variant="info">LOG OUT</Button> */}
           </Col>
-          <Col>
-          </Col>
           </div>
+          <Row>
+          <div className="leftContainer">
+       <Col>
+          <Calender 
+          selectedDay={this.state.selectedDay} 
+          events={this.state.events}
+          foodListPasila={this.state.pasilaAmicaFood}
+          foodListMalmi={this.state.malmiAmicaFood}
+          foodListHaaga={this.state.haagaAmicaFood}
+          selectedLocation={this.state.location}
+          handleLocationClick={this.handleLocationClick.bind(this)}
+          handleDayClick={this.handleDayClick.bind(this)}/>
+        <Otherlinks />
+        </Col>
+        </div>
+
         </Row>
         </Container>
         </div>

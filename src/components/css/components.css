@@ -32,9 +32,69 @@ body {
     padding-bottom: 0px;
 }
 
+
+#hhHeader {
+    font-size: 15px;
+}
+
 .rw-box {
+    display: block; 
+    font-size: 12px;
+    margin-right: 0.5rem; 
+}
+
+.range {
     display: none;
 }
+
+.info {
+    display: none;
+}
+.rw-today {
+    display: flex;
+}
+.rw-box-right {
+    display: none;
+}
+
+.rw-box-left {
+    display: flex;
+    
+}
+
+.desc {
+    margin-left: 0.5rem;
+}
+
+.current {
+    margin-left: 0.5rem;
+}
+
+.date {
+    display: none;
+}
+
+.rw-today {
+    margin-left: 0.5rem; 
+}
+.rw-box h2 {
+    font-size: 12px;
+}
+
+#lukkari {
+    text-align: center;
+}
+
+    .lukkariForm {
+        text-align: center;
+        margin: auto;
+    }
+    .cl-time
+    {
+        height:40px;
+
+    }
+    
 
 .navImg {
     width: 4rem;
@@ -78,6 +138,13 @@ body {
 .table {
     border-radius: 6px;
 }
+
+/* @media only screen and (max-width: 1750px) {
+    .container {
+        display: grid;
+    }
+} */
+
 @media only screen and (min-width: 768px) {
 
     
@@ -88,20 +155,19 @@ body {
     }
 
     .container {
-        margin: auto;
         text-align: left;
+        display: flex;
     }
 
     .rightContainer {
-        width: 60%;
         margin-top: 0px;
+        margin: 0px;
+        width:70%;
     }
 
     .leftContainer {
-        width: 40%;
-        margin-top: 0px;
-        padding: 0px;
-        margin: 0px;
+        width: 100%;
+        margin-left: 0px;
     }
     .table {
         margin-top: 1rem; 
@@ -112,6 +178,7 @@ body {
     .rw-box {
         display: block;
         margin-top: 15px; 
+        font-size: 15px;
     }
 
     .range {
@@ -141,6 +208,10 @@ body {
         margin-left: 2rem;
     }
 
+    .date {
+        display: block;
+    }
+
     .rw-today {
         margin-left: 2rem; 
     }
@@ -148,6 +219,10 @@ body {
         font-size: 20px;
     }
     
+    #hhHeader {
+        font-size: 25px;
+    }
+
     #loggingHelpText {
         display: block;
         margin-top: 1rem;

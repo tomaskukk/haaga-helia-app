@@ -5,6 +5,7 @@ import FormControl from 'react-bootstrap/FormControl'
 import FormGroup from 'react-bootstrap/FormGroup'
 import Button from 'react-bootstrap/Button'
 import './css/lukkari.css'
+import './css/components.css'
 
 
 const Lukkari = ({ findByGroupId, lukkariState, handler, groupId, waitMessage }) => {
@@ -22,7 +23,7 @@ const Lukkari = ({ findByGroupId, lukkariState, handler, groupId, waitMessage })
         <Button id="searchButton" variant="primary" type="submit">
           Search
         </Button>
-        {waitMessage}
+        <h5>{waitMessage}</h5>
       </Form>
       <div dangerouslySetInnerHTML={{__html: lukkariParts[1]}}></div>
       </div>
