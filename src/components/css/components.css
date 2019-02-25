@@ -4,7 +4,7 @@ body {
 
 .container {
     margin: auto;
-    width: 95%;
+    width: 100%;
     text-align: center;
 }
 
@@ -83,6 +83,13 @@ body {
 
 #lukkari {
     text-align: center;
+    margin: auto;
+    width: 100%;
+}
+
+#weekCal {
+    width: 100%;
+    border: 2px solid #b7d8e5;
 }
 
     .lukkariForm {
@@ -119,7 +126,7 @@ body {
 
   .rightContainer {
     margin: auto;
-    width: 95%;
+    width: 100%;
 }
 
 .leftContainer {
