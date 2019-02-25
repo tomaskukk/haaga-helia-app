@@ -6,10 +6,10 @@ import FormGroup from 'react-bootstrap/FormGroup'
 import Button from 'react-bootstrap/Button'
 import './css/lukkari.css'
 
+
 const Lukkari = ({ findByGroupId, lukkariState, handler, groupId, waitMessage }) => {
-
+  console.log(lukkariState)
   const lukkariParts = lukkariState.split('</style>')
-
   return (
     <div id="lukkari">
     <h4>Timetable</h4>

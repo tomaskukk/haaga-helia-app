@@ -103,7 +103,7 @@ const Navigation = () => {
             <Tooltip id={`hhtooltip`}>
             Myy search
             </Tooltip>}>
-            <NavLink className="navLink" href="http://palvelum.me/myybrowser/" rel="noopener noreferrer" target="_blank">
+            <NavLink className="navLink" href="http://palvelum.me/myybrowserathhapp/" rel="noopener noreferrer" target="_blank">
                 <Image className="navImg" src={myySearchPicture} roundedCircle></Image>
                 </NavLink>
             </OverlayTrigger>
