@@ -26,7 +26,7 @@ const Ruokalista = ({ foodList, selectedDay, selectedLocation, handleLocationCli
 
     return (
         <div>
-        <Table className="table" striped bordered hover>
+        <Table responsive className="table" striped bordered hover>
         <tbody>
             <tr>
                 <th>

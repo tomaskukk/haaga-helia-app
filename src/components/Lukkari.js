@@ -9,8 +9,10 @@ import './css/components.css'
 
 
 const Lukkari = ({ findByGroupId, lukkariState, handler, groupId, waitMessage }) => {
-  console.log(lukkariState)
-  const lukkariParts = lukkariState.split('</style>')
+
+  const changedHtml = lukkariState.replace('<table ', '<table class="table table table-responsive table-striped table-bordered table-hover"')
+
+  const lukkariParts = changedHtml.split('</style>')
   return (
     <div id="lukkari">
     <h4>Timetable</h4>

@@ -1,4 +1,6 @@
+@media only screen and (max-width: 768px) {
 
+}
 
 #lukkari {
   width: 95%;
@@ -85,6 +87,7 @@ tr.cl-Days {
 
 .nd.today {
     background-color: #55bbdd;
+    
 }
 
 .we {

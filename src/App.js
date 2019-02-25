@@ -102,6 +102,7 @@ class App extends Component {
   findLukkariByGroupId = (event, id) => {
     event.preventDefault()
     this.setState({ waitMessage: 'Finding group ' + this.state.groupId + '..'})
+    document.getElementById('weekCal').style.display = 'block'
     lukkariService.findByGroupId(id)
       .then(response => {
         this.setState({ lukkari: response, groupId: '', waitMessage: 'Timetable for ' + this.state.groupId })
