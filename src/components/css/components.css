@@ -4,8 +4,13 @@ body {
 
 .container {
     margin: auto;
+    margin-top: 2rem;
     width: 100%;
     text-align: center;
+}
+
+.calenderContainer {
+    margin-top: 2rem;
 }
 
 .navLink {
@@ -34,15 +39,18 @@ body {
 
 
 #hhHeader {
-    font-size: 15px;
+    display: none;
+}
+
+.langButton {
+    border: none;
+    background: none;
+    outline-style: none;
 }
 
 .rw-box {
     display: block; 
-    font-size: 12px;
-    margin-right: 0.5rem; 
 }
-
 .range {
     display: none;
 }
@@ -59,7 +67,6 @@ body {
 
 .rw-box-left {
     display: flex;
-    
 }
 
 .desc {
@@ -78,7 +85,7 @@ body {
     margin-left: 0.5rem; 
 }
 .rw-box h2 {
-    font-size: 12px;
+    font-size: 20px;
 }
 
 #lukkari {
@@ -87,21 +94,27 @@ body {
     width: 100%;
 }
 
-#weekCal {
-    width: 100%;
-    border: 2px solid #b7d8e5;
+.mb-3.btn-toolbar {
+    display: block;
+    text-align: center;
+    margin: auto;
 }
 
-    .lukkariForm {
-        text-align: center;
-        margin: auto;
-    }
-    .cl-time
-    {
-        height:40px;
 
-    }
-    
+#lukkariFormGroup {
+    display: flex;
+}
+
+#waitMessage {
+    display: none; 
+}
+
+#weekCal {
+    text-align: center;
+    margin: auto;
+    width: 90%;
+    border: 2px solid #b7d8e5;
+}   
 
 .navImg {
     width: 4rem;
@@ -112,12 +125,11 @@ body {
 
 }
 
-.calenderContainer Button {
-    margin: 5px;
-}
+
 
 .toggleButton {
     margin-top: 20px;
+    margin-bottom: 20px;
   }
 
   #loggingHelpText {
@@ -131,10 +143,22 @@ body {
 
 .leftContainer {
     margin: auto;
-    width: 95%;
+    width: 100%;
 }
 .commonLinks {
+    text-align: center;
+    margin: auto;
     margin-top: 20px;
+    width: 85%;
+}
+
+.table {
+    border: 2px solid #b7d8e5; 
+}
+
+.table td {
+    margin-top: 1rem; 
+    padding: 0.5rem;
 }
 
 .calender {
@@ -142,8 +166,36 @@ body {
 
 }
 
-.table {
-    border-radius: 6px;
+#partyDiv {
+    padding-top: 3rem;
+    text-align: center;
+    margin: auto;
+    width: 85%;
+
+}
+
+#linjastoMenu {
+    text-align: center;
+    margin: auto;
+    margin-top: 1rem; 
+    width: 90%;
+    border: 2px solid #b7d8e5;
+    max-width: 325px;
+}
+
+#linjastoMenu td {
+    padding: 2px;
+}
+
+.Linjasto-2 {
+    display: none;
+}
+
+.dropDownLocationButton {
+    border-bottom: 2px dotted #b7d8e5;
+    margin-bottom: 5px; 
+    text-align: center;
+    font-weight:bold;
 }
 
 /* @media only screen and (max-width: 1750px) {
@@ -152,13 +204,51 @@ body {
     }
 } */
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 769px) and (max-width: 1200px) {
+
+    
+
+    .rootDom {
+        text-align: center;
+        margin: auto;
+        width: 75%;
+    }
+
+    #linjastoMenu {
+        text-align: center;
+        margin: auto;
+        margin-top: 5px; 
+        width: 75%;
+    }
+
+    #partyDiv {
+        margin-top: 3rem;
+        text-align: center;
+        margin: auto;
+        width: 75%;
+    }
+
+    .commonLinks {
+        margin-top: 20px;
+        text-align: center;
+        margin: auto;
+        border: 2px solid #b7d8e5;
+
+        width: 75%;
+    }
+
+    #feedbackForm {
+        display: block;
+    }
+}
+
+@media only screen and (min-width: 1201px) {
 
     
 
     .rootDom {
         margin: auto;
-        width: 60%;
+        width: 75rem;
     }
 
     .container {
@@ -176,10 +266,12 @@ body {
         width: 100%;
         margin-left: 0px;
     }
+
+    .calenderContainer {
+        margin-top: 0px;
+    }
     .table {
         margin-top: 1rem; 
-        border: 2px solid #b7d8e5;
-
     }
 
     .rw-box {
@@ -191,6 +283,15 @@ body {
     .range {
         display: none;
     }
+    #linjastoMenu {
+        text-align: left;
+        margin: 1px;
+        margin-top: 1rem; 
+        width: 90%;
+        border: 2px solid #b7d8e5;
+        max-width: 325px;
+    }
+    
     
     .info {
         display: none;
@@ -228,11 +329,25 @@ body {
     
     #hhHeader {
         font-size: 25px;
+        display: block;
     }
 
     #loggingHelpText {
         display: block;
         margin-top: 1rem;
+    }
+
+    #groupInput {
+        margin-left: 2rem;
+    }
+    
+    #lukkariFormGroup {
+        display: flex;
+    }
+
+    #waitMessage {
+        margin-left: 3rem; 
+        display: block;
     }
 
     .commonLinks {
@@ -258,6 +373,13 @@ body {
 
     .headerForLunchAndParties {
         margin-bottom: 1rem; 
+    }
+
+    #partyDiv {
+        margin-top: 3rem;
+        text-align: left;
+        margin: 1px;
+        width: 85%;
     }
 
     .cool-link {
@@ -309,4 +431,23 @@ body {
     .logOutButton {
         margin-bottom: 1rem;
     }
+
+    #scrollRight {
+        display: none;
+    }
+
+    #toggleLunch {
+        display: none;
+    }
+
+    #feedbackForm {
+        display: block;
+    }
+
+
+    .mb-3.btn-toolbar {
+        display: flex;
+        
+    }
+    
 }

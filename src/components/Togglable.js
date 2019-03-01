@@ -1,5 +1,9 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button'
+import DropDown from 'react-bootstrap/Dropdown'
+import DropdownItem from 'react-bootstrap/DropdownItem'
+import { DropdownButton } from 'react-bootstrap';
+
 
 class Togglable extends React.Component {
   constructor(props) {
@@ -20,16 +24,20 @@ class Togglable extends React.Component {
     return (
       <div className="d-inline">
         <div style={hideWhenVisible}>
-          <Button className="toggleButton" variant={this.props.variantForButton}
-          onClick={this.toggleVisibility}>
-          {this.props.buttonLabel}
-          </Button>
+        <DropDown>
+          <DropdownButton className="toggleButton" variant={this.props.variantForButton}
+          title={this.props.buttonLabel}>
+            <DropdownItem className="dropDownLocationButton" onClick={(event) => { this.props.handleLocationClick(event, 'Pasila'); this.toggleVisibility()}}>Pasila</DropdownItem>
+            <DropdownItem className="dropDownLocationButton" onClick={(event) => { this.props.handleLocationClick(event, 'Malmi'); this.toggleVisibility()}}>Malmi</DropdownItem>
+            <DropdownItem className="dropDownLocationButton" onClick={(event) => { this.props.handleLocationClick(event, 'Haaga'); this.toggleVisibility()}}>Haaga</DropdownItem>
+            </DropdownButton>
+          </DropDown>
         </div>
         <div style={showWhenVisible}>
+          <Button className="toggleButton" variant="warning"
+          onClick={this.toggleVisibility}>Cancel</Button>
           {this.props.children}
           <br></br>
-          <Button variant="warning"
-          onClick={this.toggleVisibility}>Cancel</Button>
         </div>
       </div>
     )

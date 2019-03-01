@@ -1,11 +1,31 @@
 import React from 'react'
 import RuokalistaDiet from './RuokalistaDiet'
 import './css/components.css'
+import Table from 'react-bootstrap/Table'
+
 const RuokalistaName = ({ foodList }) => {
+  const getRandomKey = () => Math.random().toString(36).substring(7);
+  const handleOnDragStart = e => e.preventDefault()
+
+  const foodListToRender = foodList.Meals.map(meal => 
+    <tr key={getRandomKey()}>
+    <td>{meal.Name}</td>
+    <td className="dietsStyle">
+    {<RuokalistaDiet 
+    key={getRandomKey()} 
+    foodListDiet={meal.Diets}/>}</td>
+    </tr>
+  )
+
+  console.log(foodListToRender)
 
   return (
-      <tr key={foodList.RecipeId}><td className="tableRows">{foodList.Name}</td><td className="dietsStyle"><RuokalistaDiet key={foodList.RecipeId} 
-      foodListDiet={foodList.Diets} /></td></tr>
+    <Table striped bordered hover id="linjastoMenu">
+      <tbody onDragStart={handleOnDragStart}>
+      <tr><th>{foodList.Name}</th><th>Allergens</th></tr>
+      {foodListToRender}
+      </tbody>
+    </Table>
   )
 }
 

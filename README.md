@@ -6,5 +6,5 @@ to gather information from different APIs and share them in one place. Also ther
 
 ## Technologies 
 
-This will be made with React.js, Node.js. 
+Made with React.js and Node.js. 
 

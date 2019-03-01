@@ -1,18 +1,15 @@
 import React from 'react'
-import DayPicker from 'react-day-picker'
-import 'react-day-picker/lib/style.css'
+import Button from 'react-bootstrap/Button'
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import KideApp from './KideApp'
 import Ruokalista from './Ruokalista'
 import './css/components.css'
-import Button from 'react-bootstrap/Button'
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
 
 
 const Calender = ({ handleDayClick, events, selectedDay, foodListPasila,
      foodListMalmi, foodListHaaga, selectedLocation, handleLocationClick }) => {
    
 
-    const selectedPretty = selectedDay.toLocaleDateString()
 
 
     const listToShow = () => {
@@ -30,7 +27,6 @@ const Calender = ({ handleDayClick, events, selectedDay, foodListPasila,
 
         return (
             <div className="calenderContainer">
-                <h4 className="headerForLunchAndParties">Lunch and parties on {selectedPretty}</h4>
                 <ButtonGroup className="lunchButtons">
                 <Button
                 variant="primary"
@@ -48,18 +44,14 @@ const Calender = ({ handleDayClick, events, selectedDay, foodListPasila,
                 Haaga
                 </Button>
                 </ButtonGroup>
-                <DayPicker
-                className="calender"
-                onDayClick={handleDayClick}
-                selectedDays={selectedDay}
-                firstDayOfWeek={ 1 }
-                >
-                </DayPicker>
+
                 <Ruokalista 
                 selectedDay={selectedDay}
                 foodList={listToShow()}
                 selectedLocation={selectedLocation}
-                handleLocationClick={handleLocationClick}/>
+                handleDayClick={handleDayClick}
+                />
+
                 <KideApp 
                 selectedDay={selectedDay}
                 props={events} />

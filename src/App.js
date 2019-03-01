@@ -10,6 +10,7 @@ import createAccountService from './services/CreateAccount'
 import userService from './services/Users'
 import Otherlinks from './components/Otherlinks'
 import Header from './components/Header'
+import Feedbackform from './components/Feedbackform'
 import Lukkari from './components/Lukkari'
 import './components/css/components.css'
 import { Row, Col, Container } from 'react-bootstrap'
@@ -31,7 +32,7 @@ class App extends Component {
       error: null,
       courseName: '',
       courseUrl: '', */
-      selectedDay: new Date(),
+      selectedDay: 0,
       calenderLink: '',
       pasilaAmicaFood: [],
       malmiAmicaFood: [],
@@ -39,7 +40,8 @@ class App extends Component {
       location: 'Pasila',
       lukkari: '<div>Not available right now</div>',
       groupId: '',
-      waitMessage: ''
+      waitMessage: '',
+      lang: 'fi'
     }
   }
 
@@ -59,40 +61,82 @@ class App extends Component {
         })
     }
 
-
-      amicaService.getAllHaaga()
+      amicaService.getAllHaaga(this.state.lang)
         .then(lunchMenus => {
         this.setState({ haagaAmicaFood: lunchMenus.LunchMenus })
       })
-      amicaService.getAllMalmi()
+      amicaService.getAllMalmi(this.state.lang)
         .then(lunchMenus => {
         this.setState({ malmiAmicaFood: lunchMenus.LunchMenus })
       })
+      amicaService.getAllPasila(this.state.lang)
+      .then(lunchMenus => {
+        this.setState({ pasilaAmicaFood: lunchMenus.LunchMenus })
+      })
+
+
       bailataanService.getAllKideApp()
         .then(events => {
           this.setState({ events: events.model })
         })
-      amicaService.getAllPasila()
-        .then(lunchMenus => {
-          this.setState({ pasilaAmicaFood: lunchMenus.LunchMenus })
-        })
       let id = 'tn2'
+      const userLukkari = window.localStorage.getItem('lukkariTunnus')
+      if (userLukkari) {
+        id = userLukkari
+        this.setState({ waitMessage: `Timetable for ${id}` })
+      }
+      console.log(id)
       lukkariService.findByGroupId(id)
       .then(response => {
-        this.setState({ lukkari: response })
+        this.setState({ lukkari: response },
+        () =>  {
+          /* const thisDayInWeek = new Date().getDay()
+          if (document.getElementById(`wd${thisDayInWeek}`)) {
+          const thisDayInLukkari = document.getElementById(`wd${thisDayInWeek}`).parentNode
+          thisDayInLukkari.style.backgroundColor = '#b7d8e5'
+          } */
+         
+          const thisDayInLukkariTop = document.getElementsByClassName('nd today')
+          if (thisDayInLukkariTop[0]) {
+            thisDayInLukkariTop[0].scrollIntoView(false)
+          }
+        })
       })
-
-      // check if shouldComponentUpdate or componentDidUpdate would work better
-      // for malmi and haaga
       
+
+      document.getElementById(new Date().getDay()).classList.add('btn-success')
+      
+
+  }
+
+  findLunchMenus = (lang) => {
+    amicaService.getAllHaaga(lang)
+        .then(lunchMenus => {
+        this.setState({ haagaAmicaFood: lunchMenus.LunchMenus })
+      })
+      amicaService.getAllMalmi(lang)
+        .then(lunchMenus => {
+        this.setState({ malmiAmicaFood: lunchMenus.LunchMenus })
+      })
+      amicaService.getAllPasila(lang)
+      .then(lunchMenus => {
+        this.setState({ pasilaAmicaFood: lunchMenus.LunchMenus })
+      })
   }
 
   handleLocationClick = (event, value) => {
     this.setState({ location: value })
   }
 
-  handleDayClick = (day, { selected } ) => {
-    this.setState({ selectedDay: day })
+  handleLangClick = (event, value) => {
+    this.findLunchMenus(this.state.lang === 'fi' ? 'en' : 'fi')
+    this.setState({ lang: this.state.lang === 'fi' ? 'en' : 'fi' })
+  }
+
+  handleDayClick = (day) => {
+    const thisDayInWeek = new Date().getDay()
+    // day - getDay
+    this.setState({ selectedDay: day - thisDayInWeek })
   }
 
   handleLoginFieldChange = (event) => {
@@ -101,11 +145,23 @@ class App extends Component {
   
   findLukkariByGroupId = (event, id) => {
     event.preventDefault()
+    window.localStorage.removeItem('lukkariTunus')
+    window.localStorage.setItem('lukkariTunnus', this.state.groupId)
     this.setState({ waitMessage: 'Finding group ' + this.state.groupId + '..'})
-    document.getElementById('weekCal').style.display = 'block'
     lukkariService.findByGroupId(id)
       .then(response => {
-        this.setState({ lukkari: response, groupId: '', waitMessage: 'Timetable for ' + this.state.groupId })
+        this.setState({ lukkari: response, groupId: '', waitMessage: 'Timetable for ' + this.state.groupId },
+        () =>  {
+          /* const thisDayInWeek = new Date().getDay()
+          if (document.getElementById(`wd${thisDayInWeek}`)) {
+            const thisDayInLukkari = document.getElementById(`wd${thisDayInWeek}`).parentNode
+            thisDayInLukkari.style.backgroundColor = '#b7d8e5'
+          } */
+          const thisDayInLukkariTop = document.getElementsByClassName('nd today')
+          if (thisDayInLukkariTop[0]) {
+            thisDayInLukkariTop[0].scrollIntoView(false)
+          }
+        })
       })
   }
 
@@ -221,7 +277,7 @@ class App extends Component {
     if (this.state.user === null) {
       return (
         <div className="rootDom">
-          <Header />
+          <Header handleLangClick={this.handleLangClick.bind(this)} />
         <Navigation />
         <Container className="container">
         <Row>
@@ -276,7 +332,7 @@ class App extends Component {
 
     return (
       <div className="rootDom">
-        <Header />
+          <Header selectedLang={this.state.lang} handleLangClick={this.handleLangClick.bind(this)} />
       <Navigation /> 
       <Container className="container">
           <div className="rightContainer">
@@ -287,7 +343,9 @@ class App extends Component {
           groupId={this.state.groupId}
           handler={this.handleLoginFieldChange.bind(this)}
           waitMessage={this.state.waitMessage}
-          />
+          />   
+          <Feedbackform />
+     
           {/* <Togglable ref={component => this.Newcourse = component} variantForButton="success" buttonLabel="Add course, link or note">
           <Newcourse 
           name={this.state.courseName}

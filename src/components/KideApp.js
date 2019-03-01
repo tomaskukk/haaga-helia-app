@@ -4,11 +4,17 @@ import Table from 'react-bootstrap/Table'
 
 const Kideapp = ( { props, selectedDay }) => {
 
+    
+    let selectedDate = new Date()
+    selectedDate.setDate(selectedDate.getDate() + selectedDay)
+
+
     const nextDayFromSelectedDay = new Date()
-    nextDayFromSelectedDay.setDate(selectedDay.getDate())
-    nextDayFromSelectedDay.setMonth(selectedDay.getMonth())
-    nextDayFromSelectedDay.setFullYear(selectedDay.getFullYear())
+    nextDayFromSelectedDay.setDate(selectedDate.getDate())
+    nextDayFromSelectedDay.setMonth(selectedDate.getMonth())
+    nextDayFromSelectedDay.setFullYear(selectedDate.getFullYear())
     const nextDayFromSelectedDayAsJSON = nextDayFromSelectedDay.toJSON().substr(0, 10).toString()
+
 
     // show only events that are happening on the day selected on calender
     let filteredEvents = props.filter(e => 
@@ -19,12 +25,12 @@ const Kideapp = ( { props, selectedDay }) => {
         </td></tr>)
     
     if (filteredEvents.length === 0) {
-        filteredEvents = <tr><td>No parties on this day</td></tr>
+        filteredEvents = <tr><td>No parties on selected day</td></tr>
     }
     
     return (
-        <div>
-            <h5>Student parties in Helsinki</h5>
+        <div id="partyDiv">
+            <h5>Student parties in Helsinki {nextDayFromSelectedDay.toLocaleDateString()}</h5>
         <Table striped bordered hover className="table">
         <tbody>
             {filteredEvents}
