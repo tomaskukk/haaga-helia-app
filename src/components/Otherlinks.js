@@ -1,32 +1,40 @@
 import React from 'react'
-import Table from 'react-bootstrap/Table'
+import DropdownItem from 'react-bootstrap/DropdownItem'
+import DropDown from 'react-bootstrap/Dropdown'
+import zonePicture from '../img/zone.png'
+import hhfinnaPicture from '../img/hhfinna.png'
+import helgaPicture from '../img/helga.png'
+import startupschoolPicture from '../img/startupschool.png'
+import moveonPicture from '../img/moveon.png'
+import studentsguidePicture from '../img/studentsguide.png'
+import strings from './Langstrings'
 
 
 const Otherlinks = () => {
     
   return (
-   <Table striped bordered hover className="commonLinks" responsive="lg">
-     <tbody>
-       <tr>
-        <th>Common links</th>
-       </tr>
-        <tr>
-          <td><a className="cool-link" rel="noopener noreferrer" target="_blank" href="http://www.haaga-helia.fi/fi/opinto-opas">Students' guide</a></td>
-          </tr>
-       <tr>
-          <td><a className="cool-link" rel="noopener noreferrer" target="_blank" href="https://startupschool.fi/">Startup-school</a></td>
-        </tr>
-          <tr>
-          <td><a className="cool-link" rel="noopener noreferrer" target="_blank" href="https://haagahelia.rekrytointi.com/paikat/?o=A_LOJ&list=1">Laura jobs</a></td>
-          </tr>
-          <tr>
-          <td><a className="cool-link" rel="noopener noreferrer" target="_blank" href="https://haaga-helia.finna.fi/">HH-Finna</a></td>
-          </tr>
-          <tr>
-          <td><a className="cool-link" rel="noopener noreferrer" target="_blank" href="https://hahe.moveon4.com//publisher/1/eng">Moveon</a></td>
-          </tr>
-          </tbody>
-  </Table>
+    <DropDown id="otherLinks">
+          <h4>{strings.commonLinks}</h4>
+      <DropdownItem className="cool-link" 
+      rel="noopener noreferrer" target="_blank" 
+      href="http://www.haaga-helia.fi/fi/opinto-opas"><img className="commonLinksPictures" src={studentsguidePicture} alt=""></img>{strings.studentsGuide}</DropdownItem>
+
+      <DropdownItem className="cool-link" rel="noopener noreferrer" 
+      target="_blank" href="https://startupschool.fi/"><img className="commonLinksPictures" src={startupschoolPicture} alt=""></img>Startup-school</DropdownItem>
+
+      <DropdownItem className="cool-link" rel="noopener noreferrer" 
+      target="_blank" href="https://haaga-helia.finna.fi/"><img className="commonLinksPictures" src={hhfinnaPicture} alt=""></img>HH-Finna</DropdownItem>
+
+      <DropdownItem className="cool-link" rel="noopener noreferrer" 
+      target="_blank" href="https://hahe.moveon4.com//publisher/1/eng"><img className="commonLinksPictures" src={moveonPicture} alt=""></img>Moveon</DropdownItem>
+
+      <DropdownItem className="cool-link" rel="noopener noreferrer" 
+      target="_blank" href="http://www.helga.fi/"><img className="commonLinksPictures" src={helgaPicture} alt=""></img>Helga</DropdownItem>
+
+      <DropdownItem className="cool-link" rel="noopener noreferrer" 
+      target="_blank" href="http://www.helga.fi/palvelut/liikunta/"><img className="commonLinksPictures" src={zonePicture} alt=""></img>{strings.zone}</DropdownItem>
+      
+</DropDown>
 )
 }
 

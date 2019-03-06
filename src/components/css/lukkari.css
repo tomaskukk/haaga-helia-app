@@ -55,7 +55,6 @@
       table-layout:fixed;
         background-color: #ebebeb;
         overflow-y: hidden;
-        pointer-events: none
   }
   
   
@@ -66,15 +65,13 @@
   
   
   
-  
-  
   .cl-timeCol
   {  
-  
-      padding:0;
-      width:30px;
-      font-size: 1em;
-      border-bottom: 1px dotted #000;
+
+    width: 30px;
+    font-size: 1em;
+      width: 30px;
+        z-index: 10000;
   }
   
   .nd.today {
@@ -232,7 +229,6 @@
   .cl-time
   {
       height:45px;
-  
   }
   
   
@@ -350,6 +346,8 @@ tr.cl-Days {
     margin-right: 5px;
     width:30px;
 }
+
+
 
 .nd.today {
     background-color: #b7d8e5;

@@ -1,5 +1,6 @@
 import React from 'react'
 import Table from 'react-bootstrap/Table'
+import strings from './Langstrings'
 
 
 const Kideapp = ( { props, selectedDay }) => {
@@ -25,12 +26,12 @@ const Kideapp = ( { props, selectedDay }) => {
         </td></tr>)
     
     if (filteredEvents.length === 0) {
-        filteredEvents = <tr><td>No parties on selected day</td></tr>
+        filteredEvents = <tr><td>{strings.noParties}</td></tr>
     }
     
     return (
         <div id="partyDiv">
-            <h5>Student parties in Helsinki {nextDayFromSelectedDay.toLocaleDateString()}</h5>
+            <h5>{strings.partiesHeader} {nextDayFromSelectedDay.toLocaleDateString()}</h5>
         <Table striped bordered hover className="table">
         <tbody>
             {filteredEvents}

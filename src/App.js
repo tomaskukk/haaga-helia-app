@@ -2,18 +2,18 @@ import React, { Component } from 'react';
 import Navigation from './components/Nav'
 import bailataanService from './services/Bailataan'
 import amicaService from './services/Amica'
-import courseService from './services/Courses'
+// import courseService from './services/Courses'
 import lukkariService from './services/Lukkari'
 import Calender from './components/Calender'
-import loginService from './services/Login'
-import createAccountService from './services/CreateAccount'
-import userService from './services/Users'
+// import loginService from './services/Login'
+// import createAccountService from './services/CreateAccount'
 import Otherlinks from './components/Otherlinks'
 import Header from './components/Header'
-import Feedbackform from './components/Feedbackform'
 import Lukkari from './components/Lukkari'
 import './components/css/components.css'
 import { Row, Col, Container } from 'react-bootstrap'
+import Footer from './components/Footer'
+import strings from './components/Langstrings'
 
 
 class App extends Component {
@@ -21,17 +21,16 @@ class App extends Component {
     super(props)
     this.state = {
       events: [],
-      /* courses: [],
-      username: '',
+      /* username: '',
       password: '',
       creatingAccountPassword: '',
       passwordConfirmation: '',
       user: null,
       newName: '',
-      newUrl: '',
+      newUrl: '', */
       error: null,
       courseName: '',
-      courseUrl: '', */
+      courseUrl: '',
       selectedDay: 0,
       calenderLink: '',
       pasilaAmicaFood: [],
@@ -47,7 +46,7 @@ class App extends Component {
 
   // calls when first render is ready
   componentDidMount() {
-    const loggedUser = window.localStorage.getItem('loggedUser')
+    /* const loggedUser = window.localStorage.getItem('loggedUser')
     const user = JSON.parse(loggedUser)
     // log user in if has already localstorage already set
     if (loggedUser) { 
@@ -57,9 +56,37 @@ class App extends Component {
       // get courses for the logged user
       userService.findById(user.id)
         .then(res => {
-          this.setState({ courses: res })
+          console.log(res[0])
+          this.setState({ lukkari: res[0].html })
         })
-    }
+    }  */
+
+    
+      let id = 'tn2'
+      const userLukkari = window.localStorage.getItem('lukkariTunnus')
+      if (userLukkari) {
+        id = userLukkari
+        this.setState({ waitMessage: `${strings.timetablefor} ${id} ${strings.lukkari}` })
+      }
+      console.log(id)
+      lukkariService.findByGroupId(id)
+      .then(response => {
+        this.setState({ lukkari: response },
+        () =>  {
+          const thisDayInWeek = new Date().getDay()
+          if (document.getElementById(`wd${thisDayInWeek}`)) {
+          const thisDayInLukkari = document.getElementById(`wd${thisDayInWeek}`).parentNode
+          thisDayInLukkari.style.backgroundColor = '#b7d8e5'
+          }
+          
+          // scrolling to current day on timetable on mobile
+          const thisDayInLukkariTop = document.getElementsByClassName('nd today')
+          if (thisDayInLukkariTop[0]) {
+            thisDayInLukkariTop[0].scrollIntoView(false)
+          }
+        })
+      })
+    
 
       amicaService.getAllHaaga(this.state.lang)
         .then(lunchMenus => {
@@ -79,35 +106,19 @@ class App extends Component {
         .then(events => {
           this.setState({ events: events.model })
         })
-      let id = 'tn2'
-      const userLukkari = window.localStorage.getItem('lukkariTunnus')
-      if (userLukkari) {
-        id = userLukkari
-        this.setState({ waitMessage: `Timetable for ${id}` })
+      
+      // give styling to current day button on lunch and parties 
+      // again dangerous so if statement needed 
+      // should probably find better way to do this 
+      const thisDayButton = document.getElementById(new Date().getDay())
+      if (thisDayButton) {
+        thisDayButton.classList.add('btn-success')
       }
-      console.log(id)
-      lukkariService.findByGroupId(id)
-      .then(response => {
-        this.setState({ lukkari: response },
-        () =>  {
-          /* const thisDayInWeek = new Date().getDay()
-          if (document.getElementById(`wd${thisDayInWeek}`)) {
-          const thisDayInLukkari = document.getElementById(`wd${thisDayInWeek}`).parentNode
-          thisDayInLukkari.style.backgroundColor = '#b7d8e5'
-          } */
-         
-          const thisDayInLukkariTop = document.getElementsByClassName('nd today')
-          if (thisDayInLukkariTop[0]) {
-            thisDayInLukkariTop[0].scrollIntoView(false)
-          }
-        })
-      })
       
-
-      document.getElementById(new Date().getDay()).classList.add('btn-success')
-      
-
   }
+
+
+
 
   findLunchMenus = (lang) => {
     amicaService.getAllHaaga(lang)
@@ -123,40 +134,124 @@ class App extends Component {
         this.setState({ pasilaAmicaFood: lunchMenus.LunchMenus })
       })
   }
+  // modal show false ! true 
+  /* handleShow = () => {
+    this.setState({ show: !this.state.show})
+  } */
 
+  /* handleAddEvent = () => {
+
+    const getHeight = () => {
+      const dateFrom = new Date()
+      const dateTo = new Date()
+      const splittedFrom = this.state.from.split(':')
+      const splittedTo = this.state.to.split(':')
+      dateFrom.setHours(parseInt(splittedFrom[0]), parseInt(splittedFrom[1]))
+      dateTo.setHours(parseInt(splittedTo[0]), parseInt(splittedTo[1]))
+      let twoFirstMillisFrom = parseInt((dateTo - dateFrom)).toString().substr(0, 3)
+      if (twoFirstMillisFrom.substr(2, 3) === '0') {
+        console.log("jep")
+        twoFirstMillisFrom = twoFirstMillisFrom.substr(0, 2)
+      }
+      console.log(twoFirstMillisFrom)
+      return ((twoFirstMillisFrom * 1.404).toFixed(0))
+    }
+
+      const getTop = () => {
+        const splittedFrom = this.state.from.split(':')
+        const from = parseInt(splittedFrom[0])
+        let halfMore = splittedFrom[1] === '00' ? 0 : 0.5
+        let fromToStart = from - 8
+        return ((fromToStart + halfMore) * 50)
+      }
+    
+
+    const eventHtml = `<div class="cl-event normal" 
+    style="background:rgb(244, 238, 66);cursor:pointer;top:${getTop()}px;width:100%;left:0%;height:${getHeight()}px;overflow:hidden;z-index:1" 
+    id="event21331" onclick="confirm('Delete event ' + event.target.textContent + '?') ? style='display:none;' : console.log">
+    <dl class="cl-event-dl">
+  <a href="#" title="Piilota varaus" onclick="event.stopPropagation(); 
+  updateBasket('hide','21331','action','false','2019-03-05');" 
+  class="small" style="float: right; margin-top: 0em; margin-right: 
+  0.1em; padding: 0em; padding-bottom: .1em; padding-left:.3em; 
+  padding-right:.3em; height:12px; font-weight: bold; border: 1px solid #000"  
+  id="hbv">-</a><img title="Näytä tämän toteutuksen kaikki tulevat varaukset" 
+  onclick="loadPopup(event,'toteutuksenVarausLista.php?code=PRO1TN001-3004&','Varaukset');" 
+  src="images/list.gif" alt="" style="float:right;"/><dt>${this.state.from} - ${this.state.to}</dt>       
+  <dd style="margin:0;padding:.1em 0 .1em .1em;">
+  <b>${this.state.eventName}</b></dd>
+    </dl>
+  </div>`
+
+  console.log(eventHtml)
+
+    const divToAdd = document.createElement('div')
+
+    divToAdd.innerHTML = eventHtml
+    
+    document.getElementById(this.state.id).appendChild(divToAdd)
+
+
+    this.setState({ from: '', to: '', eventName: ''})
+    this.handleShow()
+
+    const newObject = {
+      html: document.getElementById('lukkariToSave').innerHTML.toString(),
+      user: this.state.user
+    }
+
+    courseService.create(newObject)
+      
+
+  } */
+  
+  
   handleLocationClick = (event, value) => {
     this.setState({ location: value })
   }
 
   handleLangClick = (event, value) => {
+    strings.setLanguage(this.state.lang === 'fi' ? 'en' : 'fi')
     this.findLunchMenus(this.state.lang === 'fi' ? 'en' : 'fi')
     this.setState({ lang: this.state.lang === 'fi' ? 'en' : 'fi' })
   }
 
+   
   handleDayClick = (day) => {
+    // calculating the clicked day from getday
+    // and params day based on clicked button
+
     const thisDayInWeek = new Date().getDay()
-    // day - getDay
     this.setState({ selectedDay: day - thisDayInWeek })
   }
 
   handleLoginFieldChange = (event) => {
     this.setState({ [event.target.name]: event.target.value })
   }
-  
+
+ 
+
+
   findLukkariByGroupId = (event, id) => {
     event.preventDefault()
+
+    // save last searched group id for browser and render it
     window.localStorage.removeItem('lukkariTunus')
     window.localStorage.setItem('lukkariTunnus', this.state.groupId)
     this.setState({ waitMessage: 'Finding group ' + this.state.groupId + '..'})
     lukkariService.findByGroupId(id)
       .then(response => {
-        this.setState({ lukkari: response, groupId: '', waitMessage: 'Timetable for ' + this.state.groupId },
+        this.setState({ lukkari: response, 
+          groupId: '', 
+          waitMessage: strings.timetablefor + ' ' + this.state.groupId + ' ' + strings.lukkari},
         () =>  {
-          /* const thisDayInWeek = new Date().getDay()
+          // callback for setstate to add styles to timetable 
+          // might be dangerous so if statements needed
+          const thisDayInWeek = new Date().getDay()
           if (document.getElementById(`wd${thisDayInWeek}`)) {
             const thisDayInLukkari = document.getElementById(`wd${thisDayInWeek}`).parentNode
             thisDayInLukkari.style.backgroundColor = '#b7d8e5'
-          } */
+          }
           const thisDayInLukkariTop = document.getElementsByClassName('nd today')
           if (thisDayInLukkariTop[0]) {
             thisDayInLukkariTop[0].scrollIntoView(false)
@@ -165,41 +260,8 @@ class App extends Component {
       })
   }
 
-  createCourse = (event) => {
-    event.preventDefault()
-    
-    const newObject = {
-      name: this.state.courseName,
-      url: this.state.courseUrl,
-      user: this.state.user
-    } 
-    this.setState({
-      courseName: '',
-      courseUrl: ''
-    })
-    courseService.create(newObject)
-    .then(newCourse => {
-      this.setState({ courses: this.state.courses.concat(newCourse)})
-    })
-    this.Newcourse.toggleVisibility()
-  }
-
-  deleteCourse = (event, course) => {
-    event.preventDefault()
-    courseService.del(course)
-
-    // delete the course from state so it doesn't show on render
-    let array = [...this.state.courses]
-    const index = array.indexOf(course)
-    if (index !== -1) {
-      array.splice(index, 1)
-      this.setState({ courses: array })
-    }
-  }
-
-
-
-  createAccount = (event) => {
+ 
+  /* createAccount = (event) => {
     event.preventDefault()
     if (this.state.creatingAccountPassword !== this.state.passwordConfirmation
        || this.state.creatingAccountPassword === '') {
@@ -233,7 +295,7 @@ class App extends Component {
       setTimeout(() => {
         this.state.error === errUserMustBeUnique ? 
         this.setState({error: null})
-        : this.CreateAccountForm.toggleVisibility()
+        : console.log("Jebajee")
       }, 3000)
     })
   }
@@ -269,12 +331,12 @@ class App extends Component {
       this.setState({ error: null })
     }, 3000)
   }
-}
+} */
 
 
   render() {
     
-    if (this.state.user === null) {
+    /* if (this.state.user === null) {
       return (
         <div className="rootDom">
           <Header handleLangClick={this.handleLangClick.bind(this)} />
@@ -299,11 +361,11 @@ class App extends Component {
           groupId={this.state.groupId}
           handler={this.handleLoginFieldChange.bind(this)}
           waitMessage={this.state.waitMessage}
+          handleAddEvent={this.handleAddEvent.bind(this)}
           />
           <Otherlinks />
 
-          {/* <h5>By logging in you can add your Moodle courses, useful links or notes</h5>
-          <Togglable variantForButton="success" buttonLabel="Login">
+          <h5>By logging in you can add your Moodle courses, useful links or notes</h5>
             <Notification message={this.state.error} />
             <LoginForm
             handler={this.handleLoginFieldChange.bind(this)}
@@ -311,24 +373,20 @@ class App extends Component {
             password={this.state.password}
             loginFnc={this.login.bind(this)}
             />
-          </Togglable>
-          <Togglable ref={component => this.CreateAccountForm = component} variantForButton="primary" buttonLabel="Create account">
-            <Notification message={this.state.error} />
             <CreateAccountForm 
             username={this.state.username}
             password={this.state.creatingAccountPassword}
             handler={this.handleLoginFieldChange.bind(this)}
-            createAccountFnc={this.createAccount.bind(this)}
             passwordConfirmation={this.state.passwordConfirmation}
+            createAccountFnc={this.createAccount.bind(this)}
             />
-          </Togglable> */}
           <Otherlinks />
           </Col>
         </Row>
        </Container>
        </div>
       )
-    }
+    } */
 
     return (
       <div className="rootDom">
@@ -344,20 +402,9 @@ class App extends Component {
           handler={this.handleLoginFieldChange.bind(this)}
           waitMessage={this.state.waitMessage}
           />   
-          <Feedbackform />
-     
-          {/* <Togglable ref={component => this.Newcourse = component} variantForButton="success" buttonLabel="Add course, link or note">
-          <Newcourse 
-          name={this.state.courseName}
-          url={this.state.courseUrl}
-          handler={this.handleLoginFieldChange.bind(this)}
-          createCourseFnc={this.createCourse.bind(this)}
-          />
-        </Togglable>
-          <Course
-          courses={this.state.courses} 
-          deleteCourse={this.deleteCourse} />
-          <Button className="logOutButton" onClick={this.logout} variant="info">LOG OUT</Button> */}
+        
+             <Otherlinks />
+
           </Col>
           </div>
           <Row>
@@ -372,12 +419,12 @@ class App extends Component {
           selectedLocation={this.state.location}
           handleLocationClick={this.handleLocationClick.bind(this)}
           handleDayClick={this.handleDayClick.bind(this)}/>
-        <Otherlinks />
         </Col>
         </div>
 
         </Row>
         </Container>
+        <Footer></Footer>
         </div>
     );
   }

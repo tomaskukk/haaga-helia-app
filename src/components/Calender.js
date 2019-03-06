@@ -1,16 +1,16 @@
 import React from 'react'
-import Button from 'react-bootstrap/Button'
-import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import KideApp from './KideApp'
 import Ruokalista from './Ruokalista'
 import './css/components.css'
 
 
 const Calender = ({ handleDayClick, events, selectedDay, foodListPasila,
-     foodListMalmi, foodListHaaga, selectedLocation, handleLocationClick }) => {
+     foodListMalmi, foodListHaaga, selectedLocation, handleLocationClick,
+     isFoodListVisible, setVisible }) => {
    
 
-
+    // lets find out what campus is clicked and render the state needed
+    // to show right foodlist
 
     const listToShow = () => {
         switch(selectedLocation) {
@@ -27,29 +27,15 @@ const Calender = ({ handleDayClick, events, selectedDay, foodListPasila,
 
         return (
             <div className="calenderContainer">
-                <ButtonGroup className="lunchButtons">
-                <Button
-                variant="primary"
-                onClick={(event) => {handleLocationClick(event, 'Pasila')}}>
-                Pasila
-                </Button>
-                <Button
-                variant="info"
-                onClick={(event) => {handleLocationClick(event, 'Malmi')}}>
-                Malmi
-                </Button>
-                <Button
-                variant="warning"
-                onClick={(event) => {handleLocationClick(event, 'Haaga')}}>
-                Haaga
-                </Button>
-                </ButtonGroup>
-
+                
                 <Ruokalista 
                 selectedDay={selectedDay}
                 foodList={listToShow()}
                 selectedLocation={selectedLocation}
                 handleDayClick={handleDayClick}
+                handleLocationClick={handleLocationClick}
+                isFoodListVisible={isFoodListVisible}
+                setVisible={setVisible}
                 />
 
                 <KideApp 

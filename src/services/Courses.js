@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const baseUrl = '/api/courses'
+const baseUrl = '/api/personallukkari'
 
 
 let token = null

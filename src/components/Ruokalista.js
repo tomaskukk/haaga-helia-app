@@ -4,8 +4,9 @@ import Table from 'react-bootstrap/Table'
 import Button from 'react-bootstrap/Button'
 import ButtonToolbar from 'react-bootstrap/ButtonToolbar'
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
+import strings from './Langstrings'
 
-const Ruokalista = ({ foodList, selectedDay, selectedLocation, handleDayClick }) => {
+const Ruokalista = ({ foodList, selectedDay, selectedLocation, handleDayClick, handleLocationClick }) => {
 
     const getRandomKey = () => Math.random().toString(36).substring(7);
 
@@ -27,34 +28,47 @@ const Ruokalista = ({ foodList, selectedDay, selectedLocation, handleDayClick })
     ))
 
     if (filterdfoodList.length === 0) {
-        filterdfoodList = <Table id="lunchMenu" striped bordered hover><tbody><tr><td>Not available yet</td><td></td></tr></tbody></Table>
+        filterdfoodList = <Table id="lunchMenu" striped bordered hover><tbody><tr><td>{strings.notAvYet}</td><td></td></tr></tbody></Table>
     } else if (filterdfoodList[0].length === 0) {
-        filterdfoodList = <Table id="lunchMenu" striped bordered hover><tbody><tr><td>No serving on this day</td><td></td></tr></tbody></Table>
+        filterdfoodList = <Table id="lunchMenu" striped bordered hover><tbody><tr><td>{strings.noServing}</td><td></td></tr></tbody></Table>
     } else if (filterdfoodList === undefined ) {
-        filterdfoodList = <Table id="lunchMenu" striped bordered hover><tbody><tr><td>Not available</td><td></td></tr></tbody></Table>
+        filterdfoodList = <Table id="lunchMenu" striped bordered hover><tbody><tr><td>{strings.notAv}</td><td></td></tr></tbody></Table>
     }
     
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 1,
-        slidesToScroll: 1
-      }
-
     return (
         <div>
-        <h4>{selectedLocation} lunch menu {thisDay.toLocaleDateString()}</h4>
+
+<ButtonGroup className="lunchButtons">
+                <Button
+                variant="primary"
+                onClick={(event) => {handleLocationClick(event, 'Pasila')}}>
+                Pasila
+                </Button>
+                <Button
+                variant="info"
+                onClick={(event) => {handleLocationClick(event, 'Malmi')}}>
+                Malmi
+                </Button>
+                <Button
+                variant="warning"
+                onClick={(event) => {handleLocationClick(event, 'Haaga')}}>
+                Haaga
+                </Button>
+                </ButtonGroup>
+          
         <ButtonToolbar className="mb-3" aria-label="Toolbar with Button groups">
             <ButtonGroup className="mr-2" aria-label="First group">
-            <Button id="1" variant="secondary" onClick={() => handleDayClick(1)}>Mo</Button>
-            <Button id="2" variant="secondary" onClick={() => handleDayClick(2)}>Tu</Button>
-            <Button id="3" variant="secondary" onClick={() => handleDayClick(3)}>We</Button>
-            <Button id="4" variant="secondary" onClick={() => handleDayClick(4)}>Th</Button>
-            <Button id="5" variant="secondary" onClick={() => handleDayClick(5)}>Fr</Button>
+            <Button id="1" variant="secondary" onClick={() => handleDayClick(1)}>{strings.mo}</Button>
+            <Button id="2" variant="secondary" onClick={() => handleDayClick(2)}>{strings.tu}</Button>
+            <Button id="3" variant="secondary" onClick={() => handleDayClick(3)}>{strings.we}</Button>
+            <Button id="4" variant="secondary" onClick={() => handleDayClick(4)}>{strings.th}</Button>
+            <Button id="5" variant="secondary" onClick={() => handleDayClick(5)}>{strings.fr}</Button>
             </ButtonGroup>
          </ButtonToolbar>
-            {filterdfoodList}
+        <h4>{selectedLocation} {strings.lunchmenu} {thisDay.toLocaleDateString()}</h4>
+         
+            <div>{filterdfoodList}
+            </div>
         </div>
         )
 }

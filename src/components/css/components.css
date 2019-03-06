@@ -38,9 +38,6 @@ body {
 }
 
 
-#hhHeader {
-    display: none;
-}
 
 .langButton {
     border: none;
@@ -125,13 +122,6 @@ body {
 
 }
 
-
-
-.toggleButton {
-    margin-top: 20px;
-    margin-bottom: 20px;
-  }
-
   #loggingHelpText {
       display: none;
   }
@@ -144,6 +134,7 @@ body {
 .leftContainer {
     margin: auto;
     width: 100%;
+    margin-top: 0px; 
 }
 .commonLinks {
     text-align: center;
@@ -167,7 +158,7 @@ body {
 }
 
 #partyDiv {
-    padding-top: 3rem;
+    padding-top: 1rem;
     text-align: center;
     margin: auto;
     width: 85%;
@@ -196,6 +187,48 @@ body {
     margin-bottom: 5px; 
     text-align: center;
     font-weight:bold;
+}
+
+#footer {
+    text-align: center;
+    margin: auto;
+    background-color: #cbd4d8;
+    border: 3px solid #b7d8e5;
+    height: 100px;
+    margin-top: 50px; 
+    margin-bottom: -100px;
+    width: 100%;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 60px;
+
+}
+
+#footer h3 {
+    font-size: 1.5rem;
+}
+
+#footer h5 {
+    font-size: 1rem;
+}
+#feedbackForm {
+    display: block;
+    padding: 15px;
+}
+
+.lunchButtons {
+    margin-bottom: 1rem; 
+}
+
+.toggleButtonCommonLinks {
+    margin-top: 2rem; 
+}
+
+.commonLinksPictures {
+    margin-right: 10px; 
+    margin-left: -20px; 
+}
+
+#otherLinks {
 }
 
 /* @media only screen and (max-width: 1750px) {
@@ -237,9 +270,7 @@ body {
         width: 75%;
     }
 
-    #feedbackForm {
-        display: block;
-    }
+
 }
 
 @media only screen and (min-width: 1201px) {
@@ -248,7 +279,7 @@ body {
 
     .rootDom {
         margin: auto;
-        width: 75rem;
+        width: 70rem;
     }
 
     .container {
@@ -385,6 +416,8 @@ body {
     .cool-link {
         display: inline-block;
         text-decoration: none;
+        border-bottom: 1px solid #b7d8e5;
+
     }
 
     .cool-link::after {
@@ -424,7 +457,6 @@ body {
     }
 
   .toggleButton {
-      margin-bottom: 2rem; 
       display: flex;
     }
 
@@ -450,4 +482,7 @@ body {
         
     }
     
+
+   
 }
+

@@ -16,9 +16,6 @@ const RuokalistaName = ({ foodList }) => {
     foodListDiet={meal.Diets}/>}</td>
     </tr>
   )
-
-  console.log(foodListToRender)
-
   return (
     <Table striped bordered hover id="linjastoMenu">
       <tbody onDragStart={handleOnDragStart}>
@@ -28,5 +25,6 @@ const RuokalistaName = ({ foodList }) => {
     </Table>
   )
 }
+
 
 export default RuokalistaName
