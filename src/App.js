@@ -77,6 +77,20 @@ class App extends Component {
           if (document.getElementById(`wd${thisDayInWeek}`)) {
           const thisDayInLukkari = document.getElementById(`wd${thisDayInWeek}`).parentNode
           thisDayInLukkari.style.backgroundColor = '#b7d8e5'
+
+          let pTags = document.getElementsByTagName('p')
+
+
+          for (let i = 0; i < pTags.length; i++) {
+            let aElem = document.createElement('a')
+            let code = pTags[i].firstChild.textContent
+            aElem.href = `https://hhmoodle.haaga-helia.fi/course/view.php?name=${code}`
+            let textNode = document.createTextNode('Moodle for this course')
+            aElem.appendChild(textNode)
+            let parent = (pTags[i].parentNode.parentNode.parentNode)
+            parent.addEventListener('click', 
+            () => window.open(`https://hhmoodle.haaga-helia.fi/course/view.php?name=${code}`, '_blank'))
+            }
           }
           
           // scrolling to current day on timetable on mobile
@@ -114,7 +128,6 @@ class App extends Component {
       if (thisDayButton) {
         thisDayButton.classList.add('btn-success')
       }
-      
   }
 
 
@@ -256,6 +269,20 @@ class App extends Component {
           if (thisDayInLukkariTop[0]) {
             thisDayInLukkariTop[0].scrollIntoView(false)
           }
+
+          let pTags = document.getElementsByTagName('p')
+
+          for (let i = 0; i < pTags.length; i++) {
+            let aElem = document.createElement('a')
+            let code = pTags[i].firstChild.textContent
+            aElem.href = `https://hhmoodle.haaga-helia.fi/course/view.php?name=${code}`
+            let textNode = document.createTextNode('Moodle for this course')
+            aElem.appendChild(textNode)
+            let parent = (pTags[i].parentNode.parentNode.parentNode)
+            parent.addEventListener('click', 
+            () => window.open(`https://hhmoodle.haaga-helia.fi/course/view.php?name=${code}`, '_blank'))
+            }
+
         })
       })
   }
@@ -393,8 +420,7 @@ class App extends Component {
           <Header selectedLang={this.state.lang} handleLangClick={this.handleLangClick.bind(this)} />
       <Navigation /> 
       <Container className="container">
-          <div className="rightContainer">
-          <Col>
+          <Col className="rightContainer">
           <Lukkari 
           findByGroupId={this.findLukkariByGroupId.bind(this)}
           lukkariState={this.state.lukkari}
@@ -406,10 +432,8 @@ class App extends Component {
              <Otherlinks />
 
           </Col>
-          </div>
           <Row>
-          <div className="leftContainer">
-       <Col>
+       <Col className="leftContainer">
           <Calender 
           selectedDay={this.state.selectedDay} 
           events={this.state.events}
@@ -420,8 +444,6 @@ class App extends Component {
           handleLocationClick={this.handleLocationClick.bind(this)}
           handleDayClick={this.handleDayClick.bind(this)}/>
         </Col>
-        </div>
-
         </Row>
         </Container>
         <Footer></Footer>

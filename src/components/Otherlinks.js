@@ -7,6 +7,7 @@ import helgaPicture from '../img/helga.png'
 import startupschoolPicture from '../img/startupschool.png'
 import moveonPicture from '../img/moveon.png'
 import studentsguidePicture from '../img/studentsguide.png'
+import lauraPicture from '../img/laura.png'
 import strings from './Langstrings'
 
 
@@ -21,6 +22,9 @@ const Otherlinks = () => {
 
       <DropdownItem className="cool-link" rel="noopener noreferrer" 
       target="_blank" href="https://startupschool.fi/"><img className="commonLinksPictures" src={startupschoolPicture} alt=""></img>Startup-school</DropdownItem>
+
+      <DropdownItem className="cool-link" rel="noopener noreferrer" 
+      target="_blank" href="https://haagahelia.rekrytointi.com/paikat/?o=A_LOJ&list=1"><img className="commonLinksPictures" src={lauraPicture} alt=""></img>{strings.laura}</DropdownItem>
 
       <DropdownItem className="cool-link" rel="noopener noreferrer" 
       target="_blank" href="https://haaga-helia.finna.fi/"><img className="commonLinksPictures" src={hhfinnaPicture} alt=""></img>HH-Finna</DropdownItem>

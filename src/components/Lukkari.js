@@ -17,6 +17,7 @@ const Lukkari = ({ findByGroupId, lukkariState,
   changedHtml = changedHtml.replace(/src/g, 'ref')  
   changedHtml = changedHtml.replace(/viewEvent/g, 'console.log(event.target.textContent);console.log')  
 
+
   let lukkariParts = changedHtml.split('</style>')
 
 
@@ -34,9 +35,12 @@ value={groupId} onChange={handler} placeholder={strings.eg} />
         <h5 id="waitMessage">{waitMessage}</h5>
       </Form>
       <h5 id="scrollRight">{strings.scroll}</h5>
+      <h5>{strings.moodleHelpText}</h5>
       <div id="lukkariToSave" dangerouslySetInnerHTML={{__html: lukkariParts[1]}}></div>
       </div>
   )
 }
+
+
 
 export default Lukkari

@@ -13,6 +13,8 @@ body {
     margin-top: 2rem;
 }
 
+
+
 .navLink {
     text-align: center;
     padding: 5px;
@@ -228,8 +230,6 @@ body {
     margin-left: -20px; 
 }
 
-#otherLinks {
-}
 
 /* @media only screen and (max-width: 1750px) {
     .container {
