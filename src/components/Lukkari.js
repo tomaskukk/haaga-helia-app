@@ -5,11 +5,13 @@ import FormGroup from 'react-bootstrap/FormGroup'
 import Button from 'react-bootstrap/Button'
 import './css/lukkari.css'
 import './css/components.css'
+import rightArrowPic from '../img/arrowRight.png'
+import leftArrowPic from '../img/arrowLeft.png'
 import strings from './Langstrings'
 
 
 const Lukkari = ({ findByGroupId, lukkariState, 
-  handler, groupId, waitMessage }) => {
+  handler, groupId, waitMessage, handleWeekChange }) => {
 
   // response from lukkarikone is html so lets clear unused functions
   // so we dont get errors in console 
@@ -35,7 +37,26 @@ value={groupId} onChange={handler} placeholder={strings.eg} />
         <h5 id="waitMessage">{waitMessage}</h5>
       </Form>
       <h5 id="scrollRight">{strings.scroll}</h5>
-      <h5>{strings.moodleHelpText}</h5>
+
+      <Form inline className="justify-content-between">
+        <img 
+          src={leftArrowPic} 
+          id="previousWeekButton"
+          alt="Previous"
+          className="weekArrowLeft"
+          onClick={() => handleWeekChange('previous')}
+        >
+        </img>
+        <h5 id="moodleHelpText">{strings.moodleHelpText}</h5>
+        <img 
+          src={rightArrowPic} 
+          id="nextWeekButton" 
+          alt="Next"
+          className="weekArrowRight"
+          onClick={() => handleWeekChange('next')}
+        >
+        </img>
+        </Form>
       <div id="lukkariToSave" dangerouslySetInnerHTML={{__html: lukkariParts[1]}}></div>
       </div>
   )

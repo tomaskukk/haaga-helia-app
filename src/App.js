@@ -40,7 +40,9 @@ class App extends Component {
       lukkari: '<div>Not available right now</div>',
       groupId: '',
       waitMessage: '',
-      lang: 'fi'
+      lang: 'fi',
+      week: new Date(),
+      lukkariCookie: ''
     }
   }
 
@@ -61,6 +63,10 @@ class App extends Component {
         })
     }  */
 
+      const locationCookie = window.localStorage.getItem('location')
+      if (locationCookie) {
+        this.setState({ location: locationCookie })
+      }
     
       let id = 'tn2'
       const userLukkari = window.localStorage.getItem('lukkariTunnus')
@@ -68,36 +74,18 @@ class App extends Component {
         id = userLukkari
         this.setState({ waitMessage: `${strings.timetablefor} ${id} ${strings.lukkari}` })
       }
-      console.log(id)
       lukkariService.findByGroupId(id)
       .then(response => {
-        this.setState({ lukkari: response },
+        this.setState({ 
+          lukkari: response, 
+          lukkariCookie: response.split('\n')[0],
+        },
         () =>  {
-          const thisDayInWeek = new Date().getDay()
-          if (document.getElementById(`wd${thisDayInWeek}`)) {
-          const thisDayInLukkari = document.getElementById(`wd${thisDayInWeek}`).parentNode
-          thisDayInLukkari.style.backgroundColor = '#b7d8e5'
+          this.highLightThisDayLukkari()
 
-          let pTags = document.getElementsByTagName('p')
+          this.scrollIntoCurrentDayLukkari()
 
-
-          for (let i = 0; i < pTags.length; i++) {
-            let aElem = document.createElement('a')
-            let code = pTags[i].firstChild.textContent
-            aElem.href = `https://hhmoodle.haaga-helia.fi/course/view.php?name=${code}`
-            let textNode = document.createTextNode('Moodle for this course')
-            aElem.appendChild(textNode)
-            let parent = (pTags[i].parentNode.parentNode.parentNode)
-            parent.addEventListener('click', 
-            () => window.open(`https://hhmoodle.haaga-helia.fi/course/view.php?name=${code}`, '_blank'))
-            }
-          }
-          
-          // scrolling to current day on timetable on mobile
-          const thisDayInLukkariTop = document.getElementsByClassName('nd today')
-          if (thisDayInLukkariTop[0]) {
-            thisDayInLukkariTop[0].scrollIntoView(false)
-          }
+          this.setMoodleCourseTarget()
         })
       })
     
@@ -220,7 +208,9 @@ class App extends Component {
   
   
   handleLocationClick = (event, value) => {
-    this.setState({ location: value })
+    this.setState({ location: value },
+      () => window.localStorage.setItem('location', this.state.location)
+    )
   }
 
   handleLangClick = (event, value) => {
@@ -255,38 +245,80 @@ class App extends Component {
     lukkariService.findByGroupId(id)
       .then(response => {
         this.setState({ lukkari: response, 
-          groupId: '', 
+          groupId: '',
+          lukkariCookie: response.split('\n')[0],
           waitMessage: strings.timetablefor + ' ' + this.state.groupId + ' ' + strings.lukkari},
         () =>  {
           // callback for setstate to add styles to timetable 
           // might be dangerous so if statements needed
-          const thisDayInWeek = new Date().getDay()
-          if (document.getElementById(`wd${thisDayInWeek}`)) {
-            const thisDayInLukkari = document.getElementById(`wd${thisDayInWeek}`).parentNode
-            thisDayInLukkari.style.backgroundColor = '#b7d8e5'
-          }
-          const thisDayInLukkariTop = document.getElementsByClassName('nd today')
-          if (thisDayInLukkariTop[0]) {
-            thisDayInLukkariTop[0].scrollIntoView(false)
-          }
+          this.highLightThisDayLukkari()
 
-          let pTags = document.getElementsByTagName('p')
+          this.scrollIntoCurrentDayLukkari()
 
-          for (let i = 0; i < pTags.length; i++) {
-            let aElem = document.createElement('a')
-            let code = pTags[i].firstChild.textContent
-            aElem.href = `https://hhmoodle.haaga-helia.fi/course/view.php?name=${code}`
-            let textNode = document.createTextNode('Moodle for this course')
-            aElem.appendChild(textNode)
-            let parent = (pTags[i].parentNode.parentNode.parentNode)
-            parent.addEventListener('click', 
-            () => window.open(`https://hhmoodle.haaga-helia.fi/course/view.php?name=${code}`, '_blank'))
-            }
-
+          this.setMoodleCourseTarget()
         })
       })
   }
 
+  changeWeekLukkari = (week) => {
+
+
+    const changedWeek = this.state.week
+
+    week === 'next' ? changedWeek.setDate(this.state.week.getDate() + 7)
+    : 
+
+    changedWeek.setDate(this.state.week.getDate() - 7)
+
+
+
+    this.setState({ week: changedWeek },
+    () => {
+      
+
+      lukkariService.changeWeekLukkari(this.state.week.toJSON().substr(0, 10).toString(), this.state.lukkariCookie)
+      .then(response => {
+        this.setState({ lukkari: response },
+        () => {          
+          this.scrollIntoCurrentDayLukkari()
+
+          this.setMoodleCourseTarget()
+        })
+      })
+    }
+    )
+  }
+
+  highLightThisDayLukkari = () => {
+    const thisDayInWeek = new Date().getDay()
+    if (document.getElementById(`wd${thisDayInWeek}`)) {
+      const thisDayInLukkari = document.getElementById(`wd${thisDayInWeek}`).parentNode
+      thisDayInLukkari.style.backgroundColor = '#b7d8e5'
+    }
+  }
+
+  scrollIntoCurrentDayLukkari = () => {
+    const thisDayInLukkariTop = document.getElementsByClassName('nd today')
+      if (thisDayInLukkariTop[0]) {
+        thisDayInLukkariTop[0].scrollIntoView(false)
+      }
+  }
+
+
+
+  setMoodleCourseTarget = () => {
+    let pTags = document.getElementsByTagName('p')
+        for (let i = 0; i < pTags.length; i++) {
+          let aElem = document.createElement('a')
+          let code = pTags[i].firstChild.textContent
+          aElem.href = `https://hhmoodle.haaga-helia.fi/course/view.php?name=${code}`
+          let textNode = document.createTextNode('Moodle for this course')
+          aElem.appendChild(textNode)
+          let parent = (pTags[i].parentNode.parentNode.parentNode)
+          parent.addEventListener('click', 
+          () => window.open(`https://hhmoodle.haaga-helia.fi/course/view.php?name=${code}`, '_blank'))
+          }
+  }
  
   /* createAccount = (event) => {
     event.preventDefault()
@@ -427,6 +459,7 @@ class App extends Component {
           groupId={this.state.groupId}
           handler={this.handleLoginFieldChange.bind(this)}
           waitMessage={this.state.waitMessage}
+          handleWeekChange={this.changeWeekLukkari.bind(this)}
           />   
         
              <Otherlinks />

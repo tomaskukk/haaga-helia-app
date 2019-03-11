@@ -7,4 +7,9 @@ const findByGroupId = (id) => {
   return request.then(response => response.data)
 }
 
-export default { findByGroupId } 
+const changeWeekLukkari = (week, cookie) => {
+  const request = axios.get(`${baseurl}/${week}/${cookie}`)
+  return request.then(response => response.data)
+}
+
+export default { findByGroupId, changeWeekLukkari } 
