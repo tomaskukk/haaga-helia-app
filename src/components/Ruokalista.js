@@ -63,6 +63,7 @@ const Ruokalista = ({ foodList, selectedDay, selectedLocation, handleDayClick, h
             <Button id="3" variant="secondary" onClick={() => handleDayClick(3)}>{strings.we}</Button>
             <Button id="4" variant="secondary" onClick={() => handleDayClick(4)}>{strings.th}</Button>
             <Button id="5" variant="secondary" onClick={() => handleDayClick(5)}>{strings.fr}</Button>
+            <Button id="6" variant="secondary" onClick={() => handleDayClick(6)}>{strings.sa}</Button>
             </ButtonGroup>
          </ButtonToolbar>
         <h4>{selectedLocation} {strings.lunchmenu} {thisDay.toLocaleDateString()}</h4>

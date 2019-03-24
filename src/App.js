@@ -16,6 +16,7 @@ import Footer from './components/Footer'
 import strings from './components/Langstrings'
 
 
+
 class App extends Component {
   constructor(props) {
     super(props)
