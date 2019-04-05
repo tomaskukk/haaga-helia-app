@@ -15,12 +15,19 @@ const Lukkari = ({ findByGroupId, lukkariState,
 
   // response from lukkarikone is html so lets clear unused functions
   // so we dont get errors in console 
+
+  console.log(lukkariState)
+
   let changedHtml = lukkariState.replace('<table ', '<table class="table table table-responsive-lg table-striped table-bordered table-hover"')
   changedHtml = changedHtml.replace(/src/g, 'ref')  
   changedHtml = changedHtml.replace(/viewEvent/g, 'console.log(event.target.textContent);console.log')  
 
 
   let lukkariParts = changedHtml.split('</style>')
+
+  if (!lukkariParts[1]) {
+    lukkariParts[1] = '<div><h3>There was an error fetching data from lukkarikone</h3></div></br>'
+  }
 
 
   return (

@@ -4,7 +4,7 @@ import Ruokalista from './Ruokalista'
 import './css/components.css'
 
 
-const Calender = ({ handleDayClick, events, selectedDay, foodListPasila,
+const Calender = ({ handleDayClick, selectedDay, foodListPasila,
      foodListMalmi, foodListHaaga, selectedLocation, handleLocationClick,
      isFoodListVisible, setVisible }) => {
    
@@ -37,10 +37,6 @@ const Calender = ({ handleDayClick, events, selectedDay, foodListPasila,
                 isFoodListVisible={isFoodListVisible}
                 setVisible={setVisible}
                 />
-
-                <KideApp 
-                selectedDay={selectedDay}
-                props={events} />
             </div>
         )
     }

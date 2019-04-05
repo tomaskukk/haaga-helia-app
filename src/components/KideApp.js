@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Table from 'react-bootstrap/Table'
 import strings from './Langstrings'
+import bailataanService from '../services/Bailataan'
 
 
-const Kideapp = ( { props, selectedDay }) => {
 
+const Kideapp = ( { selectedDay }) => {
+
+    const [events, setEvents] = useState(null)
+
+    useEffect(() => {
+        bailataanService.getAllKideApp()
+        .then(events => {
+            console.log(events)
+          setEvents(events)
+        })
+    }, [])
     
     let selectedDate = new Date()
     selectedDate.setDate(selectedDate.getDate() + selectedDay)
@@ -18,13 +29,15 @@ const Kideapp = ( { props, selectedDay }) => {
 
 
     // show only events that are happening on the day selected on calender
-    let filteredEvents = props.filter(e => 
+    let filteredEvents = []
+    if (events) {
+    filteredEvents = events.model.filter(e => 
         e.dateActualFrom.includes(nextDayFromSelectedDayAsJSON))
         .map(event => 
         <tr key={event.id}><td>
         <a className="cool-link" rel="noopener noreferrer" target="_blank" href={`https://bailataan.fi/events/${event.id}`}>{event.name}</a>
         </td></tr>)
-    
+    }
     if (filteredEvents.length === 0) {
         filteredEvents = <tr><td>{strings.noParties}</td></tr>
     }

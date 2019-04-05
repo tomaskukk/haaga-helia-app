@@ -14,6 +14,7 @@ import './components/css/components.css'
 import { Row, Col, Container } from 'react-bootstrap'
 import Footer from './components/Footer'
 import strings from './components/Langstrings'
+import Kideapp from './components/KideApp';
 
 
 
@@ -21,7 +22,6 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      events: [],
       /* username: '',
       password: '',
       creatingAccountPassword: '',
@@ -105,10 +105,6 @@ class App extends Component {
       })
 
 
-      bailataanService.getAllKideApp()
-        .then(events => {
-          this.setState({ events: events.model })
-        })
       
       // give styling to current day button on lunch and parties 
       // again dangerous so if statement needed 
@@ -470,13 +466,15 @@ class App extends Component {
        <Col className="leftContainer">
           <Calender 
           selectedDay={this.state.selectedDay} 
-          events={this.state.events}
           foodListPasila={this.state.pasilaAmicaFood}
           foodListMalmi={this.state.malmiAmicaFood}
           foodListHaaga={this.state.haagaAmicaFood}
           selectedLocation={this.state.location}
           handleLocationClick={this.handleLocationClick.bind(this)}
           handleDayClick={this.handleDayClick.bind(this)}/>
+          <Kideapp 
+            selectedDay={this.state.selectedDay}
+          /> 
         </Col>
         </Row>
         </Container>
