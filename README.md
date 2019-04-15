@@ -6,5 +6,5 @@ to gather information from different APIs and share them in one place. Also ther
 
 ## Technologies 
 
-Made with React.js and Node.js. 
+Made with React.js, Node.js, GraphQL. E2E tests are made with Cypress.
 
