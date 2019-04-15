@@ -102,6 +102,7 @@ body {
 
 #lukkariFormGroup {
     display: flex;
+
 }
 
 #waitMessage {
@@ -231,6 +232,9 @@ body {
 }
 #moodleHelpText {
     display: none;
+}
+.ticketsLeft {
+    text-align: center;
 }
 
 /* @media only screen and (max-width: 1750px) {
@@ -374,6 +378,7 @@ body {
         margin-left: 2rem;
     }
     
+
     #lukkariFormGroup {
         display: flex;
     }

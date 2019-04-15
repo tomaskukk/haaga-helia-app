@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Navigation from './components/Nav'
-import bailataanService from './services/Bailataan'
 import amicaService from './services/Amica'
 // import courseService from './services/Courses'
 import lukkariService from './services/Lukkari'

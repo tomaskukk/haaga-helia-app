@@ -27,6 +27,7 @@ const Ruokalista = ({ foodList, selectedDay, selectedLocation, handleDayClick, h
                     <RuokalistaName key={getRandomKey()} foodList={setMenu} />
     ))
 
+
     if (filterdfoodList.length === 0) {
         filterdfoodList = <Table id="lunchMenu" striped bordered hover><tbody><tr><td>{strings.notAvYet}</td><td></td></tr></tbody></Table>
     } else if (filterdfoodList[0].length === 0) {
@@ -40,16 +41,19 @@ const Ruokalista = ({ foodList, selectedDay, selectedLocation, handleDayClick, h
 
 <ButtonGroup className="lunchButtons">
                 <Button
+                id="pasilaButton"
                 variant="primary"
                 onClick={(event) => {handleLocationClick(event, 'Pasila')}}>
                 Pasila
                 </Button>
                 <Button
+                id="malmiButton"
                 variant="info"
                 onClick={(event) => {handleLocationClick(event, 'Malmi')}}>
                 Malmi
                 </Button>
                 <Button
+                id="haagaButton"
                 variant="warning"
                 onClick={(event) => {handleLocationClick(event, 'Haaga')}}>
                 Haaga

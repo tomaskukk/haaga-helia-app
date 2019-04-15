@@ -12,7 +12,6 @@ const Kideapp = ( { selectedDay }) => {
     useEffect(() => {
         bailataanService.getAllKideApp()
         .then(events => {
-            console.log(events)
           setEvents(events)
         })
     }, [])
@@ -31,15 +30,15 @@ const Kideapp = ( { selectedDay }) => {
     // show only events that are happening on the day selected on calender
     let filteredEvents = []
     if (events) {
-    filteredEvents = events.model.filter(e => 
+    filteredEvents = events.filter(e => 
         e.dateActualFrom.includes(nextDayFromSelectedDayAsJSON))
         .map(event => 
         <tr key={event.id}><td>
         <a className="cool-link" rel="noopener noreferrer" target="_blank" href={`https://bailataan.fi/events/${event.id}`}>{event.name}</a>
-        </td></tr>)
+        </td><td className="ticketsLeft"><h5>{event.availability}</h5></td></tr>)
     }
     if (filteredEvents.length === 0) {
-        filteredEvents = <tr><td>{strings.noParties}</td></tr>
+        filteredEvents = <tr><td>{strings.noParties}</td><td className="ticketsLeft">-</td></tr>
     }
     
     return (
@@ -47,6 +46,7 @@ const Kideapp = ( { selectedDay }) => {
             <h5>{strings.partiesHeader} {nextDayFromSelectedDay.toLocaleDateString()}</h5>
         <Table striped bordered hover className="table">
         <tbody>
+            <tr><th>{strings.partyName}</th><th>{strings.ticketsLeft}</th></tr>
             {filteredEvents}
         </tbody>
         </Table>

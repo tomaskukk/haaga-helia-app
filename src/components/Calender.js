@@ -1,5 +1,4 @@
 import React from 'react'
-import KideApp from './KideApp'
 import Ruokalista from './Ruokalista'
 import './css/components.css'
 

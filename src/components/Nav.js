@@ -37,7 +37,7 @@ const Navigation = () => {
             Moodle
             </Tooltip>}>
             <NavLink className="navLink" href="https://hhmoodle.haaga-helia.fi" rel="noopener noreferrer" target="_blank">
-                <Image className="navImg" src={moodlePicture} roundedCircle></Image>
+                <Image id="moodleLink" className="navImg" src={moodlePicture} roundedCircle></Image>
                 </NavLink>
             </OverlayTrigger>
             
@@ -48,8 +48,8 @@ const Navigation = () => {
             <Tooltip id={`hhtooltip`}>
             Outlook
             </Tooltip>}>
-            <NavLink className="navLink" href="http://mymail.haaga-helia.fi" rel="noopener noreferrer" target="_blank">
-                <Image className="navImg" src={outlookPicture} roundedCircle></Image>
+            <NavLink  className="navLink" href="http://mymail.haaga-helia.fi" rel="noopener noreferrer" target="_blank">
+                <Image id="outlookLink" className="navImg" src={outlookPicture} roundedCircle></Image>
                 </NavLink>
             </OverlayTrigger>
             <OverlayTrigger
@@ -58,8 +58,8 @@ const Navigation = () => {
             <Tooltip id={`hhtooltip`}>
             Peppi
             </Tooltip>}>
-            <NavLink className="navLink" href="https://student.home.haaga-helia.fi/" rel="noopener noreferrer" target="_blank">
-                <Image className="navImg" src={peppiTestPicture} roundedCircle></Image>
+            <NavLink  className="navLink" href="https://student.home.haaga-helia.fi/" rel="noopener noreferrer" target="_blank">
+                <Image id="peppiLink" className="navImg" src={peppiTestPicture} roundedCircle></Image>
                 </NavLink>
             </OverlayTrigger>
 
@@ -70,7 +70,7 @@ const Navigation = () => {
             Lukkarikone
             </Tooltip>}>
             <NavLink className="navLink" href="https://lukkarit.haaga-helia.fi/#" rel="noopener noreferrer" target="_blank">
-                <Image className="navImg" src={lukkariPicture} roundedCircle></Image>
+                <Image id="lukkarikoneLink" className="navImg" src={lukkariPicture} roundedCircle></Image>
                 </NavLink>
             </OverlayTrigger>
 
@@ -81,7 +81,7 @@ const Navigation = () => {
             Kide.app
             </Tooltip>}>
             <NavLink className="navLink" href="https://kide.app/" rel="noopener noreferrer" target="_blank">
-                <Image className="navImg" src={kidePicture} roundedCircle></Image>
+                <Image id="bailataanLink" className="navImg" src={kidePicture} roundedCircle></Image>
                 </NavLink>
             </OverlayTrigger>
 
@@ -92,7 +92,7 @@ const Navigation = () => {
             VDI
             </Tooltip>}>
             <NavLink className="navLink" href="http://vdi.haaga-helia.fi/" rel="noopener noreferrer" target="_blank">
-                <Image className="navImg" src={vdiPicture} roundedCircle></Image>
+                <Image id="vdiLink" className="navImg" src={vdiPicture} roundedCircle></Image>
                 </NavLink>
             </OverlayTrigger>
 
@@ -103,7 +103,7 @@ const Navigation = () => {
             Myy search
             </Tooltip>}>
             <NavLink className="navLink" href="http://palvelum.me/myybrowserathhapp/" rel="noopener noreferrer" target="_blank">
-                <Image className="navImg" src={myySearchPicture} roundedCircle></Image>
+                <Image id="myysearchLink" className="navImg" src={myySearchPicture} roundedCircle></Image>
                 </NavLink>
             </OverlayTrigger>
             </Nav>
