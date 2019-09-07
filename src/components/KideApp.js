@@ -19,34 +19,34 @@ const Kideapp = ( { selectedDay }) => {
     let selectedDate = new Date()
     selectedDate.setDate(selectedDate.getDate() + selectedDay)
 
-
-    const nextDayFromSelectedDay = new Date()
-    nextDayFromSelectedDay.setDate(selectedDate.getDate())
-    nextDayFromSelectedDay.setMonth(selectedDate.getMonth())
-    nextDayFromSelectedDay.setFullYear(selectedDate.getFullYear())
-    const nextDayFromSelectedDayAsJSON = nextDayFromSelectedDay.toJSON().substr(0, 10).toString()
+    const selectedDayToShow = new Date()
+    selectedDayToShow.setDate(selectedDate.getDate())
+    selectedDayToShow.setMonth(selectedDate.getMonth())
+    selectedDayToShow.setFullYear(selectedDate.getFullYear())
+    const selectedDayToShowAsJSON = selectedDayToShow.toJSON().substr(0, 10).toString()
 
 
     // show only events that are happening on the day selected on calender
     let filteredEvents = []
     if (events) {
     filteredEvents = events.filter(e => 
-        e.dateActualFrom.includes(nextDayFromSelectedDayAsJSON))
+        e.dateActualFrom.includes(selectedDayToShowAsJSON))
         .map(event => 
         <tr key={event.id}><td>
-        <a className="cool-link" rel="noopener noreferrer" target="_blank" href={`https://bailataan.fi/events/${event.id}`}>{event.name}</a>
-        </td><td className="ticketsLeft"><h5>{event.availability}</h5></td></tr>)
+        <a className="cool-link" rel="noopener noreferrer" target="_blank" 
+        href={`https://bailataan.fi/events/${event.id}`}>{event.name}</a>
+        </td></tr>)
     }
     if (filteredEvents.length === 0) {
-        filteredEvents = <tr><td>{strings.noParties}</td><td className="ticketsLeft">-</td></tr>
+        filteredEvents = <tr><td>{strings.noParties}</td></tr>
     }
     
     return (
         <div id="partyDiv">
-            <h5>{strings.partiesHeader} {nextDayFromSelectedDay.toLocaleDateString()}</h5>
+            <h5>{strings.partiesHeader} {selectedDayToShow.toLocaleDateString()}</h5>
         <Table striped bordered hover className="table">
         <tbody>
-            <tr><th>{strings.partyName}</th><th>{strings.ticketsLeft}</th></tr>
+            <tr><th>{strings.partyName}</th></tr>
             {filteredEvents}
         </tbody>
         </Table>

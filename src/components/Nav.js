@@ -95,17 +95,6 @@ const Navigation = () => {
                 <Image id="vdiLink" className="navImg" src={vdiPicture} roundedCircle></Image>
                 </NavLink>
             </OverlayTrigger>
-
-            <OverlayTrigger
-            placement='bottom'
-            overlay={
-            <Tooltip id={`hhtooltip`}>
-            Myy search
-            </Tooltip>}>
-            <NavLink className="navLink" href="http://palvelum.me/myybrowserathhapp/" rel="noopener noreferrer" target="_blank">
-                <Image id="myysearchLink" className="navImg" src={myySearchPicture} roundedCircle></Image>
-                </NavLink>
-            </OverlayTrigger>
             </Nav>
     )
 }

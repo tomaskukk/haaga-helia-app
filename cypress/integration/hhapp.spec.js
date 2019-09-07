@@ -23,7 +23,7 @@ context('HHapp UI tests', () => {
       .type('tn2pa')
     cy.get('#searchButton')
       .click()
-    cy.contains('ENG1TN003-3001')
+    cy.contains('BUS1TN011-3007')
   })
 
   it('switching lunchbuttons should display correct campus text', () => {
@@ -69,5 +69,15 @@ context('HHapp UI tests', () => {
       .should(() => {
         expect(localStorage.getItem('location')).to.eq('Malmi')
       })
+  })
+
+  it('empty response from foodlist should tell that it is not availaible yet', () => {
+    cy.server()
+    cy.route({
+      method: 'GET',
+      url: '/api/amica',
+      response: []
+    })
+    cy.contains('Ei saatavilla vielä')
   })
 })
