@@ -1,10 +1,10 @@
 import React from 'react'
 import NavBar from 'react-bootstrap/Navbar'
 import NavBarBrand from 'react-bootstrap/NavbarBrand'
-import Nav from 'react-bootstrap/Nav'
 import NavItem from 'react-bootstrap/NavItem'
 import engFlag from '../img/english_flag.png'
 import finFlag from '../img/finnish_flag.png'
+import Navigation from './Nav'
 import './css/components.css'
 
 const Header = ({ handleLangClick, selectedLang }) => {
@@ -12,7 +12,7 @@ const Header = ({ handleLangClick, selectedLang }) => {
   let langToShow = selectedLang === 'fi' ? engFlag : finFlag
 
   return (
-    <NavBar  className="header justify-content-between">
+    <NavBar>
 
       <NavBarBrand id="hhHeader">
       Haaga-Helia App
@@ -20,12 +20,10 @@ const Header = ({ handleLangClick, selectedLang }) => {
       onClick={ () => {handleLangClick()}}>
       <img name="lang" src={langToShow} alt="English"></img>
       </button>
-      </NavBarBrand>
-
-      <Nav className="justify-content-center">
-        <NavItem>
-        </NavItem>
-      </Nav>
+      </NavBarBrand >
+      <div id="deskNav">
+      <Navigation />
+      </div>
     </NavBar>
   )
 }

@@ -83,8 +83,6 @@ class App extends Component {
         () =>  {
           this.highLightThisDayLukkari()
 
-          this.scrollIntoCurrentDayLukkari()
-
           this.setMoodleCourseTarget()
         })
       })
@@ -249,8 +247,6 @@ class App extends Component {
           // might be dangerous so if statements needed
           this.highLightThisDayLukkari()
 
-          this.scrollIntoCurrentDayLukkari()
-
           this.setMoodleCourseTarget()
         })
       })
@@ -276,7 +272,6 @@ class App extends Component {
       .then(response => {
         this.setState({ lukkari: response },
         () => {          
-          this.scrollIntoCurrentDayLukkari()
 
           this.setMoodleCourseTarget()
         })
@@ -293,12 +288,7 @@ class App extends Component {
     }
   }
 
-  scrollIntoCurrentDayLukkari = () => {
-    const thisDayInLukkariTop = document.getElementsByClassName('nd today')
-      if (thisDayInLukkariTop[0]) {
-        thisDayInLukkariTop[0].scrollIntoView(false)
-      }
-  }
+ 
 
 
 
@@ -446,8 +436,10 @@ class App extends Component {
     return (
       <div className="rootDom">
           <Header selectedLang={this.state.lang} handleLangClick={this.handleLangClick.bind(this)} />
-      <Navigation /> 
       <Container className="container">
+        <div id="mobileNav">
+        <Navigation />
+        </div>
           <Col className="rightContainer">
           <Lukkari 
           findByGroupId={this.findLukkariByGroupId.bind(this)}

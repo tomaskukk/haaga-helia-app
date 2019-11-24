@@ -8,14 +8,13 @@ import bailataanService from '../services/Bailataan'
 const Kideapp = ( { selectedDay }) => {
 
     const [events, setEvents] = useState(null)
-
     useEffect(() => {
         bailataanService.getAllKideApp()
         .then(events => {
           setEvents(events)
         })
     }, [])
-    
+
     let selectedDate = new Date()
     selectedDate.setDate(selectedDate.getDate() + selectedDay)
 
@@ -29,7 +28,7 @@ const Kideapp = ( { selectedDay }) => {
     // show only events that are happening on the day selected on calender
     let filteredEvents = []
     if (events) {
-    filteredEvents = events.filter(e => 
+    filteredEvents = events.model.filter(e => 
         e.dateActualFrom.includes(selectedDayToShowAsJSON))
         .map(event => 
         <tr key={event.id}><td>
@@ -43,10 +42,9 @@ const Kideapp = ( { selectedDay }) => {
     
     return (
         <div id="partyDiv">
-            <h5>{strings.partiesHeader} {selectedDayToShow.toLocaleDateString()}</h5>
         <Table striped bordered hover className="table">
         <tbody>
-            <tr><th>{strings.partyName}</th></tr>
+            <tr><th>{strings.partiesHeader} {selectedDayToShow.toLocaleDateString()}</th></tr>
             {filteredEvents}
         </tbody>
         </Table>

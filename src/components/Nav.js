@@ -7,8 +7,8 @@ import lukkariPicture from '../img/lukkarikone.png'
 import vdiPicture from '../img/vdi.png'
 import outlookPicture from '../img/outlook.png'
 import moodlePicture from '../img/moodle.jpg'
-import myySearchPicture from '../img/myysearch.png'
 import peppiTestPicture from '../img/peppi_test.png'
+import lunchPicture from '../img/lunch.png'
 import './css/components.css'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'
@@ -18,18 +18,8 @@ const Navigation = () => {
 
 
     return (
-            <Nav className="justify-content-center">
-            {/* <OverlayTrigger
-            placement='bottom'
-            overlay={
-            <Tooltip id={`hhtooltip`}>
-            Haaga-Helia
-            </Tooltip>}>
-                <NavLink className="navLink" href="http://www.haaga-helia.fi/en/frontpage" rel="noopener noreferrer" target="_blank">
-                <Image className="navImg" src={hhPicture} roundedCircle></Image>
-                </NavLink>
-            </OverlayTrigger>
- */}
+            <Nav  className="justify-content-center">
+           
             <OverlayTrigger
             placement='bottom'
             overlay={
@@ -95,6 +85,18 @@ const Navigation = () => {
                 <Image id="vdiLink" className="navImg" src={vdiPicture} roundedCircle></Image>
                 </NavLink>
             </OverlayTrigger>
+
+            <OverlayTrigger
+            placement='bottom'
+            overlay={
+            <Tooltip id={`hhtooltip`}>
+            Canteen
+            </Tooltip>}>
+            <NavLink className="navLink" href="http://www.sabulo.com/canteen/" rel="noopener noreferrer" target="_blank">
+                <Image id="canteenLink" className="navImg" src={lunchPicture} roundedCircle></Image>
+                </NavLink>
+            </OverlayTrigger>
+
             </Nav>
     )
 }

@@ -3,22 +3,17 @@ body {
 }
 
 .container {
+    overflow-x: hidden;
+
     margin: auto;
-    margin-top: 2rem;
+    
     width: 100%;
     text-align: center;
+    padding: 0px;
 }
 
 .calenderContainer {
     margin-top: 2rem;
-}
-
-
-
-.navLink {
-    text-align: center;
-    padding: 5px;
-    margin: auto;
 }
 
 
@@ -34,12 +29,13 @@ body {
     display: none;
 }
  
-.header {
-    height: 30px;
-    padding-bottom: 0px;
+#hhHeader {
+    font-size: 25px;
+    display: block;
 }
-
-
+#deskNav {
+    display: none;
+}
 
 .langButton {
     border: none;
@@ -89,8 +85,12 @@ body {
 
 #lukkari {
     text-align: center;
-    margin: auto;
+    margin-top: 2em;
     width: 100%;
+}
+#lukkariFormGroup {
+    display: flex;
+
 }
 
 .mb-3.btn-toolbar {
@@ -100,10 +100,8 @@ body {
 }
 
 
-#lukkariFormGroup {
-    display: flex;
 
-}
+
 
 #waitMessage {
     display: none; 
@@ -112,17 +110,20 @@ body {
 #weekCal {
     text-align: center;
     margin: auto;
-    width: 90%;
+    width: 100%;
     border: 2px solid #b7d8e5;
 }   
 
 .navImg {
-    width: 4rem;
-    height: 4rem;
+    width: 3rem;
+    height: 3rem;
     text-align: center;
     margin: auto;
     border: 2px solid #b7d8e5;
-
+}
+.navLink {
+    padding-left: .82em;
+    
 }
 
   #loggingHelpText {
@@ -132,6 +133,7 @@ body {
   .rightContainer {
     margin: auto;
     width: 100%;
+
 }
 
 .leftContainer {
@@ -139,11 +141,12 @@ body {
     width: 100%;
     margin-top: 0px; 
 }
-.commonLinks {
-    text-align: center;
-    margin: auto;
-    margin-top: 20px;
-    width: 85%;
+
+#otherLinks {
+    margin-top: 2em;
+    border: 2px solid #b7d8e5; 
+    padding: 1em;
+
 }
 
 .table {
@@ -152,7 +155,7 @@ body {
 
 .table td {
     margin-top: 1rem; 
-    padding: 0.5rem;
+    padding: 0.2rem;
 }
 
 .calender {
@@ -185,6 +188,8 @@ body {
     display: none;
 }
 
+
+ 
 .dropDownLocationButton {
     border-bottom: 2px dotted #b7d8e5;
     margin-bottom: 5px; 
@@ -195,14 +200,13 @@ body {
 #footer {
     text-align: center;
     margin: auto;
-    background-color: rgb(222, 226, 230);
-    border: 3px solid #b7d8e5;
+    background-color: rgba(222, 226, 230, 0.575);
+    border: 2px solid #b7d8e5;
     height: 100px;
     margin-top: 50px; 
     margin-bottom: -100px;
-    width: 100%;
-    border-top-left-radius: 60px;
-    border-top-right-radius: 60px;
+    width: 95%;
+    
 
 }
 
@@ -276,12 +280,20 @@ body {
         width: 75%;
     }
 
+    #lukkari {
+        margin: auto;
+    }
 
 }
 
 @media only screen and (min-width: 1201px) {
-
-    
+    #deskNav {
+        display: inline-block;
+    }
+    .table td {
+        margin-top: 1rem; 
+        padding: 0.5rem;
+    }
 
     .rootDom {
         margin: auto;
@@ -291,12 +303,13 @@ body {
     .container {
         text-align: left;
         display: flex;
+        margin-top: 2rem;
     }
 
     .rightContainer {
         margin-top: 0px;
         margin: 0px;
-        width:70%;
+        width:100%;
     }
 
     .leftContainer {
@@ -367,6 +380,7 @@ body {
     #hhHeader {
         font-size: 25px;
         display: block;
+        padding: auto;
     }
 
     #loggingHelpText {
@@ -374,14 +388,12 @@ body {
         margin-top: 1rem;
     }
 
-    #groupInput {
-        margin-left: 2rem;
-    }
+   
     
-
-    #lukkariFormGroup {
-        display: flex;
+    #mobileNav {
+        display: none;
     }
+   
 
     #waitMessage {
         margin-left: 3rem; 
@@ -454,7 +466,7 @@ body {
 
     .navLink {
         margin: 3px;
-        padding: 15px;
+        padding: 5px;
     }
 
     .cool-link:hover::after {
@@ -508,6 +520,9 @@ body {
 
     #moodleHelpText {
         display: block;
+    }
+    #lukkari {
+        margin: auto;
     }
    
 }

@@ -1,28 +1,11 @@
-import ApolloClient, { gql } from 'apollo-boost'
+import axios from 'axios'
 
-
-const client = new ApolloClient({
-    uri: '/api/graphql'
-})
-  
-
-const query = gql`
-{
-    allEvents {
-        name,
-        id,
-        dateActualFrom,
-        availability
-    }
-}
-`
+const url = '/api/kide'
 
 const getAllKideApp = async () => {
-    const response = await client.query({ query })
-    console.log(response)
-    return response.data.allEvents
+    const response = await axios.get(url)
+    return (response.data)
 }
-
 
 
 export default { getAllKideApp }

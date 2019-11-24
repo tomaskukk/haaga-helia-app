@@ -229,8 +229,7 @@
   
   .cl-time
   {
-      height:45px;
-    margin: 0px;
+      height:47px;
   }
   
   
@@ -289,8 +288,44 @@
     width: 100px;
     margin-left: 1rem; 
   }
-  @media only screen and (max-width: 769px) {
+  @media only screen and (max-width: 1201px) {
     .nd {
-        width: 200px;
+        width: 20%;
     }
+
+}
+
+  @media only screen and (max-width: 769px) {
+    
+    .cl-timeCol
+  {  
+
+
+    width: 25px;
+    font-size: .6em;
+
+  }
+  .cl-time
+  {
+      height:47px;
+  }
+  .cl-colevents
+  { 
+      font-size:.5em;
+      
+  }
+  #weekCal
+  {
+    border:2px solid #b7d8e5;
+    
+  }      
+  .cl-Days td,
+  #dayTitle
+  {
+      padding:4px 0;
+     font-size:0.6em;
+      
+  
+  }
+  
 }

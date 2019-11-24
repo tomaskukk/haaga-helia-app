@@ -25,7 +25,8 @@ let strings = new LocalizedStrings({
     scroll:'Scroll to see other days',
     moodleHelpText: "Click on course to open it's Moodle",
     partyName: 'Party name',
-    ticketsLeft: 'Tickets left'
+    ticketsLeft: 'Tickets left',
+    allergens: 'Allergens'
     },
   fi: {
     lunchmenu:"lounaslista",
@@ -48,10 +49,11 @@ let strings = new LocalizedStrings({
     timetablefor:'Ryhmän',
     lukkari:'lukujärjestys',
     eg:'e.g Tn2pd',
-    scroll:'Liuta nähdäksesi muut päivät',
+    scroll:'Liu’uta nähdäksesi muut päivät',
     moodleHelpText: 'Klikkaa kurssia avataksesi sen Moodlesivu',
     partyName: 'Juhlan nimi',
-    ticketsLeft: 'Lippuja jäljellä'
+    ticketsLeft: 'Lippuja jäljellä',
+    allergens: 'Allergeenit'
   }
  });
 

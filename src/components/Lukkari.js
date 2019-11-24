@@ -35,14 +35,12 @@ const Lukkari = ({ findByGroupId, lukkariState,
         <FormGroup id="lukkariFormGroup">
         <Form.Label>{strings.groupid}</Form.Label>
           <FormControl id="groupInput" type="text" name="groupId" 
-value={groupId} onChange={handler} placeholder={strings.eg} />
+            value={groupId} onChange={handler} placeholder={strings.eg} />
         </FormGroup>
         <Button id="searchButton" variant="primary" type="submit">
           Search
         </Button> 
-        <h5 id="waitMessage">{waitMessage}</h5>
       </Form>
-      <h5 id="scrollRight">{strings.scroll}</h5>
 
       <Form inline className="justify-content-between">
         <img 
@@ -53,7 +51,7 @@ value={groupId} onChange={handler} placeholder={strings.eg} />
           onClick={() => handleWeekChange('previous')}
         >
         </img>
-        <h5 id="moodleHelpText">{strings.moodleHelpText}</h5>
+          <h5 id="moodleHelpText">{waitMessage}</h5>
         <img 
           src={rightArrowPic} 
           id="nextWeekButton" 

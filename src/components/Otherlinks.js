@@ -15,7 +15,7 @@ const Otherlinks = () => {
     
   return (
     <DropDown id="otherLinks">
-          <h4>{strings.commonLinks}</h4>
+          <h5>{strings.commonLinks}</h5>
       <DropdownItem className="cool-link" 
       rel="noopener noreferrer" target="_blank" 
       href="http://www.haaga-helia.fi/fi/opinto-opas"><img className="commonLinksPictures" src={studentsguidePicture} alt=""></img>{strings.studentsGuide}</DropdownItem>
@@ -30,7 +30,7 @@ const Otherlinks = () => {
       target="_blank" href="https://haaga-helia.finna.fi/"><img className="commonLinksPictures" src={hhfinnaPicture} alt=""></img>HH-Finna</DropdownItem>
 
       <DropdownItem className="cool-link" rel="noopener noreferrer" 
-      target="_blank" href="https://hahe.moveon4.com//publisher/1/eng"><img className="commonLinksPictures" src={moveonPicture} alt=""></img>Moveon</DropdownItem>
+      target="_blank" href="https://hahe.moveon4.de/publisher/1/eng"><img className="commonLinksPictures" src={moveonPicture} alt=""></img>Moveon</DropdownItem>
 
       <DropdownItem className="cool-link" rel="noopener noreferrer" 
       target="_blank" href="http://www.helga.fi/"><img className="commonLinksPictures" src={helgaPicture} alt=""></img>Helga</DropdownItem>

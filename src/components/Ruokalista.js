@@ -58,6 +58,7 @@ const Ruokalista = ({ foodList, selectedDay, selectedLocation, handleDayClick, h
                 onClick={(event) => {handleLocationClick(event, 'Haaga')}}>
                 Haaga
                 </Button>
+                
                 </ButtonGroup>
           
         <ButtonToolbar className="mb-3" aria-label="Toolbar with Button groups">
@@ -70,7 +71,7 @@ const Ruokalista = ({ foodList, selectedDay, selectedLocation, handleDayClick, h
             <Button id="6" variant="secondary" onClick={() => handleDayClick(6)}>{strings.sa}</Button>
             </ButtonGroup>
          </ButtonToolbar>
-        <h4>{selectedLocation} {strings.lunchmenu} {thisDay.toLocaleDateString()}</h4>
+        <h5>{selectedLocation} {strings.lunchmenu} {thisDay.toLocaleDateString()}</h5>
          
             <div>{filterdfoodList}
             </div>
