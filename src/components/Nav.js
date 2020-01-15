@@ -8,7 +8,8 @@ import vdiPicture from '../img/vdi.png'
 import outlookPicture from '../img/outlook.png'
 import moodlePicture from '../img/moodle.jpg'
 import peppiTestPicture from '../img/peppi_test.png'
-import lunchPicture from '../img/lunch.png'
+import myyPicture from '../img/myysearch.png'
+import roviusPicture from '../img/rovius.png'
 import './css/components.css'
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
 import Tooltip from 'react-bootstrap/Tooltip'
@@ -18,7 +19,7 @@ const Navigation = () => {
 
 
     return (
-            <Nav  className="justify-content-center">
+            <Nav className="justify-content-center">
            
             <OverlayTrigger
             placement='bottom'
@@ -90,10 +91,21 @@ const Navigation = () => {
             placement='bottom'
             overlay={
             <Tooltip id={`hhtooltip`}>
-            Canteen
+            Myy search
             </Tooltip>}>
-            <NavLink className="navLink" href="http://www.sabulo.com/canteen/" rel="noopener noreferrer" target="_blank">
-                <Image id="canteenLink" className="navImg" src={lunchPicture} roundedCircle></Image>
+            <NavLink className="navLink" href="http://palvelum.me/myybrowserathhapp" rel="noopener noreferrer" target="_blank">
+                <Image id="myyLink" className="navImg" src={myyPicture} roundedCircle></Image>
+                </NavLink>
+            </OverlayTrigger>
+
+            <OverlayTrigger
+            placement='bottom'
+            overlay={
+            <Tooltip id={`hhtooltip`}>
+            Rovius
+            </Tooltip>}>
+            <NavLink className="navLink" href="https://vdi-lab.cp.haaga-helia.fi/client/ " rel="noopener noreferrer" target="_blank">
+                <Image id="roviusLink" className="navImg" src={roviusPicture} roundedCircle></Image>
                 </NavLink>
             </OverlayTrigger>
 

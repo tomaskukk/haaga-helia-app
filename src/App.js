@@ -13,7 +13,8 @@ import './components/css/components.css'
 import { Row, Col, Container } from 'react-bootstrap'
 import Footer from './components/Footer'
 import strings from './components/Langstrings'
-import Kideapp from './components/KideApp';
+import Kideapp from './components/KideApp'
+import startingLukkari from './services/StartingLukkari'
 
 
 
@@ -37,7 +38,7 @@ class App extends Component {
       malmiAmicaFood: [],
       haagaAmicaFood: [],
       location: 'Pasila',
-      lukkari: '<div>Not available right now</div>',
+      lukkari: '<div></div>',
       groupId: '',
       waitMessage: '',
       lang: 'fi',
@@ -231,7 +232,6 @@ class App extends Component {
 
   findLukkariByGroupId = (event, id) => {
     event.preventDefault()
-
     // save last searched group id for browser and render it
     window.localStorage.removeItem('lukkariTunus')
     window.localStorage.setItem('lukkariTunnus', this.state.groupId)
