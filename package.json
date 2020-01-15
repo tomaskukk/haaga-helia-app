@@ -22,7 +22,10 @@
     "cypress:open": "cypress open",
     "cy:run": "cypress run"
   },
-  "proxy": "http://localhost:3001",
+  "proxy": {
+    "target": "http://localhost:3001",
+    "secure": false
+  },
   "eslintConfig": {
     "extends": "react-app"
   },
