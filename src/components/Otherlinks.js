@@ -10,20 +10,22 @@ const Otherlinks = () => {
     <DropDown id="otherLinks">
       <h5>{strings.commonLinks}</h5>  
       {otherLinkItems.map(item => {
-      return <DropdownItem
-        key={item.href} 
-        className="cool-link" 
-        rel="noopener noreferrer"
-        target="_blank" 
-        href={item.href}
-      >
-        <img 
-          className="commonLinksPictures" 
-          src={item.src} 
-          alt="">
-        </img>
-        {item.text}
-      </DropdownItem>
+      return (
+        <DropdownItem
+          key={item.href} 
+          className="cool-link" 
+          rel="noopener noreferrer"
+          target="_blank" 
+          href={item.href}
+        >
+          <img 
+            className="commonLinksPictures" 
+            src={item.src} 
+            alt="">
+          </img>
+          {item.text}
+        </DropdownItem>
+        )
       })}
     </DropDown>
   );

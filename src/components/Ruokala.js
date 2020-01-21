@@ -9,26 +9,37 @@ const Ruokala = () => {
   const [show, setShow] = useState(false);
   const handleVisibility = () => setShow(!show);
 
-  const getImg = async () => {
+  const getImg = () => {
     handleVisibility()
-        await trafficService.getTrafficPicture()
-        .then((response) => {
-          const trafficImg = document.getElementById('trafficImg');
-          const timestampTrafficImg = document.getElementById('timestampTrafficPic');
-          if (trafficImg) {
-            trafficImg.src = 'http://localhost:3000/img/' + response;
-          }
-          if (timestampTrafficImg) {
-            const timestampToRender = 'Picture taken at ' + 
-            response.substring(9, 11) + 
-            ':' + 
-            response.substring(11, 13) + 
-            ':' + 
-            response.substring(13, 15);
-            timestampTrafficImg.innerHTML = timestampToRender;
-          }
-        });
+    trafficService.getTrafficPicture()
+    .then((response) => {
+      if (response !== '') {
+        setTrafficImage(response)
+        setTimeStampForImage(response)
+      }
+    });
   };
+
+  const setTimeStampForImage = (response) => {
+    const timestampTrafficImg = document.getElementById('timestampTrafficPic');
+    if (timestampTrafficImg) {
+      const timestampToRender = 'Picture taken at ' + 
+      response.substring(9, 11) + 
+      ':' + 
+      response.substring(11, 13) + 
+      ':' + 
+      response.substring(13, 15);
+      timestampTrafficImg.innerHTML = timestampToRender;
+    }
+  }
+
+  const setTrafficImage = (response) => {
+    const trafficImg = document.getElementById('trafficImg');
+    if (trafficImg) {
+      trafficImg.src = '/img/' + response;
+    }
+  }
+
 
 
   return (
