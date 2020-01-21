@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const urlPasila = '/api/amica/pasila'
 const urlMalmi = '/api/amica/malmi'
-const urlHaaga = '/api/amica/haaga'
+const urlHaaga = '/api/amica/haaga' 
 
 const getAllPasila = async (lang) => {
     const response = await axios.get(`${urlPasila}/${lang}`)
