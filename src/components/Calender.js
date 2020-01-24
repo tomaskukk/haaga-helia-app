@@ -1,21 +1,28 @@
-import React from 'react';
-import Ruokalista from './Ruokalista';
-import './css/components.css';
+import React from "react";
+import Ruokalista from "./Ruokalista";
+import "./css/components.css";
 
-
-const Calender = ({handleDayClick, selectedDay, foodListPasila,
-  foodListMalmi, foodListHaaga, selectedLocation, handleLocationClick,
-  isFoodListVisible, setVisible}) => {
+const Calender = ({
+  handleDayClick,
+  selectedDay,
+  foodListPasila,
+  foodListMalmi,
+  foodListHaaga,
+  selectedLocation,
+  handleLocationClick,
+  isFoodListVisible,
+  setVisible
+}) => {
   // lets find out what campus is clicked and render the state needed
   // to show right foodlist
 
   const listToShow = () => {
     switch (selectedLocation) {
-      case 'Malmi':
+      case "Malmi":
         return foodListMalmi;
-      case 'Pasila':
+      case "Pasila":
         return foodListPasila;
-      case 'Haaga':
+      case "Haaga":
         return foodListHaaga;
       default:
         return foodListPasila;

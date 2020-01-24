@@ -1,25 +1,27 @@
-import React from 'react';
-import RuokalistaDiet from './RuokalistaDiet';
-import './css/components.css';
-import Table from 'react-bootstrap/Table';
-import strings from './Langstrings';
-import Keygenerator from '../services/Keygenerator';
+import React from "react";
+import RuokalistaDiet from "./RuokalistaDiet";
+import "./css/components.css";
+import Table from "react-bootstrap/Table";
+import strings from "./Langstrings";
+import Keygenerator from "../services/Keygenerator";
 
-const RuokalistaName = ({foodList}) => {
+const RuokalistaName = ({ foodList }) => {
+  const handleOnDragStart = e => e.preventDefault();
 
-  const handleOnDragStart = (e) => e.preventDefault();
-
-  // go through the JSON response got from API 
-  const foodListToRender = foodList.Meals.map((meal) =>
+  // go through the JSON response got from API
+  const foodListToRender = foodList.Meals.map(meal => (
     <tr key={Keygenerator.getRandomKey()}>
       <td>{meal.Name}</td>
       <td className="dietsStyle">
-        {<RuokalistaDiet
-          key={Keygenerator.getRandomKey()}
-          foodListDiet={meal.Diets}/>}
+        {
+          <RuokalistaDiet
+            key={Keygenerator.getRandomKey()}
+            foodListDiet={meal.Diets}
+          />
+        }
       </td>
-    </tr>,
-  );
+    </tr>
+  ));
 
   return (
     <Table striped bordered hover id="linjastoMenu">
@@ -33,6 +35,5 @@ const RuokalistaName = ({foodList}) => {
     </Table>
   );
 };
-
 
 export default RuokalistaName;

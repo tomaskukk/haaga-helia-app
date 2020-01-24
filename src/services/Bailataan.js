@@ -1,11 +1,10 @@
-import axios from 'axios'
+import axios from "axios";
 
-const url = '/api/kide'
+const url = "/api/kide";
 
 const getAllKideApp = async () => {
-    const response = await axios.get(url)
-    return (response.data)
-}
+  const response = await axios.get(url);
+  return response.data;
+};
 
-
-export default { getAllKideApp }
+export default { getAllKideApp };

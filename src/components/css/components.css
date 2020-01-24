@@ -1,248 +1,233 @@
 body {
-    background-color: #ecececd2;
+  background-color: #ecececd2;
 }
 
 .container {
-    overflow-x: hidden;
+  overflow-x: hidden;
 
-    margin: auto;
-    
-    width: 100%;
-    text-align: center;
-    padding: 0px;
+  margin: auto;
+
+  width: 100%;
+  text-align: center;
+  padding: 0px;
 }
 
 .calenderContainer {
-    margin-top: 2rem;
+  margin-top: 2rem;
 }
 
-
 #calendarTypeChange {
-    display: none;
+  display: none;
 }
 
 #cl-hourlinesContainer {
-    display: none;
+  display: none;
 }
 
 #subTitle {
-    display: none;
+  display: none;
 }
- 
+
 #hhHeader {
-    font-size: 25px;
-    display: block;
+  font-size: 25px;
+  display: block;
 }
 #deskNav {
-    display: none;
+  display: none;
 }
 
 .langButton {
-    border: none;
-    background: none;
-    outline-style: none;
+  border: none;
+  background: none;
+  outline-style: none;
 }
 
 .rw-box {
-    display: block; 
+  display: block;
 }
 .range {
-    display: none;
+  display: none;
 }
 
 .info {
-    display: none;
+  display: none;
 }
 .rw-today {
-    display: flex;
+  display: flex;
 }
 .rw-box-right {
-    display: none;
+  display: none;
 }
 
 .rw-box-left {
-    display: flex;
+  display: flex;
 }
 
 .desc {
-    margin-left: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 .current {
-    margin-left: 0.5rem;
+  margin-left: 0.5rem;
 }
 
 .date {
-    display: none;
+  display: none;
 }
 
 .rw-today {
-    margin-left: 0.5rem; 
+  margin-left: 0.5rem;
 }
 .rw-box h2 {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 #lukkari {
-    text-align: center;
-    margin-top: 2em;
-    width: 100%;
+  text-align: center;
+  margin-top: 2em;
+  width: 100%;
 }
 #lukkariFormGroup {
-    display: flex;
-
+  display: flex;
 }
 
 .mb-3.btn-toolbar {
-    display: block;
-    text-align: center;
-    margin: auto;
+  display: block;
+  text-align: center;
+  margin: auto;
 }
 
-
-
-
-
 #waitMessage {
-    display: none; 
+  display: none;
 }
 
 #weekCal {
-    text-align: center;
-    margin: auto;
-    width: 100%;
-    border: 2px solid #b7d8e5;
-}   
+  text-align: center;
+  margin: auto;
+  width: 100%;
+  border: 2px solid #b7d8e5;
+}
 
 .navImg {
-    width: 3rem;
-    height: 3rem;
-    text-align: center;
-    margin: auto;
-    border: 2px solid #b7d8e5;
+  width: 3rem;
+  height: 3rem;
+  text-align: center;
+  margin: auto;
+  border: 2px solid #b7d8e5;
 }
 .navLink {
-    padding-left: .82em;
-    
+  padding-left: 0.82em;
 }
 
-  #loggingHelpText {
-      display: none;
-  }
+#loggingHelpText {
+  display: none;
+}
 
-  .rightContainer {
-    margin: auto;
-    width: 100%;
-
+.rightContainer {
+  margin: auto;
+  width: 100%;
 }
 
 .leftContainer {
-    margin: auto;
-    width: 100%;
-    margin-top: 0px; 
+  margin: auto;
+  width: 100%;
+  margin-top: 0px;
 }
 
 #otherLinks {
-    margin-top: 2em;
-    border: 2px solid #b7d8e5; 
-    padding: 1em;
-
+  margin-top: 2em;
+  border: 2px solid #b7d8e5;
+  padding: 1em;
 }
 
 .table {
-    border: 2px solid #b7d8e5; 
+  border: 2px solid #b7d8e5;
 }
 
 .table td {
-    margin-top: 1rem; 
-    padding: 0.2rem;
+  margin-top: 1rem;
+  padding: 0.2rem;
 }
 
 .calender {
-    border-radius: 6px;
-
+  border-radius: 6px;
 }
 
 #partyDiv {
-    padding-top: 1rem;
-    text-align: center;
-    margin: auto;
-    width: 85%;
-
+  padding-top: 1rem;
+  text-align: center;
+  margin: auto;
+  width: 85%;
 }
 
 #trafficImg {
-    border: 10px;
+  border: 10px;
 }
 
 #linjastoMenu {
-    text-align: center;
-    margin: auto;
-    margin-top: 1rem; 
-    width: 90%;
-    border: 2px solid #b7d8e5;
-    max-width: 325px;
+  text-align: center;
+  margin: auto;
+  margin-top: 1rem;
+  width: 90%;
+  border: 2px solid #b7d8e5;
+  max-width: 325px;
 }
 
 #linjastoMenu td {
-    padding: 2px;
+  padding: 2px;
 }
 
 .Linjasto-2 {
-    display: none;
+  display: none;
 }
 
-
- 
 .dropDownLocationButton {
-    border-bottom: 2px dotted #b7d8e5;
-    margin-bottom: 5px; 
-    text-align: center;
-    font-weight:bold;
+  border-bottom: 2px dotted #b7d8e5;
+  margin-bottom: 5px;
+  text-align: center;
+  font-weight: bold;
 }
 
 #footer {
-    text-align: center;
-    margin: auto;
-    background-color: rgba(222, 226, 230, 0.575);
-    border: 2px solid #b7d8e5;
-    height: 100px;
-    margin-top: 50px; 
-    margin-bottom: -100px;
-    width: 95%;
-    
-
+  text-align: center;
+  margin: auto;
+  background-color: rgba(222, 226, 230, 0.575);
+  border: 2px solid #b7d8e5;
+  height: 100px;
+  margin-top: 50px;
+  margin-bottom: -100px;
+  width: 95%;
 }
 
 #footer h3 {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 #footer h5 {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 #feedbackForm {
-    display: block;
-    padding: 15px;
+  display: block;
+  padding: 15px;
 }
 
 .lunchButtons {
-    margin-bottom: 1rem; 
+  margin-bottom: 1rem;
 }
 
 .toggleButtonCommonLinks {
-    margin-top: 2rem; 
+  margin-top: 2rem;
 }
 
 .commonLinksPictures {
-    margin-right: 10px; 
-    margin-left: -20px; 
+  margin-right: 10px;
+  margin-left: -20px;
 }
 #moodleHelpText {
-    display: none;
+  display: none;
 }
 .ticketsLeft {
-    text-align: center;
+  text-align: center;
 }
 
 /* @media only screen and (max-width: 1750px) {
@@ -251,376 +236,359 @@ body {
     }
 } */
 .lds-roller {
-    display: inline-block;
-    position: relative;
-    width: 80px;
-    height: 80px;
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-roller div {
+  animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  transform-origin: 40px 40px;
+}
+.lds-roller div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fff;
+  margin: -4px 0 0 -4px;
+}
+.lds-roller div:nth-child(1) {
+  animation-delay: -0.036s;
+}
+.lds-roller div:nth-child(1):after {
+  top: 63px;
+  left: 63px;
+}
+.lds-roller div:nth-child(2) {
+  animation-delay: -0.072s;
+}
+.lds-roller div:nth-child(2):after {
+  top: 68px;
+  left: 56px;
+}
+.lds-roller div:nth-child(3) {
+  animation-delay: -0.108s;
+}
+.lds-roller div:nth-child(3):after {
+  top: 71px;
+  left: 48px;
+}
+.lds-roller div:nth-child(4) {
+  animation-delay: -0.144s;
+}
+.lds-roller div:nth-child(4):after {
+  top: 72px;
+  left: 40px;
+}
+.lds-roller div:nth-child(5) {
+  animation-delay: -0.18s;
+}
+.lds-roller div:nth-child(5):after {
+  top: 71px;
+  left: 32px;
+}
+.lds-roller div:nth-child(6) {
+  animation-delay: -0.216s;
+}
+.lds-roller div:nth-child(6):after {
+  top: 68px;
+  left: 24px;
+}
+.lds-roller div:nth-child(7) {
+  animation-delay: -0.252s;
+}
+.lds-roller div:nth-child(7):after {
+  top: 63px;
+  left: 17px;
+}
+.lds-roller div:nth-child(8) {
+  animation-delay: -0.288s;
+}
+.lds-roller div:nth-child(8):after {
+  top: 56px;
+  left: 12px;
+}
+@keyframes lds-roller {
+  0% {
+    transform: rotate(0deg);
   }
-  .lds-roller div {
-    animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-    transform-origin: 40px 40px;
+  100% {
+    transform: rotate(360deg);
   }
-  .lds-roller div:after {
-    content: " ";
-    display: block;
-    position: absolute;
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: #fff;
-    margin: -4px 0 0 -4px;
-  }
-  .lds-roller div:nth-child(1) {
-    animation-delay: -0.036s;
-  }
-  .lds-roller div:nth-child(1):after {
-    top: 63px;
-    left: 63px;
-  }
-  .lds-roller div:nth-child(2) {
-    animation-delay: -0.072s;
-  }
-  .lds-roller div:nth-child(2):after {
-    top: 68px;
-    left: 56px;
-  }
-  .lds-roller div:nth-child(3) {
-    animation-delay: -0.108s;
-  }
-  .lds-roller div:nth-child(3):after {
-    top: 71px;
-    left: 48px;
-  }
-  .lds-roller div:nth-child(4) {
-    animation-delay: -0.144s;
-  }
-  .lds-roller div:nth-child(4):after {
-    top: 72px;
-    left: 40px;
-  }
-  .lds-roller div:nth-child(5) {
-    animation-delay: -0.18s;
-  }
-  .lds-roller div:nth-child(5):after {
-    top: 71px;
-    left: 32px;
-  }
-  .lds-roller div:nth-child(6) {
-    animation-delay: -0.216s;
-  }
-  .lds-roller div:nth-child(6):after {
-    top: 68px;
-    left: 24px;
-  }
-  .lds-roller div:nth-child(7) {
-    animation-delay: -0.252s;
-  }
-  .lds-roller div:nth-child(7):after {
-    top: 63px;
-    left: 17px;
-  }
-  .lds-roller div:nth-child(8) {
-    animation-delay: -0.288s;
-  }
-  .lds-roller div:nth-child(8):after {
-    top: 56px;
-    left: 12px;
-  }
-  @keyframes lds-roller {
-    0% {
-      transform: rotate(0deg);
-    }
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  
+}
 
 @media only screen and (min-width: 769px) and (max-width: 1200px) {
+  .popover {
+    max-width: 50%;
+  }
 
-    .popover {
-        max-width: 50%;
-    }
-    
+  .rootDom {
+    text-align: center;
+    margin: auto;
+    width: 75%;
+  }
 
-    .rootDom {
-        text-align: center;
-        margin: auto;
-        width: 75%;
-    }
+  #linjastoMenu {
+    text-align: center;
+    margin: auto;
+    margin-top: 5px;
+    width: 75%;
+  }
 
-    #linjastoMenu {
-        text-align: center;
-        margin: auto;
-        margin-top: 5px; 
-        width: 75%;
-    }
+  #partyDiv {
+    margin-top: 3rem;
+    text-align: center;
+    margin: auto;
+    width: 75%;
+  }
 
-    #partyDiv {
-        margin-top: 3rem;
-        text-align: center;
-        margin: auto;
-        width: 75%;
-    }
+  .commonLinks {
+    margin-top: 20px;
+    text-align: center;
+    margin: auto;
+    border: 2px solid #b7d8e5;
 
-    .commonLinks {
-        margin-top: 20px;
-        text-align: center;
-        margin: auto;
-        border: 2px solid #b7d8e5;
+    width: 75%;
+  }
 
-        width: 75%;
-    }
-
-    #lukkari {
-        margin: auto;
-    }
+  #lukkari {
+    margin: auto;
+  }
 }
 
 @media only screen and (min-width: 1201px) {
-  
-    .popover {
-        max-width: 100%;
+  .popover {
+    max-width: 100%;
+  }
 
-    }
-    
-    #deskNav {
-        display: inline-block;
-    }
-    .table td {
-        margin-top: 1rem; 
-        padding: 0.5rem;
-    }
+  #deskNav {
+    display: inline-block;
+  }
+  .table td {
+    margin-top: 1rem;
+    padding: 0.5rem;
+  }
 
-    .rootDom {
-        margin: auto;
-        width: 70rem;
-    }
+  .rootDom {
+    margin: auto;
+    width: 70rem;
+  }
 
-    .container {
-        text-align: left;
-        display: flex;
-        margin-top: 2rem;
-    }
+  .container {
+    text-align: left;
+    display: flex;
+    margin-top: 2rem;
+  }
 
-    .rightContainer {
-        margin-top: 0px;
-        margin: 0px;
-        width:100%;
-    }
+  .rightContainer {
+    margin-top: 0px;
+    margin: 0px;
+    width: 100%;
+  }
 
-    .leftContainer {
-        width: 100%;
-        margin-left: 0px;
-    }
+  .leftContainer {
+    width: 100%;
+    margin-left: 0px;
+  }
 
-    .calenderContainer {
-        margin-top: 0px;
-    }
-    .table {
-        margin-top: 1rem; 
-    }
+  .calenderContainer {
+    margin-top: 0px;
+  }
+  .table {
+    margin-top: 1rem;
+  }
 
-    .rw-box {
-        display: block;
-        margin-top: 15px; 
-        font-size: 15px;
-    }
+  .rw-box {
+    display: block;
+    margin-top: 15px;
+    font-size: 15px;
+  }
 
-    .range {
-        display: none;
-    }
-    #linjastoMenu {
-        text-align: left;
-        margin: 1px;
-        margin-top: 1rem; 
-        width: 90%;
-        border: 2px solid #b7d8e5;
-        max-width: 325px;
-    }
-    
-    
-    .info {
-        display: none;
-    }
-    .rw-today {
-        display: flex;
-    }
-    .rw-box-right {
-        display: none;
-    }
+  .range {
+    display: none;
+  }
+  #linjastoMenu {
+    text-align: left;
+    margin: 1px;
+    margin-top: 1rem;
+    width: 90%;
+    border: 2px solid #b7d8e5;
+    max-width: 325px;
+  }
 
-    .rw-box-left {
-        display: flex;
-        
-    }
+  .info {
+    display: none;
+  }
+  .rw-today {
+    display: flex;
+  }
+  .rw-box-right {
+    display: none;
+  }
 
-    .desc {
-        margin-left: 2rem;
-    }
+  .rw-box-left {
+    display: flex;
+  }
 
-    .current {
-        margin-left: 2rem;
-    }
+  .desc {
+    margin-left: 2rem;
+  }
 
-    .date {
-        display: block;
-    }
+  .current {
+    margin-left: 2rem;
+  }
 
-    .rw-today {
-        margin-left: 2rem; 
-    }
-    .rw-box h2 {
-        font-size: 20px;
-    }
-    
-    #hhHeader {
-        font-size: 25px;
-        display: block;
-        padding: auto;
-    }
+  .date {
+    display: block;
+  }
 
-    #loggingHelpText {
-        display: block;
-        margin-top: 1rem;
-    }
+  .rw-today {
+    margin-left: 2rem;
+  }
+  .rw-box h2 {
+    font-size: 20px;
+  }
 
-   
-    
-    #mobileNav {
-        display: none;
-    }
-   
+  #hhHeader {
+    font-size: 25px;
+    display: block;
+    padding: auto;
+  }
 
-    #waitMessage {
-        margin-left: 3rem; 
-        display: block;
-    }
+  #loggingHelpText {
+    display: block;
+    margin-top: 1rem;
+  }
 
-    .commonLinks {
-        width: 10rem;
-        border: 2px solid #b7d8e5;
-        text-align: center;
-    }
-    
-    .calender {
-        border: 2px solid #b7d8e5;
-    }
+  #mobileNav {
+    display: none;
+  }
 
-    .navImg {
-            width: auto;
-            height: auto;
-            transition: transform .3s;
-            border: 2px solid #b7d8e5;
-    }
+  #waitMessage {
+    margin-left: 3rem;
+    display: block;
+  }
 
-    .navImg:hover {
-        transform: scale(0.90);
-    }
+  .commonLinks {
+    width: 10rem;
+    border: 2px solid #b7d8e5;
+    text-align: center;
+  }
 
-    .weekArrowRight:hover {
-        transition: 0.3s;
-    }
+  .calender {
+    border: 2px solid #b7d8e5;
+  }
 
-    .weekArrowLeft:hover {
-        transition: 0.3s;
-    }
+  .navImg {
+    width: auto;
+    height: auto;
+    transition: transform 0.3s;
+    border: 2px solid #b7d8e5;
+  }
 
-    .weekArrowRight:active {
-        transform: scale(0.3);
-    }
+  .navImg:hover {
+    transform: scale(0.9);
+  }
 
-    .weekArrowLeft:active {
-        transform: scale(0.3);
-    }
+  .weekArrowRight:hover {
+    transition: 0.3s;
+  }
 
-    .headerForLunchAndParties {
-        margin-bottom: 1rem; 
-    }
+  .weekArrowLeft:hover {
+    transition: 0.3s;
+  }
 
-    #partyDiv {
-        margin-top: 3rem;
-        text-align: left;
-        margin: 1px;
-        width: 85%;
-    }
+  .weekArrowRight:active {
+    transform: scale(0.3);
+  }
 
-    .cool-link {
-        display: inline-block;
-        text-decoration: none;
-        border-bottom: 1px solid #b7d8e5;
+  .weekArrowLeft:active {
+    transform: scale(0.3);
+  }
 
-    }
+  .headerForLunchAndParties {
+    margin-bottom: 1rem;
+  }
 
-    .cool-link::after {
-        content: '';
-        display: block;
-        width: 0;
-        height: 2px;
-        background: rgb(53, 154, 146);
-        transition: width .3s;
-    }
+  #partyDiv {
+    margin-top: 3rem;
+    text-align: left;
+    margin: 1px;
+    width: 85%;
+  }
 
-    .navLink {
-        margin: 3px;
-        padding: 5px;
-    }
+  .cool-link {
+    display: inline-block;
+    text-decoration: none;
+    border-bottom: 1px solid #b7d8e5;
+  }
 
-    .cool-link:hover::after {
-        width: 100%;
-        transition: width .3s;
-    }
+  .cool-link::after {
+    content: "";
+    display: block;
+    width: 0;
+    height: 2px;
+    background: rgb(53, 154, 146);
+    transition: width 0.3s;
+  }
 
+  .navLink {
+    margin: 3px;
+    padding: 5px;
+  }
 
-    .dietsStyle {
-        font-size: 12px;
-    }
+  .cool-link:hover::after {
+    width: 100%;
+    transition: width 0.3s;
+  }
 
-    .calenderContainer Button {
-        margin: 5px;
-    }
+  .dietsStyle {
+    font-size: 12px;
+  }
 
-    a:link {
-        text-decoration: none;
-    }
+  .calenderContainer button {
+    margin: 5px;
+  }
+
+  a:link {
+    text-decoration: none;
+  }
 
   td {
-      font-size: 15px;
-    }
+    font-size: 15px;
+  }
 
   .toggleButton {
-      display: flex;
-    }
+    display: flex;
+  }
 
-    .logOutButton {
-        margin-bottom: 1rem;
-    }
+  .logOutButton {
+    margin-bottom: 1rem;
+  }
 
-    #scrollRight {
-        display: none;
-    }
+  #scrollRight {
+    display: none;
+  }
 
-    #toggleLunch {
-        display: none;
-    }
+  #toggleLunch {
+    display: none;
+  }
 
-    #feedbackForm {
-        display: block;
-    }
+  #feedbackForm {
+    display: block;
+  }
 
+  .mb-3.btn-toolbar {
+    display: flex;
+  }
 
-    .mb-3.btn-toolbar {
-        display: flex;
-        
-    }
-    
-
-    #moodleHelpText {
-        display: block;
-    }
-    #lukkari {
-        margin: auto;
-    }
-   
+  #moodleHelpText {
+    display: block;
+  }
+  #lukkari {
+    margin: auto;
+  }
 }
-

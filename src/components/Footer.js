@@ -1,5 +1,5 @@
-import React from 'react';
-import Feedbackform from './Feedbackform';
+import React from "react";
+import Feedbackform from "./Feedbackform";
 
 const Footer = () => {
   return (

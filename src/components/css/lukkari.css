@@ -1,331 +1,230 @@
-
 #lukkari {
-    width: 100%;
-  }
-  
-  .lukkariForm {
-    display: flex;
-  }
-  
-  #groupInput {
-    width: 100px;
-  }
-  
-  
-   
-  .ui-datepicker 
-  {
-      z-index:20000;
-  }
-  
-  
-  
-  #cl-maincal
-  {
-      width:100%;
-  
-  }
-  
-  td
-  {
-      vertical-align:top;
-  
-  }
-
-  #hbv {
-      display: none;
-  }
-  
-  #weekCalDays
-  {
-      width:100%;
-      table-layout:fixed;
-         
-  }
-  
-  #weekCalDays .resourceInfo,#weekCal .resourceInfo
-  {
-      color:#000;
-  
-  }
-  
-  
-  #weekCal, #dayCal
-  {
-      table-layout:fixed;
-        background-color: #ebebeb;
-        overflow-y: hidden;
-  }
-  
-  
-  tr.cl-Days {
-    font-weight:bold;
-  }
-  
-  
-  
-  
-  .cl-timeCol
-  {  
-
-
-    width: 50px;
-    font-size: .9em;
-    z-index: 10000;
-
-  }
-  
-  .nd.today {
-      background-color: #55bbdd;
-      
-  }
-
-  .cl-col.nd {
-      padding: 0px;
-  }
-  
-  .nd {
-    width: 130px;
-    padding: 0px;
-    margin: 0px;
+  width: 100%;
 }
-  
-  .we {
-      width:100px;
-  }
-  
-  #weekCal td,
-  #dayCal td
-  {
-      border-right:1px solid  #999;
-      border-bottom:1px solid  #999;
-  
-  }
-  
-  #weekCal .saturday,
-  #weekCal .sunday
-  {
-      background:#EEE;
-  
-  }
-  
-  .cl-Days td,
-  #dayTitle
-  {
-  color:#000;
-      text-align:center;
-      padding:4px 0;
-     font-size:0.7em;
-      
-  
-  }
-  
-  
-  .cl-colevents
-  { 
-      font-size:.7em;
-      cursor:default;
-      position:relative;
-      width:100%;
-      padding:0;
-      margin:0;
-  }
 
-
-  .cl-event
-  {   
-   border: 1px solid #000;
-   position:absolute;
-   cursor:default;
-   overflow:hidden;
-   left:0%;
-   padding:0;
-   margin:0;
-   z-index:1;
-  }
-  .cl-event p {
-    
-    padding:.1em;
-  }
-  .cl-event .b,
-  .cl-m-event .b
-  {
-      background:#94A2BE;
-      margin:1px;
-  
-   /*   background:#c5dbea;
-      color:#2E4F75;
-  */
-  
-  }
-  
-  
-  .cl-event dt
-  {
-      font-weight:bold;
-  
-  
-  }
-  
-  .unconfirmed
-  {
-      background:#CCC !important;
-      color:#666;
-  }
-  
-  
-  
-  
-  
-  
-  .cl-event-dl
-  {
-  
-      margin:.1em;
-    
-  }
-  
-  .cl-m-event
-  {
-  
-      background:#4C79A2;
-  
-  
-  
-      margin:1px;
-      font-size:12px;
-      /*max-height:150px;*/
-      overflow:hidden;
-  
-  
-  }
-  
-  .dummyEvent
-  {
-      height:80px;
-      margin:4px;
-      padding:1px;
-  }
-  
-  .continues
-  {
-      margin-right:0;
-      margin-left:0;
-  
-  }
-  
-  .first
-  {
-      margin-left:4px;
-  
-  }
-  
-  .last
-  {
-      margin-right:4px;
-  
-  }
-  
-  
-  .cl-time
-  {
-      height:47px;
-  }
-  
-  
-  
-  #weekCal
-  {
-      border:2px solid #b7d8e5;
-      height:500px;
-      table-layout:fixed;
-  }
-  
-  
-  
-  .cl-colevents
-  {
-      cursor:default;
-      position:relative;
-      
-  }
-  
-  .cl-hline
-  {
-      height:25px;
-  
-      
-  }
-  
-  
-  
-  #cl-hourlinesContainer
-  {
-      position:relative;
-      top:1px;
-  
-  }
-  
-  #cl-hourlines
-  {
-      position:absolute;
-      width:100%;
-  }
-  
-  
-
-
-
-
-#searchButton {
-  height: 40px;
-  margin-left: 1rem; 
-  margin-top: 0px; 
-
+.lukkariForm {
+  display: flex;
 }
 
 #groupInput {
-    width: 100px;
-    margin-left: 1rem; 
-  }
-  @media only screen and (max-width: 1201px) {
-    .nd {
-        width: 20%;
-    }
-
+  width: 100px;
 }
 
-  @media only screen and (max-width: 769px) {
-    
-    .cl-timeCol
-  {  
+.ui-datepicker {
+  z-index: 20000;
+}
 
+#cl-maincal {
+  width: 100%;
+}
 
+td {
+  vertical-align: top;
+}
+
+#hbv {
+  display: none;
+}
+
+#weekCalDays {
+  width: 100%;
+  table-layout: fixed;
+}
+
+#weekCalDays .resourceInfo,
+#weekCal .resourceInfo {
+  color: #000;
+}
+
+#weekCal,
+#dayCal {
+  table-layout: fixed;
+  background-color: #ebebeb;
+  overflow-y: hidden;
+}
+
+tr.cl-Days {
+  font-weight: bold;
+}
+
+.cl-timeCol {
+  width: 50px;
+  font-size: 0.9em;
+  z-index: 10000;
+}
+
+.nd.today {
+  background-color: #55bbdd;
+}
+
+.cl-col.nd {
+  padding: 0px;
+}
+
+.nd {
+  width: 130px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.we {
+  width: 100px;
+}
+
+#weekCal td,
+#dayCal td {
+  border-right: 1px solid #999;
+  border-bottom: 1px solid #999;
+}
+
+#weekCal .saturday,
+#weekCal .sunday {
+  background: #eee;
+}
+
+.cl-Days td,
+#dayTitle {
+  color: #000;
+  text-align: center;
+  padding: 4px 0;
+  font-size: 0.7em;
+}
+
+.cl-colevents {
+  font-size: 0.7em;
+  cursor: default;
+  position: relative;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.cl-event {
+  border: 1px solid #000;
+  position: absolute;
+  cursor: default;
+  overflow: hidden;
+  left: 0%;
+  padding: 0;
+  margin: 0;
+  z-index: 1;
+}
+.cl-event p {
+  padding: 0.1em;
+}
+.cl-event .b,
+.cl-m-event .b {
+  background: #94a2be;
+  margin: 1px;
+
+  /*   background:#c5dbea;
+      color:#2E4F75;
+  */
+}
+
+.cl-event dt {
+  font-weight: bold;
+}
+
+.unconfirmed {
+  background: #ccc !important;
+  color: #666;
+}
+
+.cl-event-dl {
+  margin: 0.1em;
+}
+
+.cl-m-event {
+  background: #4c79a2;
+
+  margin: 1px;
+  font-size: 12px;
+  /*max-height:150px;*/
+  overflow: hidden;
+}
+
+.dummyEvent {
+  height: 80px;
+  margin: 4px;
+  padding: 1px;
+}
+
+.continues {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.first {
+  margin-left: 4px;
+}
+
+.last {
+  margin-right: 4px;
+}
+
+.cl-time {
+  height: 47px;
+}
+
+#weekCal {
+  border: 2px solid #b7d8e5;
+  height: 500px;
+  table-layout: fixed;
+}
+
+.cl-colevents {
+  cursor: default;
+  position: relative;
+}
+
+.cl-hline {
+  height: 25px;
+}
+
+#cl-hourlinesContainer {
+  position: relative;
+  top: 1px;
+}
+
+#cl-hourlines {
+  position: absolute;
+  width: 100%;
+}
+
+#searchButton {
+  height: 40px;
+  margin-left: 1rem;
+  margin-top: 0px;
+}
+
+#groupInput {
+  width: 100px;
+  margin-left: 1rem;
+}
+@media only screen and (max-width: 1201px) {
+  .nd {
+    width: 20%;
+  }
+}
+
+@media only screen and (max-width: 769px) {
+  .cl-timeCol {
     width: 25px;
-    font-size: .6em;
-
+    font-size: 0.6em;
   }
-  .cl-time
-  {
-      height:47px;
+  .cl-time {
+    height: 47px;
   }
-  .cl-colevents
-  { 
-      font-size:.5em;
-      
+  .cl-colevents {
+    font-size: 0.5em;
   }
-  #weekCal
-  {
-    border:2px solid #b7d8e5;
-    
-  }      
+  #weekCal {
+    border: 2px solid #b7d8e5;
+  }
   .cl-Days td,
-  #dayTitle
-  {
-      padding:4px 0;
-     font-size:0.6em;
-      
-  
+  #dayTitle {
+    padding: 4px 0;
+    font-size: 0.6em;
   }
-  
 }
