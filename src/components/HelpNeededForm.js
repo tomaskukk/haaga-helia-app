@@ -15,7 +15,7 @@ const HelpNeededForm = () => (
     target="_blank"
   >
     feedback form
-  </a> if you're interested.</p>
+  </a> and tell me a little bit about yourself if you're interested.</p>
   </div>
 )
 
