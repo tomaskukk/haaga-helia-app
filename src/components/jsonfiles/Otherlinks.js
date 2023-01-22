@@ -19,7 +19,7 @@ const otherLinkItems = [
     text: "Startup-school"
   },
   {
-    href: "https://haagahelia.rekrytointi.com/paikat/?o=A_LOJ&list=1",
+    href: "https://helga.fi/jobteaser/",
     src: lauraPicture,
     text: strings.laura
   },
@@ -39,7 +39,7 @@ const otherLinkItems = [
     text: "Helga"
   },
   {
-    href: "http://www.helga.fi/palvelut/liikunta/",
+    href: "https://helga.fi/palvelusi/zone-liikuntapalvelut/",
     src: zonePicture,
     text: strings.zone
   }

@@ -37,11 +37,6 @@ const navItems = [
     href: "http://vdi.haaga-helia.fi/",
     src: vdiPicture,
     text: "VDI"
-  },
-  {
-    href: "https://vdi-lab.cp.haaga-helia.fi/client/",
-    src: roviusPicture,
-    text: "Rovius"
   }
 ];
 

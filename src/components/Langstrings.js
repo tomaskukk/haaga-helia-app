@@ -16,7 +16,7 @@ const strings = new LocalizedStrings({
     noParties: "No parties on selected day",
     commonLinks: "Common links",
     studentsGuide: "Students' guide",
-    laura: "Laura jobs",
+    laura: "Jobsteaser",
     zone: "Zone sports",
     groupid: "Group id",
     timetablefor: "Timetable for",
