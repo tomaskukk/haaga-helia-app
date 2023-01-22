@@ -22,26 +22,27 @@ const Kideapp = ({ selectedDay }) => {
     .toJSON()
     .substr(0, 10)
     .toString();
-
   // show only events that are happening on the day selected on calender
   let filteredEvents = [];
   if (events) {
     filteredEvents = events.model
       .filter(e => e.dateActualFrom.includes(selectedDayToShowAsJSON))
-      .map(event => (
-        <tr key={event.id}>
-          <td>
-            <a
-              className="cool-link"
-              rel="noopener noreferrer"
-              target="_blank"
-              href={`https://bailataan.fi/events/${event.id}`}
-            >
-              {event.name}
-            </a>
-          </td>
-        </tr>
-      ));
+      .map(event => {
+        return (
+          <tr key={event.id}>
+            <td>
+              <a
+                className="cool-link"
+                rel="noopener noreferrer"
+                target="_blank"
+                href={`https://bailataan.fi/events/${event.id}`}
+              >
+                {event.name}
+              </a>
+            </td>
+          </tr>
+        )
+      });
   }
   if (filteredEvents.length === 0) {
     filteredEvents = (

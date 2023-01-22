@@ -1,11 +1,11 @@
 import React from "react";
+import {  format, startOfDay } from "date-fns";
 import RuokalistaName from "./RuokalistaNames";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 import strings from "./Langstrings";
-import Ruokala from "./Ruokala";
 import keyGenerator from "../services/Keygenerator";
 
 const Ruokalista = ({
@@ -15,24 +15,19 @@ const Ruokalista = ({
   handleDayClick,
   handleLocationClick
 }) => {
-  const thisDay = new Date();
+  let thisDay = new Date();
   thisDay.setDate(thisDay.getDate() + selectedDay);
 
-  const selectedDayAsLocale = (
-    thisDay.getDate() +
-    "." +
-    (thisDay.getMonth() + 1) +
-    "." +
-    thisDay.getFullYear()
-  ).toString();
-
+  const selectedDayAsLocale = format(startOfDay(thisDay), 'yyyy-MM-dd\'T\'HH:mm:ss')
   // show only the days lunchmenu that is selected in calender
   let filterdfoodList = foodList
-    .filter(e => e.Date === selectedDayAsLocale)
+    .filter(e => e.date === selectedDayAsLocale)
     .map(lunchDay =>
-      lunchDay.SetMenus.map(setMenu => (
-        <RuokalistaName key={keyGenerator.getRandomKey()} foodList={setMenu} />
-      ))
+      {
+        return lunchDay.menuPackages.map(setMenu => (
+          <RuokalistaName key={keyGenerator.getRandomKey()} foodList={setMenu} />
+        ))
+      }
     );
 
   if (filterdfoodList.length === 0) {
@@ -68,11 +63,6 @@ const Ruokalista = ({
         </tbody>
       </Table>
     );
-  }
-
-  let traffic = <div></div>;
-  if (selectedLocation === "Pasila") {
-    traffic = <Ruokala />;
   }
 
   return (
@@ -131,7 +121,6 @@ const Ruokalista = ({
       <h5>
         {selectedLocation} {strings.lunchmenu} {thisDay.toLocaleDateString()}
       </h5>
-      {traffic}
       <div>{filterdfoodList}</div>
     </div>
   );

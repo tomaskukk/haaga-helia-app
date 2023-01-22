@@ -39,11 +39,6 @@ const navItems = [
     text: "VDI"
   },
   {
-    href: "http://palvelum.me/myybrowserathhapp",
-    src: myyPicture,
-    text: "Myy search"
-  },
-  {
     href: "https://vdi-lab.cp.haaga-helia.fi/client/",
     src: roviusPicture,
     text: "Rovius"

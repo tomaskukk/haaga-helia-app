@@ -45,27 +45,6 @@ const Ruokala = () => {
       <Button className="lunchButtons" variant="success" onClick={getImg}>
         {strings.cafeteriaButton}
       </Button>
-
-      <Modal size="lg" show={show} onHide={handleVisibility}>
-        <Modal.Header closeButton>
-          <Modal.Title>Cafeteria traffic monitoring</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <p className="modal-title h5" id="timestampTrafficPic"></p>
-          <br></br>
-          <Image
-            rounded
-            fluid
-            id="trafficImg"
-            alt="Picture of cafeteriatraffic"
-          />
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleVisibility}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </div>
   );
 };

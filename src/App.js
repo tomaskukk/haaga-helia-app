@@ -161,13 +161,14 @@ class App extends Component {
 
   findLunchMenus = lang => {
     amicaService.getAllHaaga(lang).then(lunchMenus => {
-      this.setState({ haagaAmicaFood: lunchMenus.LunchMenus });
+      this.setState({ haagaAmicaFood: lunchMenus.menus });
     });
     amicaService.getAllMalmi(lang).then(lunchMenus => {
-      this.setState({ malmiAmicaFood: lunchMenus.LunchMenus });
+      this.setState({ malmiAmicaFood: lunchMenus.menus });
     });
     amicaService.getAllPasila(lang).then(lunchMenus => {
-      this.setState({ pasilaAmicaFood: lunchMenus.LunchMenus });
+      console.log(lunchMenus)
+      this.setState({ pasilaAmicaFood: lunchMenus.menus });
     });
   };
 
