@@ -1,16 +1,16 @@
 import React, { Component } from "react";
 import Navigation from "./components/Nav";
 import amicaService from "./services/Amica";
-import lukkariService from "./services/Lukkari";
+import timetableService from "./services/Timetable";
 import Calender from "./components/Calender";
 import Otherlinks from "./components/Otherlinks";
 import Header from "./components/Header";
-import Lukkari from "./components/Lukkari";
+import Timetable from "./components/Timetable";
 import "./components/css/components.css";
 import { Row, Col, Container } from "react-bootstrap";
 import Footer from "./components/Footer";
 import strings from "./components/Langstrings";
-import Kideapp from "./components/KideApp";
+import Parties from "./components/Parties";
 
 class App extends Component {
   constructor(props) {
@@ -111,7 +111,7 @@ class App extends Component {
   };
 
   findLukkariByGroupId = id => {
-    lukkariService
+    timetableService
       .findByGroupId(id)
       .then(response => {
         this.setStatesAfterResponseFromLukkariService(response);
@@ -129,7 +129,7 @@ class App extends Component {
   };
 
   changeWeekLukkari = () => {
-    lukkariService
+    timetableService
       .changeWeekLukkari(
         this.state.week
           .toJSON()
@@ -184,7 +184,7 @@ class App extends Component {
             <Navigation />
           </div>
           <Col className="rightContainer">
-            <Lukkari
+            <Timetable
               handleLukkariChange={this.handleLukkariChange.bind(this)}
               lukkariState={this.state.lukkari}
               groupId={this.state.groupId}
@@ -206,7 +206,7 @@ class App extends Component {
                 handleLocationClick={this.handleLocationClick.bind(this)}
                 handleDayClick={this.handleDayClick.bind(this)}
               />
-              <Kideapp selectedDay={this.state.selectedDay} />
+              <Parties selectedDay={this.state.selectedDay} />
             </Col>
           </Row>
         </Container>

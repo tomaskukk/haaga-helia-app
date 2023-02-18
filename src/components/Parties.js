@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Table from "react-bootstrap/Table";
 import strings from "./Langstrings";
-import bailataanService from "../services/Bailataan";
+import partiesService from "../services/Parties";
 
 const Kideapp = ({ selectedDay }) => {
   const [events, setEvents] = useState(null);
   useEffect(() => {
-    bailataanService.getAllKideApp().then(events => {
+    partiesService.getAllKideApp().then(events => {
       setEvents(events);
     });
   }, []);

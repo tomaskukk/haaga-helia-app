@@ -1,5 +1,5 @@
 import React from "react";
-import RuokalistaDiet from "./RuokalistaDiet";
+import RuokalistaDiet from "./FoodListDiet";
 import "./css/components.css";
 import Table from "react-bootstrap/Table";
 import Keygenerator from "../services/Keygenerator";

@@ -1,6 +1,6 @@
 import React from "react";
 import {  format, startOfDay } from "date-fns";
-import RuokalistaName from "./RuokalistaNames";
+import RuokalistaName from "./FoodListNames";
 import Table from "react-bootstrap/Table";
 import Button from "react-bootstrap/Button";
 import ButtonToolbar from "react-bootstrap/ButtonToolbar";

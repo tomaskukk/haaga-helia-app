@@ -1,5 +1,5 @@
 import React from "react";
-import Ruokalista from "./Ruokalista";
+import FoodList from "./FoodList";
 import "./css/components.css";
 
 const Calender = ({
@@ -31,7 +31,7 @@ const Calender = ({
 
   return (
     <div className="calenderContainer">
-      <Ruokalista
+      <FoodList
         selectedDay={selectedDay}
         foodList={listToShow()}
         selectedLocation={selectedLocation}
