@@ -5,7 +5,6 @@ import lukkariService from "./services/Lukkari";
 import Calender from "./components/Calender";
 import Otherlinks from "./components/Otherlinks";
 import Header from "./components/Header";
-import HelpNeededForm from "./components/HelpNeededForm";
 import Lukkari from "./components/Lukkari";
 import "./components/css/components.css";
 import { Row, Col, Container } from "react-bootstrap";
@@ -176,7 +175,6 @@ class App extends Component {
   render() {
     return (
       <div className="rootDom">
-        <HelpNeededForm />
         <Header
           selectedLang={this.state.lang}
           handleLangClick={this.handleLangClick.bind(this)}
